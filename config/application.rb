@@ -25,9 +25,10 @@ module Backend
 
     config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
     config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins '*'
-      resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
+      end
     end
   end
 end
