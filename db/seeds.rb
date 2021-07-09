@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Create user for tests
+if User.find_by_email('admin@sipca.com').nil?
+  User.create!(email: 'admin@sipca.com', password: '12345678')
+end
