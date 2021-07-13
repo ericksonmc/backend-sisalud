@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -10,6 +12,8 @@ module Backend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+
+    config.api_only = true
 
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
