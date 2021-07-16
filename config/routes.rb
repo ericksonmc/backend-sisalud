@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       namespace :users do
         resources :users, only: [:index, :create, :update]
       end
+      
+      resources :products, only: [:index, :update]
+      resources :plans, only: [:index, :update]
     end
   end
 end
