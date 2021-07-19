@@ -1,10 +1,10 @@
-class Api::V1::PlansController < ApplicationController
+class Api::V1::PlansController < Api::V1::ApiController
   def index
-    render json: Plans.all
+    render json: Plan.all
   end
 
   def update
-    @plan.update(plan_params)
+    if @plan.update(plan_params)
       render json: { message: 'Plan actualizado con exito', status: 'ok' }
     else
       render json: { message: 'Ocurrio un erro al actualizar el plan',
