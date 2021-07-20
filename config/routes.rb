@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       end
       
       resources :products, only: [:index, :update, :show]
-      resources :plans, only: [:index, :update]
+      resources :plans, only: [:index, :update, :create]
     end
   end
 end
