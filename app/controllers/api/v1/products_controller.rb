@@ -1,7 +1,11 @@
-class Api::V1::ProductsController < ApplicationController
+class Api::V1::ProductsController < Api::V1::ApiController
   before_action :find_product
   def index 
     render json: Product.all
+  end
+
+  def show
+    render json: @product
   end
 
   def update
@@ -9,7 +13,7 @@ class Api::V1::ProductsController < ApplicationController
       render json: { message: 'Producto actualizado con exito', status: 'ok' }
     else
       render json: { message: 'Ocurrio un erro al actualizar el producto',
-                     erros: @product.errors.messages , status: 'fail' }, status: 400 and return
+                      erros: @product.errors.messages , status: 'fail' }, status: 400 and return
     end
   end
 
