@@ -10,6 +10,9 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+  * Duplicate application.yml.example to application.yml
+  * Generate key secret with: Rake secret
+  * Copy the key generated in a the file application.yml with key: `devise_jwt_secret_key`
 
 * Database creation
 
