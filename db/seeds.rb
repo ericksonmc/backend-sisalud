@@ -10,5 +10,5 @@
 
 # Create user for tests
 if User.find_by_email('admin@sipca.com').nil?
-  User.create(email: 'admin@sipca.com', password: '12345678')
+  User.create(first_name: 'Admin', last_name: 'Sipca', email: 'admin@sipca.com', password: '12345678')
 end
