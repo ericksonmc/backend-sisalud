@@ -14,6 +14,7 @@ module Api
       def create
         @plan = Plan.new(plan_params)
 
+        byebug
         if @plan.save!
           render json: { message: 'Plan creado con exito', status: 'ok'}
         else
@@ -34,7 +35,7 @@ module Api
       private
 
       def plan_params
-        params.permit(:coverage, :payment_fee, :title, :product_id, coverage_items: {})
+        params.permit(:coverage, :payment_fee, :title, :product_id, coverage_items: [:title, :value, :pe])
       end
 
       def find_plan
