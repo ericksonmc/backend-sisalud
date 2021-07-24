@@ -14,11 +14,11 @@ Rails.application.routes.draw do
       get '/session', to: 'session#index'
 
       namespace :users do
-        resources :users, only: [:index, :create, :update]
+        resources :users, only: %i[index create update]
       end
-      
-      resources :products, only: [:index, :update, :show]
-      resources :plans, only: [:index, :update, :create]
+
+      resources :products, only: %i[index update show]
+      resources :plans, only: %i[index update create]
     end
   end
 end

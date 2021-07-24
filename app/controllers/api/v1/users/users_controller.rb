@@ -14,15 +14,17 @@ module Api
           if @users.save!
             render json: { message: 'Usuario creado con exito' }
           else
-            render json: { message: 'Hubo un error al crear el usuario', erros: @users.errors.messages }, status: 400
+            render json: { message: 'Hubo un error al crear el usuario', erros: @users.errors.messages },
+                   status: 400
           end
         end
-        
+
         def update
           if user.update!(user_params)
             render json: { message: 'Usuario actualizado con exito' }
           else
-            render json: { message: 'Hubo un error al actualizar el usuario', erros: @user.errors.messages }, status: 400
+            render json: { message: 'Hubo un error al actualizar el usuario', erros: @user.errors.messages },
+                   status: 400
           end
         end
 

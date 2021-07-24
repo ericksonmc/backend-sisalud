@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class ProductsController < ApiController
       before_action :find_product, only: [:show, :update]
-      def index 
+      def index
         render json: Product.all
       end
 
@@ -11,12 +13,12 @@ module Api
       end
 
       def update
-        if @product.update(product_params)
-          render json: { message: 'Producto actualizado con exito', status: 'ok' }
-        else
+        unless @product.update(product_params)
           render json: { message: 'Ocurrio un erro al actualizar el producto',
-                          erros: @product.errors.messages , status: 'fail' }, status: 400 and return
+                         erros: @product.errors.messages, status: 'fail' }, status: 400 and return
         end
+
+        render json: { message: 'Producto actualizado con exito', status: 'ok' }
       end
 
       private

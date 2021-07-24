@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: customers
@@ -44,16 +46,16 @@
 #  fk_rails_...  (plan_id => plans.id)
 #
 class Customer < ApplicationRecord
-  belongs_to :parent, class_name: "Customer", foreign_key: "parent_id"
-  has_many :childs, class_name: "Customer", foreign_key: "parent_id"
-  
+  belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id'
+  has_many :childs, class_name: 'Customer', foreign_key: 'parent_id'
+
   validates :first_name,
             :last_name,
             :scond_name,
             :address,
-            :phone, presence: :true
+            :phone, presence: true
   validates :dni, uniqueness: { case_sensitive: false }
-  
+
   validates :size,
             :secondary_phone,
             :second_name,
@@ -75,9 +77,8 @@ class Customer < ApplicationRecord
   end
 
   def set_customer_code
-    return if self.main
+    return if main
 
-    "00#{self.parent.childs.length}"
+    "00#{parent.childs.length}"
   end
-
 end

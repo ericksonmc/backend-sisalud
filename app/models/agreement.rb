@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: agreements
@@ -28,6 +30,6 @@ class Agreement < ApplicationRecord
   belongs_to :customer
   belongs_to :user
 
-  enum payment_method: { fc_cash: 0, fc_transfer:1, lc_transfer: 2, lc_cash: 3 }
+  enum payment_method: { fc_cash: 0, fc_transfer: 1, lc_transfer: 2, lc_cash: 3 }
   enum status: { in_progress: 0, created: 1, suspended: 2, audit: 3, close: 4 }
 end

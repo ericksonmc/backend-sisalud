@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAgreements < ActiveRecord::Migration[6.1]
   def change
     create_table :agreements do |t|
@@ -9,7 +11,7 @@ class CreateAgreements < ActiveRecord::Migration[6.1]
       t.integer :payment_method
       t.integer :status
 
-      #indexs
+      # indexs
       t.index :agreement_number
 
       t.timestamps

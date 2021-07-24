@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-include ActionController::MimeResponds
+module Api
+  module V1
+    class ApiController < ActionController::API
+      include ActionController::MimeResponds
 
-class Api::V1::ApiController < ActionController::API
-  respond_to :json
-  before_action :authenticate_user!
+      respond_to :json
+      before_action :authenticate_user!
+    end
+  end
 end

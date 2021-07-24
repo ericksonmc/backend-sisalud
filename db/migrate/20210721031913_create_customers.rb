@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCustomers < ActiveRecord::Migration[6.1]
   def change
     create_table :customers do |t|
@@ -24,7 +26,7 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
       t.boolean :is_insured?
       t.string :customer_code
 
-      #indexs
+      # indexs
       t.index :dni
       t.index :coverage
       t.index :coverage_reference
