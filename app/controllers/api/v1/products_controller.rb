@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ProductsController < Api::V1::ApiController
+    class ProductsController < ApiController
       before_action :find_product, only: [:show, :update]
       def index 
         render json: Product.all

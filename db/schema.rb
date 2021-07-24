@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_034129) do
+ActiveRecord::Schema.define(version: 2021_07_23_015639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,11 +43,60 @@ ActiveRecord::Schema.define(version: 2021_07_15_034129) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "agreements", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.date "signed_date"
+    t.float "amount"
+    t.string "agreement_number"
+    t.bigint "user_id", null: false
+    t.integer "payment_method"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agreement_number"], name: "index_agreements_on_agreement_number"
+    t.index ["customer_id"], name: "index_agreements_on_customer_id"
+    t.index ["user_id"], name: "index_agreements_on_user_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "rif"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "firstname"
+    t.string "second_name"
+    t.string "last_name"
+    t.string "dni"
+    t.date "birthday"
+    t.string "legal_representative"
+    t.jsonb "address"
+    t.string "phone"
+    t.string "secondary_phone"
+    t.string "email"
+    t.string "activity"
+    t.boolean "main"
+    t.integer "age"
+    t.integer "sex"
+    t.string "size"
+    t.bigint "parent_id"
+    t.jsonb "diagnosis"
+    t.bigint "plan_id", null: false
+    t.float "coverage_reference"
+    t.float "coverage"
+    t.boolean "is_insured?"
+    t.string "customer_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coverage"], name: "index_customers_on_coverage"
+    t.index ["coverage_reference"], name: "index_customers_on_coverage_reference"
+    t.index ["customer_code"], name: "index_customers_on_customer_code"
+    t.index ["dni"], name: "index_customers_on_dni"
+    t.index ["email"], name: "index_customers_on_email"
+    t.index ["parent_id"], name: "index_customers_on_parent_id"
+    t.index ["plan_id"], name: "index_customers_on_plan_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -96,6 +145,10 @@ ActiveRecord::Schema.define(version: 2021_07_15_034129) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agreements", "customers"
+  add_foreign_key "agreements", "users"
+  add_foreign_key "customers", "customers", column: "parent_id"
+  add_foreign_key "customers", "plans"
   add_foreign_key "plans", "products"
   add_foreign_key "products", "companies"
 end

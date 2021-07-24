@@ -3,7 +3,7 @@
 module Api
   module V1
     module Users
-      class UsersController < Api::V1::ApiController
+      class UsersController < ApiController
         def index
           render json: User.all
         end

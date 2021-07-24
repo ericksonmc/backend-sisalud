@@ -1,7 +1,7 @@
 
 module Api
   module V1
-    class PlansController < Api::V1::ApiController
+    class PlansController < ApiController
       before_action :find_plan, only: [:show, :update]
       def index
         render json: Plan.all
@@ -13,8 +13,6 @@ module Api
 
       def create
         @plan = Plan.new(plan_params)
-
-        byebug
         if @plan.save!
           render json: { message: 'Plan creado con exito', status: 'ok'}
         else

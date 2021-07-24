@@ -60,6 +60,54 @@ coverage_items_oro = [
   {title: 'Mastología', value: 0, pe: '(1 Ano P/E)' }
 ]
 
+diagnosis = [
+  {
+    title: 'ENFERMEDADES CARDIOVASCULARES',
+    diseases: 'Hipertensión Arterial, infarto al Miocardio, Arritmia Cardiaca, Aneurisma, Palpitaciones, Angina de Pecho, Fiebre Reumática, Arteriosclerosis, Trastornos Valvulares, Tromboflebitis, Varices',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES DE LAS VÍAS RESPIRATORIAS', 
+    dieases: 'Ronquera, tos persistente, bronquitis, asma, enfisema, tuberculosis, pleuresía, neumonía, bronconeumonía.',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES DE LAS VÍAS DIGESTIVAS',
+    dieases: 'Gastritis, Ulceras, Hepatitis, Cirrosis, Hemorroides o similares, Apendicitis, colitis, Litiasis Vesicular, hernias hiatales, fisura anal',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES DEL SISTEMA ENDOCRINO',
+    dieases: 'Diabetes, Obesidad, Tiroides, Paratiroides.',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES OSTEOMUSCULARES',
+    dieases: 'Neuritis, Ciática, Reumatismo, Hernias Discales, Artritis, Osteoporosis, Desviación de la Columna Vertebral, Problemas en las Articulaciones.',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES GENITO-URINARIAS',
+    dieases: 'Cálculos u otra alteración en los riñones, vejiga o próstata, prostatitis, varicocele.',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES DE LA PIEL, OJOS, OÍDOS, NARÍZ, GARGANTA',
+    dieases: 'Desviación del Tabique Nasal, Sinusitis, Amigdalitis, Rinitis, Otitis, Cataratas, Hipertrofia de Cornetes',
+    diagnosed: nil,
+  },{
+    title: 'ENFERMEDADES TRANSITORIAS CRÓNICAS O ALGÚN DEFECTOS NO MENCIONADOS ANTERIORMENTE',
+    dieases: nil,
+    diagnosed: nil
+  },{
+    title: 'ENFERMEDADES PROPIAS DE LA MUJER',
+    dieases: 'Fibroma Uterino, Prolapso, Obstrucción en las Trompas, Ovarios Poliquisticos, Patologías Mamarias, Endometriosis.',
+    diagnosed: nil
+  },{
+    title: 'LE HA SIDO INDICADA O PRACTICADA ALGUNA INTERVENCIÓN QUIRÚRGICA O SE HA SOMETIDO A TRATAMIENTO MÉDICO POR ALGUNA ENFERMEDAD O LESIÓN ADICIONAL A LAS ANTERIORES.',
+    dieases: nil,
+    diagnosed: nil
+  },{
+    title: '11. OTROS (Especifique).',
+    dieases: nil,
+    diagnosed: nil,
+  }
+]
+
 unless Company.all.present?
   company = Company.create({ name: 'SIPCA ', rif: 'J-00000000-0' })
   producs = company.products.create({ description: 'Medicina Prepagada', title: 'SIPCA' })
