@@ -20,10 +20,10 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
       t.string :size
       t.belongs_to :parent, foreign_key: { to_table: :customers }
       t.jsonb :diagnosis
-      t.references :plan, null: false, foreign_key: true
+      t.references :plan, null: true, foreign_key: true
       t.float :coverage_reference
       t.float :coverage
-      t.boolean :is_insured?
+      t.boolean :is_insured
       t.string :customer_code
 
       # indexs

@@ -12,11 +12,10 @@
 #  coverage             :float
 #  coverage_reference   :float
 #  customer_code        :string
-#  diagnosis            :jsonb
 #  dni                  :string
 #  email                :string
 #  firstname            :string
-#  is_insured?          :boolean
+#  is_insured           :boolean
 #  last_name            :string
 #  legal_representative :string
 #  main                 :boolean
@@ -28,7 +27,7 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  parent_id            :bigint
-#  plan_id              :bigint           not null
+#  plan_id              :bigint
 #
 # Indexes
 #
@@ -46,39 +45,22 @@
 #  fk_rails_...  (plan_id => plans.id)
 #
 class Customer < ApplicationRecord
-  belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id', optional: true
   has_many :childs, class_name: 'Customer', foreign_key: 'parent_id'
+  has_one :agreement
+  belongs_to :plan, optional: true
 
-  validates :first_name,
-            :last_name,
-            :scond_name,
-            :address,
-            :phone, presence: true
-  validates :dni, uniqueness: { case_sensitive: false }
+  enum sex: { feminino: 0, masculino: 1 }
 
-  validates :size,
-            :secondary_phone,
-            :second_name,
-            :phone,
-            :legal_representative,
-            :last_name,
-            :firstname,
-            :email,
-            :dni,
-            :activity,
-            string: true
-
-  validates :coverage, :coverage_reference, float: true
-
-  after_create :set_customer_code
+  after_create :init_agreement
 
   def full_name
-    [:first_name, :second_name, :last_name].compact.join(' ')
+    [:firstname, :second_name, :last_name].compact.join(' ')
   end
 
-  def set_customer_code
-    return if main
+  def init_agreement
+    return unless self.main
 
-    "00#{parent.childs.length}"
+    self.create_agreement({step: 'step_1', user_id: current_user.id})
   end
 end

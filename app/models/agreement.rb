@@ -7,9 +7,11 @@
 #  id               :bigint           not null, primary key
 #  agreement_number :string
 #  amount           :float
+#  diagnosis        :jsonb
 #  payment_method   :integer
 #  signed_date      :date
 #  status           :integer
+#  step             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  customer_id      :bigint           not null
