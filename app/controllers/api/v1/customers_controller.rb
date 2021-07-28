@@ -12,6 +12,7 @@ module Api
       end
 
       def create
+        byebug
         @form = CustomerForm.new(args: customer_params, step: params_step, user: current_user)
 
         if @form.save!
@@ -36,7 +37,7 @@ module Api
       end
 
       def params_step
-        params[:step].to_s
+        params.require(:customer).permit(:step).to_s
       end
 
       def find_customer

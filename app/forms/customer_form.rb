@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CustomerForm
+class CustomerForm < BaseForm
   attr_reader :args, :customer, :step, :user
 
   attr_writer :activity,
@@ -34,9 +34,10 @@ class CustomerForm
   def initialize(args: {}, customer: nil, step: nil, user: nil)
     super(args)
     @args = args
-    @customer = customer || Customer.new
+    @customer = customer || Customer.new(args)
     @step = step
     @user = user
+    @models = [@customer]
   end
 
   def model_name

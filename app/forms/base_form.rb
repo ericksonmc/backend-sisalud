@@ -3,7 +3,7 @@
 class BaseForm
   include ActiveModel::Model
 
-  validate :validate_models
+  # validate :validate_models
 
   def save(options = {})
     unless options[:validate] == false
@@ -17,9 +17,9 @@ class BaseForm
     end
 
     ActiveRecord::Base.transaction do
+      byebug
       before_save
-
-      (models || []).map { |model| model.save!(options) }
+      (models || []).map { |model| model.save!() }
 
       after_save
     end
@@ -30,6 +30,7 @@ class BaseForm
   end
 
   def save!(options = {})
+    byebug
     save(options) || raise(ActiveRecord::RecordNotSaved.new(errors.full_messages.join(', '), self))
   end
 
