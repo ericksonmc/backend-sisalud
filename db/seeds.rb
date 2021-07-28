@@ -110,8 +110,11 @@ diagnosis = [
 
 unless Company.all.present?
   company = Company.create({ name: 'SIPCA ', rif: 'J-00000000-0' })
-  producs = company.products.create({ description: 'Medicina Prepagada', title: 'SIPCA' })
-  bronce = producs.plans.create({ coverage: 12_000, coverage_items: coverage_items, payment_fee: 18, title: 'Bronce' })
-  plata = producs.plans.create({ coverage: 20_000, coverage_items: coverage_items, payment_fee: 25, title: 'Plata' })
-  oro = producs.plans.create({ coverage: 50_000, coverage_items: coverage_items_oro, payment_fee: 45, title: 'Oro' })
+  products = company.products.create({ description: 'Medicina Prepagada', title: 'SIPCA' })
+  bronce = products.plans.create({ coverage: 12_000, coverage_items: coverage_items, payment_fee: 18, title: 'Bronce' })
+  plata = products.plans.create({ coverage: 20_000, coverage_items: coverage_items, payment_fee: 25, title: 'Plata' })
+  oro = products.plans.create({ coverage: 50_000, coverage_items: coverage_items_oro, payment_fee: 45, title: 'Oro' })
+end
+if Customer.all.present?
+  child = Customer.create(firstname: 'Mohammad Heath',second_name: 'Eaton',last_name: 'Larsen',dni: '22123456',birthday: '1995-05-04', age: 26,sex: 0,size: 'M',parent_id: Customer.first.id,plan_id: Plan.first.id,is_insured: true,customer_code: '02')
 end

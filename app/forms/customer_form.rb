@@ -37,23 +37,38 @@ class CustomerForm < BaseForm
 
   def after_save
     set_customer_code
-    init_agreement
+    save_agreement
   end
 
   def before_save
     set_main
+    set_insurance_data
   end
 
-  def set_customer_code
-    return if @customer.main
+  private
 
-    "00#{parent.childs.length}"
+  def set_insurance_data
+    return unless @customer.plan_id.present?
+
+    @customer.coverage_reference = @customer.plan.coverage
+    @customer.coverage = amount_coverage
   end
 
-  def init_agreement
+  def amount_coverage
+    return @customer.coverage if @customer.coverage.present?
+
+    0
+  end
+
+  def save_agreement
     return unless @customer.main
 
     agreement.save!
+  rescue StandardError => e
+    Rails.logger.info do
+      'Error while creating the agreement for customer.'\
+        "Customer Email: #{@customer&.email}. Error message: #{e.message}"
+    end
   end
 
   def set_main
@@ -62,7 +77,14 @@ class CustomerForm < BaseForm
     @customer.main = true
   end
 
+  def set_customer_code
+    return if @customer.main
+
+    "00#{parent.childs.length}"
+  end
+
   def agreement
-    @agreement ||= @customer.build_agreement({ step: @step, user_id: @user.id })
+    @agreement ||= AgreementForm.new(customer: @customer, step: @step, user: @user)
+    # @agreement ||= @customer.build_agreement({ step: @step, user_id: @user.id })
   end
 end
