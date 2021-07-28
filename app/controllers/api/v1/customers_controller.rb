@@ -43,16 +43,6 @@ module Api
 
         @customer = Customer.new(customer_params)
       end
-
-      def customer_save_or_update
-        if @customer.created_at_changed?
-          @customer.update(customer_params)
-        else
-          @customer.save!
-        end
-
-        @customer
-      end
     end
   end
 end

@@ -26,11 +26,6 @@ class CustomerForm < BaseForm
               :sex,
               :size
 
-  # validates :firstname,
-  #           :last_name,
-  #           :second_name,
-  #           :email, presence: true
-
   def initialize(args: {}, customer: nil, step: nil, user: nil)
     super(args)
     @args = args
@@ -38,10 +33,6 @@ class CustomerForm < BaseForm
     @step = step
     @user = user
     @models = [@customer]
-  end
-
-  def model_name
-    Customer.model_name
   end
 
   def after_save

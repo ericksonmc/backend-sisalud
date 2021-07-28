@@ -3,7 +3,7 @@
 class BaseForm
   include ActiveModel::Model
 
-  # validate :validate_models
+  validate :validate_models
 
   def save(options = {})
     unless options[:validate] == false
