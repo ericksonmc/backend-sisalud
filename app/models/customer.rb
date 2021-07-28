@@ -46,21 +46,13 @@
 #
 class Customer < ApplicationRecord
   belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id', optional: true
-  has_many :childs, class_name: 'Customer', foreign_key: 'parent_id'
-  has_one :agreement
+  has_many :childs, class_name: 'Customer', foreign_key: 'parent_id', dependent: :destroy
+  has_one :agreement, dependent: :destroy
   belongs_to :plan, optional: true
 
   enum sex: { feminino: 0, masculino: 1 }
 
-  after_create :init_agreement
-
   def full_name
     [:firstname, :second_name, :last_name].compact.join(' ')
-  end
-
-  def init_agreement
-    return unless self.main
-
-    self.create_agreement({step: 'step_1', user_id: current_user.id})
   end
 end

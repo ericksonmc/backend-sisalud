@@ -46,7 +46,7 @@ class CustomerForm < BaseForm
 
   def after_save
     set_customer_code
-    # init_agreement
+    init_agreement
   end
 
   def before_save
@@ -72,6 +72,6 @@ class CustomerForm < BaseForm
   end
 
   def agreement
-    @agreement ||= @customer.build_agreement({ step: 'step_1', user_id: @user.id })
+    @agreement ||= @customer.build_agreement({ step: @step, user_id: @user.id })
   end
 end

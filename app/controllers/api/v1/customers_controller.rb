@@ -12,11 +12,9 @@ module Api
       end
 
       def create
-        byebug
         @form = CustomerForm.new(args: customer_params, step: params_step, user: current_user)
 
         if @form.save!
-          byebug
           render json: @form.customer
         else
           render json: { message: 'Ocurrio Un problema', errors: @form.errors.messages }, status: 400 and return
