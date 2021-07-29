@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_023456) do
+ActiveRecord::Schema.define(version: 2021_07_29_045754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,15 @@ ActiveRecord::Schema.define(version: 2021_07_27_023456) do
     t.index ["email"], name: "index_customers_on_email"
     t.index ["parent_id"], name: "index_customers_on_parent_id"
     t.index ["plan_id"], name: "index_customers_on_plan_id"
+  end
+
+  create_table "diseases", force: :cascade do |t|
+    t.string "title"
+    t.string "has_description"
+    t.jsonb "list_diases", default: []
+    t.integer "order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "jwt_denylist", force: :cascade do |t|

@@ -60,53 +60,63 @@ coverage_items_oro = [
   { title: 'Mastología', value: 0, pe: '(1 Ano P/E)' }
 ]
 
-diagnosis = [
+Disease.create([
   {
     title: 'ENFERMEDADES CARDIOVASCULARES',
-    diseases: 'Hipertensión Arterial, infarto al Miocardio, Arritmia Cardiaca, Aneurisma, Palpitaciones, Angina de Pecho, Fiebre Reumática, Arteriosclerosis, Trastornos Valvulares, Tromboflebitis, Varices',
-    diagnosed: nil
+    list_diases: ["Hipertensión Arterial", " infarto al Miocardio", " Arritmia Cardiaca", " Aneurisma", " Palpitaciones", " Angina de Pecho", " Fiebre Reumática", " Arteriosclerosis", " Trastornos Valvulares", " Tromboflebitis", " Varices"],
+    has_description: true,
+    order: 1,
   }, {
     title: 'ENFERMEDADES DE LAS VÍAS RESPIRATORIAS',
-    dieases: 'Ronquera, tos persistente, bronquitis, asma, enfisema, tuberculosis, pleuresía, neumonía, bronconeumonía.',
-    diagnosed: nil
+    list_diases: ["Ronquera", " tos persistente", " bronquitis", " asma", " enfisema", " tuberculosis", " pleuresía", " neumonía", " bronconeumonía."],
+    has_description: true,
+    order: 2,
   }, {
     title: 'ENFERMEDADES DE LAS VÍAS DIGESTIVAS',
-    dieases: 'Gastritis, Ulceras, Hepatitis, Cirrosis, Hemorroides o similares, Apendicitis, colitis, Litiasis Vesicular, hernias hiatales, fisura anal',
-    diagnosed: nil
+    list_diases: ["Gastritis", " Ulceras", " Hepatitis", " Cirrosis", " Hemorroides o similares", " Apendicitis", " colitis", " Litiasis Vesicular", " hernias hiatales", " fisura anal"],
+    has_description: true,
+    order: 3,
   }, {
     title: 'ENFERMEDADES DEL SISTEMA ENDOCRINO',
-    dieases: 'Diabetes, Obesidad, Tiroides, Paratiroides.',
-    diagnosed: nil
+    list_diases: ["Diabetes", " Obesidad", " Tiroides", " Paratiroides."],
+    has_description: true,
+    order: 4,
   }, {
     title: 'ENFERMEDADES OSTEOMUSCULARES',
-    dieases: 'Neuritis, Ciática, Reumatismo, Hernias Discales, Artritis, Osteoporosis, Desviación de la Columna Vertebral, Problemas en las Articulaciones.',
-    diagnosed: nil
+    list_diases: ["Neuritis", " Ciática", " Reumatismo", " Hernias Discales", " Artritis", " Osteoporosis", " Desviación de la Columna Vertebral", " Problemas en las Articulaciones."],
+    has_description: true,
+    order: 5,
   }, {
     title: 'ENFERMEDADES GENITO-URINARIAS',
-    dieases: 'Cálculos u otra alteración en los riñones, vejiga o próstata, prostatitis, varicocele.',
-    diagnosed: nil
+    list_diases: ["Cálculos u otra alteración en los riñones", " vejiga o próstata", " prostatitis", " varicocele."],
+    has_description: true,
+    order: 6,
   }, {
     title: 'ENFERMEDADES DE LA PIEL, OJOS, OÍDOS, NARÍZ, GARGANTA',
-    dieases: 'Desviación del Tabique Nasal, Sinusitis, Amigdalitis, Rinitis, Otitis, Cataratas, Hipertrofia de Cornetes',
-    diagnosed: nil
+    list_diases: ["Desviación del Tabique Nasal", " Sinusitis", " Amigdalitis", " Rinitis", " Otitis", " Cataratas", " Hipertrofia de Cornetes"],
+    has_description: true,
+    order: 7,
   }, {
     title: 'ENFERMEDADES TRANSITORIAS CRÓNICAS O ALGÚN DEFECTOS NO MENCIONADOS ANTERIORMENTE',
-    dieases: nil,
-    diagnosed: nil
+    list_diases: nil,
+    has_description: true,
+    order: 8,
   }, {
     title: 'ENFERMEDADES PROPIAS DE LA MUJER',
-    dieases: 'Fibroma Uterino, Prolapso, Obstrucción en las Trompas, Ovarios Poliquisticos, Patologías Mamarias, Endometriosis.',
-    diagnosed: nil
+    list_diases: ["Fibroma Uterino", " Prolapso", " Obstrucción en las Trompas", " Ovarios Poliquisticos", " Patologías Mamarias", " Endometriosis."],
+    has_description: true,
+    order: 9,
   }, {
     title: 'LE HA SIDO INDICADA O PRACTICADA ALGUNA INTERVENCIÓN QUIRÚRGICA O SE HA SOMETIDO A TRATAMIENTO MÉDICO POR ALGUNA ENFERMEDAD O LESIÓN ADICIONAL A LAS ANTERIORES.',
-    dieases: nil,
-    diagnosed: nil
+    list_diases: nil,
+    has_description: true,
+    order: 10,
   }, {
     title: '11. OTROS (Especifique).',
-    dieases: nil,
-    diagnosed: nil
-  }
-]
+    list_diases: nil,
+    has_description: false,
+    order: 11,
+  }])
 
 unless Company.all.present?
   company = Company.create({ name: 'SIPCA ', rif: 'J-00000000-0' })
