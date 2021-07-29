@@ -3,7 +3,7 @@
 # Table name: diseases
 #
 #  id              :bigint           not null, primary key
-#  has_description :string
+#  has_description :boolean
 #  list_diases     :jsonb
 #  order           :integer
 #  title           :string
