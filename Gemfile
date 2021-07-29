@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'sidekiq'
 
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -35,6 +36,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Use Devise for user authentication
 gem 'devise'
 gem 'devise-jwt'
+gem 'httparty'
 
 # Simple Rails app configuration for env variables
 gem 'figaro'

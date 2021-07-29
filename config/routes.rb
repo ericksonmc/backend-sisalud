@@ -21,6 +21,11 @@ Rails.application.routes.draw do
       resources :plans, only: %i[index update create]
       resources :diseases, only: %i[index]
       resources :agreements
+
+      resources :miscelaneos, only: [] do
+        get :states, on: :collection
+        get :municipalities, on: :collection
+      end
     end
   end
 end
