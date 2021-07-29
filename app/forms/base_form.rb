@@ -18,7 +18,7 @@ class BaseForm
 
     ActiveRecord::Base.transaction do
       before_save
-      (models || []).map { |model| model.save!() }
+      (models || []).map(&:save!)
 
       after_save
     end

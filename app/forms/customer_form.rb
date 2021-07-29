@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class CustomerForm < BaseForm
-  attr_reader :args, :customer, :step, :user
+  require "active_support/core_ext/hash/indifferent_access"
+  attr_reader :args, :customer, :step, :user, :new_record
 
   attr_writer :activity,
               :address,
@@ -24,20 +25,26 @@ class CustomerForm < BaseForm
               :second_name,
               :secondary_phone,
               :sex,
-              :size
+              :size,
+              :childs
 
-  def initialize(args: {}, customer: nil, step: nil, user: nil)
+  validate :email_presence_for_update
+
+  def initialize(args: {}, customer: nil, step: nil, user: nil, childs: [])
     super(args)
     @args = args
     @customer = customer || Customer.new(args)
+    @new_record = @customer.new_record?
     @step = step
     @user = user
     @models = [@customer]
+    @childs = childs
   end
 
   def after_save
-    set_customer_code
+    save_childs
     save_agreement
+    set_customer_code
   end
 
   def before_save
@@ -45,17 +52,48 @@ class CustomerForm < BaseForm
     set_insurance_data
   end
 
+  def before_validation
+    assign_attributes_to_admin_user
+  end
+
   private
+
+  def assign_attributes_to_admin_user
+    attributes = args.tap do |args|
+      args[:id] = @customer.id
+    end
+
+    @customer.assign_attributes(attributes)
+  end
+
+  def email_presence_for_update
+    return if new_record
+  end
+
+  def save_childs
+    return if @childs.blank?
+
+    @customer.childs.create(@childs[:childs])
+    set_coverage_to_childs
+  end
+
+  def set_coverage_to_childs
+    @customer.childs.each do |child|
+      child.coverage_reference = child.plan.coverage
+      child.coverage = amount_coverage(child)
+      child.save!
+    end
+  end
 
   def set_insurance_data
     return unless @customer.plan_id.present?
 
     @customer.coverage_reference = @customer.plan.coverage
-    @customer.coverage = amount_coverage
+    @customer.coverage = amount_coverage(@customer)
   end
 
-  def amount_coverage
-    return @customer.coverage if @customer.coverage.present?
+  def amount_coverage(customer)
+    return customer.coverage if customer.coverage.present?
 
     0
   end
@@ -78,13 +116,12 @@ class CustomerForm < BaseForm
   end
 
   def set_customer_code
-    return if @customer.main
+    return if @customer.main && !@customer.new_record?
 
     "00#{parent.childs.length}"
   end
 
   def agreement
     @agreement ||= AgreementForm.new(customer: @customer, step: @step, user: @user)
-    # @agreement ||= @customer.build_agreement({ step: @step, user_id: @user.id })
   end
 end

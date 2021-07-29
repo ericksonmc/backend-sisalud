@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
       resources :products, only: %i[index update show]
       resources :plans, only: %i[index update create]
-      resources :customers
+      # resources :customers
+      resources :agreements
     end
   end
 end

@@ -233,7 +233,7 @@ Style/StringLiterals:
 # Configuration parameters: .
 # SupportedStyles: percent, brackets
 Style/SymbolArray:
-  EnforcedStyle: percent
+  EnforcedStyle: brackets
   MinSize: 5
 
 # Offense count: 2
