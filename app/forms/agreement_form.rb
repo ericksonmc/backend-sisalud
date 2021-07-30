@@ -24,6 +24,7 @@ class AgreementForm < BaseForm
 
   def before_save
     set_step
+    set_initial_data
     set_agreement_data
   end
 
@@ -31,6 +32,11 @@ class AgreementForm < BaseForm
 
   def set_step
     @agreement.step = @step
+  end
+
+  def set_initial_data
+    @agreement.signed_date = Date.today
+    @agreement.status = 'active'
   end
 
   def set_agreement_data

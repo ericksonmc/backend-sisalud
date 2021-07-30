@@ -5,7 +5,13 @@ module Api
     class AgreementsController < ApiController
       before_action :agreement, only: [:show]
 
-      def index; end
+      def index
+        @agreements = find_agreements
+
+        respond_to do |format|
+          format.json
+        end
+      end
 
       def show
         render json: @agreement, method: [customer: [:childs]]
@@ -32,6 +38,17 @@ module Api
       end
 
       private
+
+      def find_agreements
+        case current_user.role
+        when 'agent'
+          Agreement.where(id: current_user.id)
+        when 'admin'
+          Agreement.all
+        else
+          []
+        end
+      end
 
       def customer_params
         params.require(:customer).permit(:activity, :age, :birthday, :coverage,

@@ -24,6 +24,7 @@
 #  secondary_phone      :string
 #  sex                  :integer
 #  size                 :string
+#  weight               :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  parent_id            :bigint

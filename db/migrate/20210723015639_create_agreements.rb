@@ -9,7 +9,7 @@ class CreateAgreements < ActiveRecord::Migration[6.1]
       t.string :agreement_number
       t.references :user, null: false, foreign_key: true
       t.integer :payment_method
-      t.integer :status
+      t.integer :status, default: 0
 
       # indexs
       t.index :agreement_number
