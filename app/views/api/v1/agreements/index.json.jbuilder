@@ -8,7 +8,7 @@ json.array! @agreements do |agree|
   json.status agree.status
   json.customer do
     json.full_name agree.customer.full_name
-    json.plan agree.customer.plan.title
+    json.plan agree.customer&.plan&.title
   end
   json.agent do
     json.full_name agree.user.to_s
