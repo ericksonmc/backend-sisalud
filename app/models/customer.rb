@@ -48,9 +48,16 @@ class Customer < ApplicationRecord
   belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id', optional: true
   has_many :childs, class_name: 'Customer', foreign_key: 'parent_id', dependent: :destroy
   has_one :agreement, dependent: :destroy
+  has_many :customer_diseases, dependent: :destroy
+  has_many :diseases, through: :customer_diseases
+
   belongs_to :plan, optional: true
 
+  # accepts_nested_attributes_for :diseases
+
   enum sex: { feminino: 0, masculino: 1 }
+
+  attr_accessor :diagnosis
 
   def full_name
     [:firstname, :second_name, :last_name].compact.join(' ')

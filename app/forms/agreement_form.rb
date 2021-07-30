@@ -34,15 +34,12 @@ class AgreementForm < BaseForm
   end
 
   def set_agreement_data
-    return if @step != 'step_2'
-
     @agreement.amount = calculate_amount
   end
 
   def calculate_amount
     amount = @customer.is_insured ? @customer.plan.payment_fee.to_f : 0
     @customer.childs.each do |child|
-      puts child.to_json
       amount += child.plan.payment_fee.to_f
     end
     amount

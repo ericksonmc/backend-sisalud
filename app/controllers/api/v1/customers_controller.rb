@@ -15,16 +15,13 @@ module Api
         @form = CustomerForm.new(args: customer_params, step: params_step, user: current_user)
 
         if @form.save!
-          byebug
           render json: { customer: @form.customer, agreement: @form }
         else
           render json: { message: 'Ocurrio Un problema', errors: @form.errors.messages }, status: 400 and return
         end
       end
 
-      def update
-
-      end
+      def update;end
 
       private
 

@@ -144,7 +144,7 @@ unless State.all.present?
       new_state.municipalities.create({
         title: muny["municipio"],
         capital: muny["capital"],
-        parish: muny["parroquias"]
+        parish: muny["parroquias"] 
       })
     end
   end

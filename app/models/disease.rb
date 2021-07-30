@@ -3,7 +3,7 @@
 # Table name: diseases
 #
 #  id              :bigint           not null, primary key
-#  has_description :boolean
+#  has_description :string
 #  list_diases     :jsonb
 #  order           :integer
 #  title           :string
@@ -11,4 +11,5 @@
 #  updated_at      :datetime         not null
 #
 class Disease < ApplicationRecord
+  has_many :customers, through: :customer_diseases
 end

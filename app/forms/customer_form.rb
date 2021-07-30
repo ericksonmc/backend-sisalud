@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class CustomerForm < BaseForm
-  require "active_support/core_ext/hash/indifferent_access"
   attr_reader :args, :customer, :step, :user, :new_record
 
   attr_writer :activity,
               :address,
               :age,
               :birthday,
+              :childs,
               :coverage,
               :coverage_reference,
               :customer_code,
-              :diagnosis,
               :dni,
+              :diagnosis,
               :email,
               :firstname,
               :is_insured,
@@ -25,8 +25,7 @@ class CustomerForm < BaseForm
               :second_name,
               :secondary_phone,
               :sex,
-              :size,
-              :childs
+              :size
 
   validate :email_presence_for_update
 
@@ -45,6 +44,7 @@ class CustomerForm < BaseForm
     save_childs
     save_agreement
     set_customer_code
+    save_diagnosis(@customer)
   end
 
   def before_save
@@ -57,6 +57,17 @@ class CustomerForm < BaseForm
   end
 
   private
+
+  def save_diagnosis(customer)
+    return unless customer.diagnosis.present?
+
+    customer.diagnosis.each do |disease|
+      customer.customer_diseases.create({
+                                          disease_id: disease['id'],
+                                          description: disease['description']
+                                        })
+    end
+  end
 
   def assign_attributes_to_admin_user
     attributes = args.tap do |args|
@@ -82,6 +93,7 @@ class CustomerForm < BaseForm
       child.coverage_reference = child.plan.coverage
       child.coverage = amount_coverage(child)
       child.save!
+      save_diagnosis(child)
     end
   end
 

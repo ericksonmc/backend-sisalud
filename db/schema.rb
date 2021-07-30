@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_204630) do
+ActiveRecord::Schema.define(version: 2021_07_30_062943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 2021_07_29_204630) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "customer_diseases", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "disease_id", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_customer_diseases_on_customer_id"
+    t.index ["disease_id"], name: "index_customer_diseases_on_disease_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "firstname"
     t.string "second_name"
@@ -102,7 +112,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_204630) do
 
   create_table "diseases", force: :cascade do |t|
     t.string "title"
-    t.boolean "has_description"
+    t.string "has_description"
     t.jsonb "list_diases", default: []
     t.integer "order"
     t.datetime "created_at", precision: 6, null: false
@@ -175,6 +185,8 @@ ActiveRecord::Schema.define(version: 2021_07_29_204630) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agreements", "customers"
   add_foreign_key "agreements", "users"
+  add_foreign_key "customer_diseases", "customers"
+  add_foreign_key "customer_diseases", "diseases"
   add_foreign_key "customers", "customers", column: "parent_id"
   add_foreign_key "customers", "plans"
   add_foreign_key "municipalities", "states"
