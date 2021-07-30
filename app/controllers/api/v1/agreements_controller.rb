@@ -34,12 +34,14 @@ module Api
       private
 
       def customer_params
-        params.require(:customer).permit(:activity, :address, :age, :birthday, :coverage,
+        params.require(:customer).permit(:activity, :age, :birthday, :coverage,
                                          :coverage_reference, :customer_code, :dni,
                                          :email, :firstname, :is_insured, :last_name,
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
                                          :second_name, :secondary_phone, :sex, :size,
-                                         diagnosis: [:id, :description])
+                                         diagnosis: [:id, :description], address: [:firstLine,
+                                                                                   :stateId,
+                                                                                   :municipalityId])
       end
 
       def agreement_params
