@@ -61,6 +61,6 @@ class Customer < ApplicationRecord
   attr_accessor :diagnosis
 
   def full_name
-    [:firstname, :second_name, :last_name].compact.join(' ')
+    [firstname, second_name, last_name].compact.join(' ')
   end
 end

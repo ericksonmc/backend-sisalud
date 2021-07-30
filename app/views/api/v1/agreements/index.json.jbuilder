@@ -7,5 +7,8 @@ json.array! @agreements do |agree|
   json.signed_date agree.signed_date
   json.status agree.status
   json.customer agree.customer
-  json.agent agree.user
+  json.agent do
+    json.full_name agree.user.to_s
+    json.agent_code agree.user.agent_code
+  end
 end
