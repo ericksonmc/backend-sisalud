@@ -45,6 +45,8 @@ module Api
           Agreement.where(id: current_user.id)
         when 'admin'
           Agreement.all
+        when 'super_admin'
+          Agreement.all
         else
           []
         end
