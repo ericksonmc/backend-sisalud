@@ -25,7 +25,8 @@ class CustomerForm < BaseForm
               :second_name,
               :secondary_phone,
               :sex,
-              :size
+              :size,
+              :weight
 
   validate :email_presence_for_update
 

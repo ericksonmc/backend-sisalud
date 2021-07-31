@@ -22,21 +22,21 @@ module Api
       def create
         @form = CustomerForm.new(args: customer_params, step: step_param, user: current_user,
                                  childs: child_params)
-        if @form.save!
-          render json: { customer: @form.customer, agreement: @form.customer.agreement }
-        else
-          render json: { message: 'Ocurrio Un problema', errors: @form.errors.messages },
-                 status: 400 and return
-        end
+
+        render json: { customer: @form.customer, agreement: @form.customer.agreement } if @form.save!
+
+        render json: { message: 'Ocurrio Un problema', errors: @form.errors.messages }, status: 400
+
       end
 
       def update
         @form = CustomerForm.new(args: customer_params, customer: customer, step: step_param,
                                  childs: child_params)
 
-        if @form.save!
-          render json: { customer: @form.customer, agreement: @form.customer.agreement }
-        end
+        render json: { customer: @form.customer } if @form.save!
+
+        render json: { message: 'Hubo un problema al actualizar el registro',
+                       errors: @form.errors.messages }, status: 400 and return
       end
 
       private
@@ -60,9 +60,10 @@ module Api
                                          :email, :firstname, :is_insured, :last_name,
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
                                          :second_name, :secondary_phone, :sex, :size,
-                                         diagnosis: [:id, :description], address: [:firstLine,
-                                                                                   :stateId,
-                                                                                   :municipalityId])
+                                         diagnosis: [:id, :description], address: [:first_line,
+                                                                                   :zip_code],
+                                                                                   state: [:title, :id],
+                                                                                   municipality: [:title, :id])
       end
 
       def agreement_params
