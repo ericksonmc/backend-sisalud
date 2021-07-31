@@ -14,7 +14,9 @@ module Api
       end
 
       def show
-        render json: @agreement, method: [customer: [:childs]]
+        respond_to do |format|
+          format.json
+        end
       end
 
       def create
@@ -41,10 +43,10 @@ module Api
 
       def find_agreements
         case current_user.role
-        when 'agent'
-          Agreement.where(id: current_user.id)
         when 'admin'
           Agreement.all
+        when 'agent'
+          Agreement.where(id: current_user.id)
         when 'super_admin'
           Agreement.all
         else
@@ -89,6 +91,10 @@ module Api
 
       def agreement
         @agreement ||= Agreement.find(params[:id])
+      end
+
+      def main_customer
+        @main_customer ||= agreement.customer
       end
     end
   end

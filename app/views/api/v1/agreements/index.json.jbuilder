@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 json.array! @agreements do |agree|
+  json.id agree.id
   json.agreement_number agree.agreement_number
   json.amount agree.amount
   json.payment_method agree.payment_method

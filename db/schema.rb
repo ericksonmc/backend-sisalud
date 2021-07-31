@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_211716) do
 
   create_table "diseases", force: :cascade do |t|
     t.string "title"
-    t.string "has_description"
+    t.boolean "has_description"
     t.jsonb "list_diases", default: []
     t.integer "order"
     t.datetime "created_at", precision: 6, null: false
