@@ -49,7 +49,7 @@ module Api
         when 'admin'
           Agreement.all
         when 'agent'
-          Agreement.where(id: current_user.id)
+          Agreement.where(user_id: current_user.id)
         when 'super_admin'
           Agreement.all
         else
