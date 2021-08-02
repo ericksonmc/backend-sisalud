@@ -25,8 +25,8 @@ module Api
 
         render json: { customer: @form.customer, agreement: @form.customer.agreement } if @form.save!
 
-        render json: { message: 'Ocurrio Un problema', errors: @form.errors.messages }, status: 400
-
+        render json: { message: 'Ocurrio Un problema',
+                       errors: @form.errors.messages }, status: 400 and return
       end
 
       def update
@@ -59,11 +59,11 @@ module Api
                                          :coverage_reference, :customer_code, :dni,
                                          :email, :firstname, :is_insured, :last_name,
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
-                                         :second_name, :secondary_phone, :sex, :size,
-                                         diagnosis: [:id, :description], address: [:first_line,
-                                                                                   :zip_code],
-                                                                                   state: [:title, :id],
-                                                                                   municipality: [:title, :id])
+                                         :second_name, :secondary_phone, :sex, :size, :weight,
+                                         diagnosis: [:id, :description],
+                                         address: [:first_line, :zip_code],
+                                         state: [:title, :id],
+                                         municipality: [:title, :id])
       end
 
       def agreement_params

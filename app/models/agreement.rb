@@ -10,7 +10,7 @@
 #  diagnosis        :jsonb
 #  payment_method   :integer
 #  signed_date      :date
-#  status           :integer
+#  status           :integer          default("in_progress")
 #  step             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_211716) do
     t.string "agreement_number"
     t.bigint "user_id", null: false
     t.integer "payment_method"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "step"

@@ -154,6 +154,8 @@ Style/SwapValues: # (new in 1.1)
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'db/schema.rb'
+Metrics/ClassLength:
+  Max: 150
 
 # Offense count: 4
 Lint/UselessAssignment:

@@ -10,6 +10,7 @@ json.array! @agreements do |agree|
   json.customer do
     json.full_name agree.customer.full_name
     json.plan agree.customer&.plan&.title
+    json.dni agree.customer&.dni
   end
   json.agent do
     json.full_name agree.user.to_s

@@ -23,15 +23,19 @@ class AgreementForm < BaseForm
   end
 
   def before_save
-    set_step
     set_initial_data
     set_agreement_data
+    set_contract_number
   end
 
   private
 
-  def set_step
-    @agreement.step = @step
+  def set_contract_number
+    if @user.agent?
+      @agreement.agreement_number = "SIP-#{@user.agent_code}-#{Agreement.all.count}"
+    else
+      @agreement.agreement_number = "SIP-XX-#{Agreement.all.count}"
+    end
   end
 
   def set_initial_data
