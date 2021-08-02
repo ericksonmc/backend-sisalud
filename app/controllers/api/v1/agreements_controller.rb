@@ -23,10 +23,13 @@ module Api
         @form = CustomerForm.new(args: customer_params, step: step_param, user: current_user,
                                  childs: child_params)
 
-        render json: { customer: @form.customer, agreement: @form.customer.agreement } if @form.save!
-
-        render json: { message: 'Ocurrio Un problema',
-                       errors: @form.errors.messages }, status: 400 and return
+        if @form.save!
+          render json: { customer: @form.customer,
+                         agreement: @form.customer.agreement }, status: 200 and return
+        else
+          render json: { message: 'Ocurrio Un problema',
+                         errors: @form.errors.messages }, status: 400 and return
+        end
       end
 
       def update
@@ -61,9 +64,10 @@ module Api
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
                                          :second_name, :secondary_phone, :sex, :size, :weight,
                                          diagnosis: [:id, :description],
-                                         address: [:first_line, :zip_code],
-                                         state: [:title, :id],
-                                         municipality: [:title, :id])
+                                         address: [:first_line, :zip_code,
+                                                   state: [:title, :id],
+                                                   municipality: [:title, :id]
+                                                  ])
       end
 
       def agreement_params
@@ -79,6 +83,7 @@ module Api
                                                   :plan_id,
                                                   :is_insured,
                                                   :customer_code,
+                                                  :weight,
                                                   diagnosis: [:id, :description]])
       end
 
