@@ -56,7 +56,7 @@ class Customer < ApplicationRecord
 
   # accepts_nested_attributes_for :diseases
 
-  enum sex: { feminino: 0, masculino: 1 }
+  enum sex: { femenino: 0, masculino: 1 }
 
   attr_accessor :diagnosis
 
