@@ -58,5 +58,10 @@ json.customer do
       json.order disease.order
       json.title disease.title
     end
+    json.plan do
+      json.title child.plan.title
+      json.payment_fee child.plan.payment_fee
+      json.coverage child.plan.coverage
+    end
   end
 end
