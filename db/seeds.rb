@@ -14,50 +14,50 @@ if User.find_by_email('admin@sipca.com').nil?
 end
 
 coverage_items = [
-  { title: 'Hospitalización', value: 100, pe: '(3 Meses P/E)' },
-  { title: 'UCI', value: 100, pe: '(1 Ano P/E)' },
-  { title: 'Cirugía Electiva', value: 100, pe: '(1 Ano P/E)' },
+  { title: 'Hospitalización', value: 100, pe: 3 },
+  { title: 'UCI', value: 100, pe: 12 },
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
-  { title: 'Maternidad', value: 100, pe: '(1 Ano P/E)' },
+  { title: 'Maternidad', value: 100, pe: 12 },
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
   { title: 'Consultas Básicas', value: 100, pe: nil },
   { title: 'Consultas Especializadas', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
   { title: 'Rayos X', value: 100, pe: nil },
-  { title: 'Mamografía', value: 100, pe: '(3 Meses P/E)' },
-  { title: 'Tomografía', value: 100, pe: '(3 Meses P/E)' },
+  { title: 'Mamografía', value: 100, pe: 3 },
+  { title: 'Tomografía', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
-  { title: 'Exámenes Lab. Especiales', value: 100, pe: '(3 Meses P/E)' },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
   { title: 'Ecogramas Básicos', value: 100, pe: nil },
-  { title: 'Exámenes Especiales', value: 100, pe: '(3 Meses P/E)' },
+  { title: 'Exámenes Especiales', value: 100, pe: 3 },
   { title: 'Electrocardiograma', value: 100, pe: nil },
-  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: '(3 Meses P/E)' },
-  { title: 'Gastroscopía', value: 100, pe: '(1 Ano P/E)' },
-  { title: 'Colonoscopía', value: 100, pe: '(1 Ano P/E)' },
-  { title: 'Mastología', value: 0, pe: '(1 Ano P/E)' }
+  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
+  { title: 'Gastroscopía', value: 100, pe: 12 },
+  { title: 'Colonoscopía', value: 100, pe: 12 },
+  { title: 'Mastología', value: 0, pe: 12 }
 ]
 coverage_items_oro = [
-  { title: 'Hospitalización', value: 100, pe: '(3 Meses P/E)' },
-  { title: 'UCI', value: 100, pe: '(6 Meses P/E)' },
-  { title: 'Cirugía Electiva', value: 100, pe: '(1 Ano P/E)' },
+  { title: 'Hospitalización', value: 100, pe: 3 },
+  { title: 'UCI', value: 100, pe: 6 },
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
-  { title: 'Maternidad', value: 100, pe: '(1 Ano P/E)' },
+  { title: 'Maternidad', value: 100, pe: 12 },
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
   { title: 'Consultas Básicas', value: 100, pe: nil },
   { title: 'Consultas Especializadas', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
   { title: 'Rayos X', value: 100, pe: nil },
-  { title: 'Mamografía', value: 100, pe: '(6 Meses P/E)' },
-  { title: 'Tomografía', value: 100, pe: '(3 Meses P/E)' },
+  { title: 'Mamografía', value: 100, pe: 6 },
+  { title: 'Tomografía', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
-  { title: 'Exámenes Lab. Especiales', value: 100, pe: '(3 Meses P/E)' },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
   { title: 'Ecogramas Básicos', value: 100, pe: nil },
-  { title: 'Exámenes Especiales', value: 100, pe: '(3 Meses P/E)' },
+  { title: 'Exámenes Especiales', value: 100, pe: 3 },
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: nil },
-  { title: 'Gastroscopía', value: 100, pe: '(6 Meses P/E)' },
-  { title: 'Colonoscopía', value: 100, pe: '(6 Meses P/E)' },
-  { title: 'Mastología', value: 0, pe: '(1 Ano P/E)' }
+  { title: 'Gastroscopía', value: 100, pe: 6 },
+  { title: 'Colonoscopía', value: 100, pe: 6 },
+  { title: 'Mastología', value: 0, pe: 12 }
 ]
 
 Disease.create([
@@ -121,9 +121,9 @@ Disease.create([
 unless Company.all.present?
   company = Company.create({ name: 'SIPCA ', rif: 'J-00000000-0' })
   products = company.products.create({ description: 'Medicina Prepagada', title: 'SIPCA' })
-  bronce = products.plans.create({ coverage: 12_000, coverage_items: coverage_items, payment_fee: 18, title: 'Bronce' })
-  plata = products.plans.create({ coverage: 20_000, coverage_items: coverage_items, payment_fee: 25, title: 'Plata' })
-  oro = products.plans.create({ coverage: 50_000, coverage_items: coverage_items_oro, payment_fee: 45, title: 'Oro' })
+  bronce = products.plans.create({ coverage: 12_000, coverage_items: coverage_items, payment_fee: 18, title: 'Bronce', age_limit: 60 })
+  plata = products.plans.create({ coverage: 20_000, coverage_items: coverage_items, payment_fee: 25, title: 'Plata', age_limit: 60 })
+  oro = products.plans.create({ coverage: 50_000, coverage_items: coverage_items_oro, payment_fee: 45, title: 'Oro', age_limit: 60 })
 end
 if Customer.all.present?
   child = Customer.create(firstname: 'Mohammad Heath',second_name: 'Eaton',last_name: 'Larsen',dni: '22123456',birthday: '1995-05-04', age: 26,sex: 0,size: 'M',parent_id: Customer.first.id,plan_id: Plan.first.id,is_insured: true,customer_code: '02')

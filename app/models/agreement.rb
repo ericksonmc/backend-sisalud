@@ -10,7 +10,7 @@
 #  diagnosis        :jsonb
 #  payment_method   :integer
 #  signed_date      :date
-#  status           :integer          default("in_progress")
+#  status           :integer
 #  step             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -33,7 +33,9 @@ class Agreement < ApplicationRecord
   belongs_to :user
 
   enum payment_method: { fc_cash: 0, fc_transfer: 1, lc_transfer: 2, lc_cash: 3 }
-  enum status: { active: 0, suspended: 1, audit: 2, close: 3 }
+  enum status: { active: 0, pending: 1, suspended: 2, reject: 3, audit: 4, close: 5 }
+
+  has_one_attached :file
 
   def contract_members
     [customer].concat customer.childs

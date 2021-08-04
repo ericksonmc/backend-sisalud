@@ -10,7 +10,8 @@ class AgreementForm < BaseForm
               :signed_date,
               :status,
               :customer_id,
-              :user_id
+              :user_id,
+              :file
 
   def initialize(args: {}, customer: nil, step: nil, user: nil, existing_agreement: {})
     super(args)
