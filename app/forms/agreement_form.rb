@@ -8,7 +8,6 @@ class AgreementForm < BaseForm
               :diagnosis,
               :payment_method,
               :signed_date,
-              :status,
               :customer_id,
               :user_id,
               :file
@@ -29,6 +28,10 @@ class AgreementForm < BaseForm
     set_contract_number
   end
 
+  def after_save
+    @agreement.to_pending!
+  end
+
   private
 
   def set_contract_number
@@ -41,7 +44,6 @@ class AgreementForm < BaseForm
 
   def set_initial_data
     @agreement.signed_date = Date.today
-    @agreement.status = 'active'
   end
 
   def set_agreement_data

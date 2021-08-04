@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_010446) do
+ActiveRecord::Schema.define(version: 2021_08_04_031517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2021_08_04_010446) do
     t.string "agreement_number"
     t.bigint "user_id", null: false
     t.integer "payment_method"
-    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "step"
     t.jsonb "diagnosis"
+    t.string "aasm_state"
     t.index ["agreement_number"], name: "index_agreements_on_agreement_number"
     t.index ["customer_id"], name: "index_agreements_on_customer_id"
     t.index ["user_id"], name: "index_agreements_on_user_id"

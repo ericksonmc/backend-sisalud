@@ -5,12 +5,12 @@
 # Table name: agreements
 #
 #  id               :bigint           not null, primary key
+#  aasm_state       :string
 #  agreement_number :string
 #  amount           :float
 #  diagnosis        :jsonb
 #  payment_method   :integer
 #  signed_date      :date
-#  status           :integer
 #  step             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -29,15 +29,44 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Agreement < ApplicationRecord
+  include AASM
   belongs_to :customer
   belongs_to :user
 
-  enum payment_method: { fc_cash: 0, fc_transfer: 1, lc_transfer: 2, lc_cash: 3 }
-  enum status: { active: 0, pending: 1, suspended: 2, reject: 3, audit: 4, close: 5 }
-
   has_one_attached :file
+
+  aasm do
+    state :active, initial: true
+    state :pending
+    state :suspended
+    state :rejected
+    state :audit
+    state :close
+
+    event :to_pending do
+      transitions from: :active, to: :pending, guard: :ready_for_pending?
+    end
+  end
+
+  def ready_for_pending?
+    adult_over_sixty? && it_has_less_two_beneficiaries?
+  end
+
+  def adult_over_sixty?
+    adult = contract_members.select { |member| member[:age] > 60 }
+
+    adult.present?
+  end
+
+  def it_has_less_two_beneficiaries?
+    contract_members.count < 3
+  end
 
   def contract_members
     [customer].concat customer.childs
+  end
+
+  def status
+    aasm_state
   end
 end
