@@ -54,7 +54,7 @@ class Customer < ApplicationRecord
 
   belongs_to :plan, optional: true
 
-  # accepts_nested_attributes_for :diseases
+  has_one_attached :file
 
   enum sex: { femenino: 0, masculino: 1 }
 

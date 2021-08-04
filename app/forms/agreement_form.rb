@@ -9,8 +9,7 @@ class AgreementForm < BaseForm
               :payment_method,
               :signed_date,
               :customer_id,
-              :user_id,
-              :file
+              :user_id
 
   def initialize(args: {}, customer: nil, step: nil, user: nil, existing_agreement: {})
     super(args)

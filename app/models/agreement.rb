@@ -33,8 +33,6 @@ class Agreement < ApplicationRecord
   belongs_to :customer
   belongs_to :user
 
-  has_one_attached :file
-
   aasm do
     state :active, initial: true
     state :pending
@@ -67,6 +65,6 @@ class Agreement < ApplicationRecord
   end
 
   def status
-    aasm_state
+    I18n.t("agreements.status.#{aasm_state}")
   end
 end

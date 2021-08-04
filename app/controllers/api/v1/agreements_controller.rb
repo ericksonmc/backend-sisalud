@@ -58,7 +58,7 @@ module Api
       end
 
       def customer_params
-        params.require(:customer).permit(:activity, :age, :birthday, :coverage,
+        params.require(:customer).permit(:activity, :age, :birthday, :coverage, :file,
                                          :coverage_reference, :customer_code, :dni,
                                          :email, :firstname, :is_insured, :last_name,
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
