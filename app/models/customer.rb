@@ -54,7 +54,7 @@ class Customer < ApplicationRecord
 
   belongs_to :plan, optional: true
 
-  has_one_attached :file
+  has_one_attached :files
 
   enum sex: { femenino: 0, masculino: 1 }
 

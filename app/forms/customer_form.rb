@@ -27,7 +27,7 @@ class CustomerForm < BaseForm
               :sex,
               :size,
               :weight,
-              :file
+              :files
 
   validate :email_presence_for_update
 

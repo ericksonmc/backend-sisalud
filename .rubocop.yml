@@ -245,6 +245,9 @@ Style/SymbolArray:
 Style/WordArray:
   EnforcedStyle: brackets
 
+Style/HashAsLastArrayItem:
+  Enabled: false
+
 # Offense count: 11
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
