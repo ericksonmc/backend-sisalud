@@ -1,0 +1,14 @@
+current directory: /home/erickson/sipca/backend/foo/gems/gem-wrappers-1.4.0/ext/wrapper_generator
+/home/erickson/.rvm/rubies/ruby-3.0.1/bin/ruby -I /home/erickson/.rvm/rubies/ruby-3.0.1/lib/ruby/site_ruby/3.0.0 -r ./siteconf20210805-72972-1fp9yh.rb extconf.rb
+
+current directory: /home/erickson/sipca/backend/foo/gems/gem-wrappers-1.4.0/ext/wrapper_generator
+make "DESTDIR=" clean
+make: *** No rule to make target 'clean'.  Stop.
+
+current directory: /home/erickson/sipca/backend/foo/gems/gem-wrappers-1.4.0/ext/wrapper_generator
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/erickson/sipca/backend/foo/gems/gem-wrappers-1.4.0/ext/wrapper_generator
+make "DESTDIR=" install
+make: Nothing to be done for 'install'.
