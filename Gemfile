@@ -73,7 +73,6 @@ group :test do
   #testing
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'rails-controller-testing', '~> 1.0.5'
-  gem 'rspec-rails'
   gem 'rubocop', '~> 1.16', require: false
   gem 'rubocop-rails', '~> 2.10.1'
   gem 'shoulda-matchers', '~> 4.3.0'

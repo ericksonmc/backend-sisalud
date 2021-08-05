@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if
+  [[ -s "foo/environment" ]]
+then
+  source "foo/environment"
+  exec ruby_executable_hooks "$@"
+else
+  echo "ERROR: Missing RVM environment file: 'foo/environment'" >&2
+  exit 1
+fi
