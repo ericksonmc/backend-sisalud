@@ -5,6 +5,6 @@ FactoryBot.define do
     description { Faker::Lorem }
     title { Faker::Lotem }
 
-    association :plans, factory :plan
+    association :plans, factory: :plan
   end
 end

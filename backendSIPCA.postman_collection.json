@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "bb788625-2251-4584-be26-b951814b46aa",
+		"name": "backendSIPCA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agreement Step1 [Main Customer]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI2ODMwNTAzLCJleHAiOjE2Mjk0MjI1MDMsImp0aSI6ImIwZGI0NzgzLTVlMDItNDM4Zi05ZDNiLTYwZjQ1MmNhNDMxNSJ9.MQZlII22z_EMOrCyrVDhOnPHqhk9Q-hhOlvC7LFRN38",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer\": {\n        \"activity\": \"Programador\",\n        \"address\": \"Isla dorada\",\n        \"age\": 29,\n        \"birthday\": \"2021-09-21\",\n        \"coverage\": null,\n        \"coverage_reference\": null,\n        \"customer_code\": \"SIP-001-01\",\n        \"dni\": \"25245734\",\n        \"email\": \"example@gmail.com\",\n        \"firstname\": \"Zephania\",\n        \"is_insured\": true,\n        \"last_name\": \"Daugherty\",\n        \"legal_representative\": null,\n        \"parent_id\": null,\n        \"phone\": \"\",\n        \"plan_id\": 2,\n        \"second_name\": \"Richmond\",\n        \"secondary_phone\": \"\",\n        \"sex\": \"masculino\",\n        \"size\": \"1.70\",\n        \"step\": \"step_1\",\n        \"diagnosis\": [\n            { \"id\": \"1\" },\n            { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n        ],\n        \"childs\": [\n            {\n                \"firstname\": \"Mohammad Heath\",\n                \"second_name\": \"Eaton\",\n                \"last_name\": \"Larsen\",\n                \"dni\": \"22123456\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 3,\n                \"is_insured\": true,\n                \"diagnosis\": [\n                    { \"id\": \"9\" },\n                    { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n                ]\n            },\n            {\n                \"firstname\": \"Elvis\",\n                \"second_name\": \"Jackson\",\n                \"last_name\": \"Crespo Peres\",\n                \"dni\": \"22123457\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 3,\n                \"is_insured\": true,\n                \"diagnosis\": []\n            }\n        ]\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/agreements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"agreements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Diseases",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/diseases",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"diseases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "States",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/miscelaneos/states",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"miscelaneos",
+						"states"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Municipalities",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/miscelaneos/municipalities?state_id=25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"miscelaneos",
+						"municipalities"
+					],
+					"query": [
+						{
+							"key": "state_id",
+							"value": "25"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agreements",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/agreements.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"agreements.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agreements [show]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/agreements/46",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"agreements",
+						"46"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'sidekiq'
 
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -35,9 +36,12 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Use Devise for user authentication
 gem 'devise'
 gem 'devise-jwt'
+gem 'httparty'
 
 # Simple Rails app configuration for env variables
 gem 'figaro'
+
+gem 'aasm'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -56,21 +60,22 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'capistrano', '~> 3.11'
+  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
-  #testing
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'rails-controller-testing', '~> 1.0.5'
-  gem 'rspec-rails'
   gem 'rubocop', '~> 1.16', require: false
   gem 'rubocop-rails', '~> 2.10.1'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.3.0'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -3,7 +3,7 @@
 module Api
   module V1
     module Users
-      class UsersController < Api::V1::ApiController
+      class UsersController < ApiController
         def index
           render json: User.all
         end
@@ -14,22 +14,24 @@ module Api
           if @users.save!
             render json: { message: 'Usuario creado con exito' }
           else
-            render json: { message: 'Hubo un error al crear el usuario', erros: @users.errors.messages }, status: 400
+            render json: { message: 'Hubo un error al crear el usuario', erros: @users.errors.messages },
+                   status: 400
           end
         end
-        
+
         def update
           if user.update!(user_params)
             render json: { message: 'Usuario actualizado con exito' }
           else
-            render json: { message: 'Hubo un error al actualizar el usuario', erros: @user.errors.messages }, status: 400
+            render json: { message: 'Hubo un error al actualizar el usuario', erros: @user.errors.messages },
+                   status: 400
           end
         end
 
         private
 
         def user_params
-          params.permit(:first_name, :last_name, :email, :password, :role, :active)
+          params.permit(:first_name, :last_name, :email, :password, :role, :active, :agent_code)
         end
 
         def user

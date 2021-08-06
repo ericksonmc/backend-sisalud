@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: plans
 #
 #  id             :bigint           not null, primary key
+#  age_limit      :integer
 #  coverage       :float
 #  coverage_items :jsonb
 #  payment_fee    :float

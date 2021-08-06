@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -17,6 +17,7 @@ module Backend
 
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
+    config.i18n.fallbacks = true
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -31,7 +32,7 @@ module Backend
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
+        resource '*', headers: :any, methods: %i[get post options put delete]
       end
     end
   end

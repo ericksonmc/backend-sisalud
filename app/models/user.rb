@@ -6,6 +6,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  active                 :boolean          default(TRUE), not null
+#  agent_code             :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
@@ -32,6 +33,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, email: true
- 
 
+  def to_s
+    [first_name, last_name].compact.join(' ')
+  end
 end
