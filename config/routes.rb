@@ -26,6 +26,8 @@ Rails.application.routes.draw do
         get :states, on: :collection
         get :municipalities, on: :collection
       end
+
+      resources :attachments, only: [:create]
     end
   end
 end
