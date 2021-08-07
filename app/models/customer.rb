@@ -59,7 +59,7 @@ class Customer < ApplicationRecord
 
   enum sex: { femenino: 0, masculino: 1 }
 
-  attr_accessor :diagnosis
+  attr_accessor :diagnosis, :id_attachment
 
   def full_name
     [firstname, second_name, last_name].compact.join(' ')

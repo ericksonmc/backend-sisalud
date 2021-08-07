@@ -60,7 +60,7 @@ module Api
       def customer_params
         params.require(:customer).permit(:activity, :age, :birthday, :coverage, :files,
                                          :coverage_reference, :customer_code, :dni,
-                                         :email, :firstname, :is_insured, :last_name,
+                                         :email, :firstname, :id_attachment, :is_insured, :last_name,
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
                                          :second_name, :secondary_phone, :sex, :size, :weight,
                                          diagnosis: [:id, :description],
@@ -77,7 +77,7 @@ module Api
       def child_params
         params.require(:customer).permit(childs: [:age, :birthday, :customer_code, :dni, :files,
                                                   :firstname, :is_insured, :last_name, :plan_id,
-                                                  :second_name, :sex, :size, :weight,
+                                                  :second_name, :sex, :size, :weight, :id_attachment,
                                                   diagnosis: [:id, :description]])
       end
 

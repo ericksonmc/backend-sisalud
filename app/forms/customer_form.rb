@@ -3,6 +3,8 @@
 class CustomerForm < BaseForm
   attr_reader :args, :customer, :step, :user, :new_record
 
+  attr_accessor :id_attachment
+
   attr_writer :activity,
               :address,
               :age,
@@ -26,8 +28,7 @@ class CustomerForm < BaseForm
               :secondary_phone,
               :sex,
               :size,
-              :weight,
-              :files
+              :weight
 
   validate :email_presence_for_update
 
@@ -47,6 +48,7 @@ class CustomerForm < BaseForm
     save_agreement
     set_customer_code
     save_diagnosis(@customer)
+    save_attachments(@customer)
   end
 
   def before_save
@@ -96,6 +98,7 @@ class CustomerForm < BaseForm
       child.coverage = amount_coverage(child)
       child.save!
       save_diagnosis(child)
+      save_attachments(child)
     end
   end
 
@@ -135,7 +138,17 @@ class CustomerForm < BaseForm
     "00#{parent.childs.length}"
   end
 
+  def save_attachments(customer)
+    return if customer.id_attachment.blank?
+
+    attachments(customer.id_attachment).update(fileable_id: customer.id)
+  end
+
   def agreement
     @agreement ||= AgreementForm.new(customer: @customer, step: @step, user: @user)
+  end
+
+  def attachments(id_attachment)
+    @attachments ||= Attachment.find(id_attachment)
   end
 end
