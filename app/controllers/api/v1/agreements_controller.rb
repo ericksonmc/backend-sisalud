@@ -20,7 +20,6 @@ module Api
       end
 
       def create
-        byebug
         @form = CustomerForm.new(args: customer_params, step: step_param, user: user_agreement,
                                  childs: child_params)
 

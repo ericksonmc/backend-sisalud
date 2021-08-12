@@ -43,6 +43,7 @@ class Agreement < ApplicationRecord
 
     event :to_pending do
       transitions from: :active, to: :pending, guard: :ready_for_pending?
+      after { send_pending_review_email }
     end
   end
 
@@ -66,5 +67,11 @@ class Agreement < ApplicationRecord
 
   def status
     I18n.t("agreements.status.#{aasm_state}")
+  end
+
+  private
+
+  def send_pending_review_email
+    NotificationsMailer.pending_review(agreement: self).deliver_now
   end
 end
