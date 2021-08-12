@@ -46,7 +46,6 @@ class CustomerForm < BaseForm
   def after_save
     save_childs
     save_agreement
-    set_customer_code
     save_diagnosis(@customer)
     save_attachments(@customer)
   end
@@ -132,11 +131,7 @@ class CustomerForm < BaseForm
     @customer.main = true
   end
 
-  def set_customer_code
-    return if @customer.main && !@customer.new_record?
-
-    "00#{parent.childs.length}"
-  end
+  
 
   def save_attachments(customer)
     return if customer.id_attachment.blank?

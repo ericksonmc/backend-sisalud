@@ -61,7 +61,15 @@ class Customer < ApplicationRecord
 
   attr_accessor :diagnosis, :id_attachment
 
+  after_create :set_customer_code
+
   def full_name
     [firstname, second_name, last_name].compact.join(' ')
+  end
+
+  def set_customer_code
+    return if main?
+
+    "00#{parent.childs.length}"
   end
 end

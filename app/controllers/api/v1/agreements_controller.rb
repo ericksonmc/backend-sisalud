@@ -20,7 +20,8 @@ module Api
       end
 
       def create
-        @form = CustomerForm.new(args: customer_params, step: step_param, user: current_user,
+        byebug
+        @form = CustomerForm.new(args: customer_params, step: step_param, user: user_agreement,
                                  childs: child_params)
 
         if @form.save!
@@ -95,6 +96,14 @@ module Api
 
       def main_customer
         @main_customer ||= agreement.customer
+      end
+
+      def user_agreement
+        if current_user.agent?
+          @user_agreement ||= current_user
+        else
+          User.find_by(id: params[:customer][:user_id])
+        end
       end
     end
   end

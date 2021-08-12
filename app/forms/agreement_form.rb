@@ -34,11 +34,7 @@ class AgreementForm < BaseForm
   private
 
   def set_contract_number
-    if @user.agent?
-      @agreement.agreement_number = "SIP-#{@user.agent_code}-#{Agreement.all.count}"
-    else
-      @agreement.agreement_number = "SIP-XX-#{Agreement.all.count}"
-    end
+    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{Agreement.all.count}"
   end
 
   def set_initial_data
