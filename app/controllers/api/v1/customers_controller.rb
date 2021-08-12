@@ -23,7 +23,10 @@ module Api
       def check_filter
         case filter_type
         when 'name' || 'beneficiarie'
-          render json: { message: 'De Enviar nombre y apellido' }, status: 400 and return if filter_split.length < 2
+          if filter_split.length < 2
+            render json: { message: 'De Enviar nombre y apellido' },
+                   status: 400 and return
+          end
         end
       end
 
@@ -31,12 +34,12 @@ module Api
         @filter_type ||= params[:filter_type]
       end
 
-      def filter 
+      def filter
         @filter ||= params[:filter]
       end
 
       def filter_split
-        @filter_split ||= params[:filter].split(' ')
+        @filter_split ||= params[:filter].split
       end
     end
   end

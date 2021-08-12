@@ -67,8 +67,7 @@ module Api
                                          diagnosis: [:id, :description],
                                          address: [:first_line, :zip_code,
                                                    state: [:title, :id],
-                                                   municipality: [:title, :id]
-                                                  ])
+                                                   municipality: [:title, :id]])
       end
 
       def agreement_params

@@ -6,8 +6,10 @@ module Api
       def create
         attachment = Attachment.new(attachment_params)
 
-        render json: { message: 'Hubo un problema al guardar los files' },
-               status: 400 and return unless attachment.save!
+        unless attachment.save!
+          render json: { message: 'Hubo un problema al guardar los files' },
+                 status: 400 and return
+        end
 
         render json: attachment
       end
