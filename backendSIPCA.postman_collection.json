@@ -335,6 +335,50 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Customers Filter",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/diseases",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"diseases"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
