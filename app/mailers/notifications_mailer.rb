@@ -7,7 +7,9 @@ class NotificationsMailer < ApplicationMailer
   #
   def pending_review(agreement: {})
     @agreement = agreement
-    @to = production? ? 'alerta.saludintegralparaiso@gmail.com' : 'erick2109@gmail.com'
+    # alerta.saludintegralparaiso@gmail.com
+    # @to = production? ? ['erick2109@gmail.com', 'it.sipca@gmail.com'] : 'erick2109@gmail.com'
+    @to = 'erick2109@gmail.com'
     @url = production? ? 'https://sipca-frontend.herokuapp.com/' : 'http://locahost:3001'
 
     mail to: @to, subject: 'Se registron un cliente que require aprobación'
