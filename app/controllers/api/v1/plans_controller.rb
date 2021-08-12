@@ -38,7 +38,7 @@ module Api
       private
 
       def plan_params
-        params.permit(:coverage, :payment_fee, :title, :product_id,
+        params.permit(:coverage, :payment_fee, :title, :product_id,:age_limit,
                       coverage_items: [:title, :value, :pe])
       end
 
