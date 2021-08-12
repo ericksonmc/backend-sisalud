@@ -6,7 +6,7 @@ module Api
       class UsersController < ApiController
         def index
           condition = {}
-          condition[:role] = params[:role] if params[:rol].present?
+          condition[:role] = params[:role] if params[:role].present?
 
           render json: User.where(condition).all
         end
