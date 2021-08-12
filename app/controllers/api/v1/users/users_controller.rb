@@ -5,7 +5,10 @@ module Api
     module Users
       class UsersController < ApiController
         def index
-          render json: User.all
+          condition = {}
+          condition[:role] = params[:role] if params[:rol].present?
+
+          render json: User.where(condition).all
         end
 
         def create
