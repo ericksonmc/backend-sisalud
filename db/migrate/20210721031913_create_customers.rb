@@ -3,16 +3,16 @@
 class CreateCustomers < ActiveRecord::Migration[6.1]
   def change
     create_table :customers do |t|
-      t.string :firstname, not: nil
-      t.string :second_name, not: nil
-      t.string :last_name, not: nil
-      t.string :dni, not: nil
+      t.string :firstname, null: true
+      t.string :second_name, null: true
+      t.string :last_name, null: true
+      t.string :dni, null: true
       t.date :birthday
       t.string :legal_representative
       t.jsonb :address
-      t.string :phone, not: nil
+      t.string :phone, null: true
       t.string :secondary_phone
-      t.string :email, not: nil
+      t.string :email, null: true
       t.string :activity
       t.boolean :main
       t.integer :age

@@ -3,47 +3,40 @@
 module Api
   module V1
     class CustomersController < ApiController
-      before_action :find_customer, only: [:create]
-
-      def index; end
-
-      def show
-        render json: @customer, methods: [:agreement]
-      end
-
-      def create
-        @form = CustomerForm.new(args: customer_params, step: params_step, user: current_user)
-
-        if @form.save!
-          render json: { customer: @form.customer, agreement: @form }
+      before_action :check_filter
+      def filter_customer
+        case @filter_type
+        when 'name'
+          @customers = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
+        when 'dni'
+          @customers = Customer.where("dni ilike '%#{filter}%'")
+        when 'beneficiarie'
+          beneficiary = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
+          @customer = beneficiary.parent
         else
-          render json: { message: 'Ocurrio Un problema', errors: @form.errors.messages }, status: 400 and return
+          []
         end
       end
 
-      def update;end
-
       private
 
-      def customer_params
-        params.require(:customer).permit(:activity, :address, :age, :birthday, :coverage, :coverage_reference,
-                      :customer_code, :diagnosis, :dni, :email, :firstname, :is_insured, :last_name,
-                      :legal_representative, :main, :parent_id, :phone, :plan_id, :second_name,
-                      :secondary_phone, :sex, :size)
+      def check_filter
+        case filter_type
+        when 'name' || 'beneficiarie'
+          render json: { message: 'De Enviar nombre y apellido' }, status: 400 and return if filter_split.length < 2
+        end
       end
 
-      def agreement_params
-        params.permit(:diagnosis)
+      def filter_type
+        @filter_type ||= params[:filter_type]
       end
 
-      def params_step
-        params.require(:customer).permit(:step).to_s
+      def filter 
+        @filter ||= params[:filter]
       end
 
-      def find_customer
-        return @customer = Customer.find_by(id: params[:id]) if params[:id].present?
-
-        @customer = Customer.new(customer_params)
+      def filter_split
+        @filter_split ||= params[:filter].split(' ')
       end
     end
   end
