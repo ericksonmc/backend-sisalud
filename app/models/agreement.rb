@@ -72,6 +72,8 @@ class Agreement < ApplicationRecord
   private
 
   def send_pending_review_email
+    true
+    return
     NotificationsMailer.pending_review(agreement: self).deliver_now
   end
 end
