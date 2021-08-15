@@ -34,9 +34,9 @@ json.customer do
     json.title disease.title
   end
   json.plan do
-    json.title @agreement.customer.plan.title
-    json.payment_fee @agreement.customer.plan.payment_fee
-    json.coverage @agreement.customer.plan.coverage
+    json.title @agreement.customer.plan&.title
+    json.payment_fee @agreement.customer.plan&.payment_fee
+    json.coverage @agreement.customer.plan&.coverage
   end
   json.beneficiaries @agreement.customer.childs do |child|
     json.firstname child.firstname
