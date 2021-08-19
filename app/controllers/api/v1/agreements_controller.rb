@@ -51,9 +51,7 @@ module Api
 
       def authorize_agreement
         @agreement = Agreement.find(params[:agreement_id])
-        byebug
         if @agreement.pending? && params[:status] == 'active'
-          byebug
           @agreement.activate!
           render json: @agreement
         else
