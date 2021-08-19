@@ -34,7 +34,21 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, email: true
 
+  has_many :permissions, dependent: :destroy
+
+  accepts_nested_attributes_for :permissions
+
   def to_s
     [first_name, last_name].compact.join(' ')
+  end
+
+  def authorize_permissions
+    authorize_permissions = {}
+
+    permissions.each{ |permission|
+      authorize_permissions[permission.section.name] = Hash.new
+      authorize_permissions[permission.section.name]['active'] = permission.active
+    }
+    authorize_permissions
   end
 end

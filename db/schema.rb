@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_07_022008) do
+ActiveRecord::Schema.define(version: 2021_08_19_150734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,16 @@ ActiveRecord::Schema.define(version: 2021_08_07_022008) do
     t.index ["state_id"], name: "index_municipalities_on_state_id"
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.boolean "active"
+    t.bigint "section_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_permissions_on_section_id"
+    t.index ["user_id"], name: "index_permissions_on_user_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "title"
     t.float "coverage"
@@ -165,6 +175,14 @@ ActiveRecord::Schema.define(version: 2021_08_07_022008) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_products_on_company_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.string "pretty_name"
+    t.integer "module_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "states", force: :cascade do |t|
@@ -201,6 +219,8 @@ ActiveRecord::Schema.define(version: 2021_08_07_022008) do
   add_foreign_key "customers", "customers", column: "parent_id"
   add_foreign_key "customers", "plans"
   add_foreign_key "municipalities", "states"
+  add_foreign_key "permissions", "sections"
+  add_foreign_key "permissions", "users"
   add_foreign_key "plans", "products"
   add_foreign_key "products", "companies"
 end

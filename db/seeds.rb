@@ -149,3 +149,20 @@ unless State.all.present?
     end
   end
 end
+
+# enum module_name: { products: 0, plans: 1, users: 2, customers: 3, admin_dashboars: 5 }
+Section.create(
+  [
+    { name: 'list_products', pretty_name: 'Productos', module_name: 0 },
+    { name: 'plans', pretty_name: 'Planes', module_name: 1 },
+    { name: 'create_plans', pretty_name: 'Crear Planes', module_name: 1 },
+    { name: 'edit_plans', pretty_name: 'Editar Planes', module_name: 1 },
+    { name: 'users', pretty_name: 'Usuarios', module_name: 2 },
+    { name: 'create_users', pretty_name: 'Crear Usuarios', module_name: 2 },
+    { name: 'edit_users', pretty_name: 'Editar Usuarios', module_name: 2 },
+    { name: 'customers', pretty_name: 'Clientes', module_name: 3 },
+    { name: 'create_customers', pretty_name: 'Crear Clientes', module_name: 3 },
+    { name: 'show_customers', pretty_name: 'Ver Cliente', module_name: 3 },
+    { name: 'authorize_customers', pretty_name: 'Autorizar Clientes', module_name: 4 }
+  ]
+)
