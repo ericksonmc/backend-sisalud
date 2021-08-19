@@ -33,13 +33,21 @@ module Api
       end
 
       def update
-        @form = CustomerForm.new(args: customer_params, customer: customer, step: step_param,
-                                 childs: child_params)
+        @agreement = Agreement.find(params[:id])
 
-        render json: { customer: @form.customer } if @form.save!
+        if @agreement.update(agreement_params)
+          render json: { message: 'Afiliacion Actualizada con exito' }, status: 200 and return
+        else
+          render json: { message: 'Hubo un problema al actualizar el registro',
+                         errors: @form.errors.messages }, status: 400 and return
+        end
 
-        render json: { message: 'Hubo un problema al actualizar el registro',
-                       errors: @form.errors.messages }, status: 400 and return
+
+        # @form = CustomerForm.new(args: customer_params, customer: customer, step: step_param,
+        #                          childs: child_params)
+
+        # render json: { customer: @form.customer } if @form.save!
+
       end
 
       private
@@ -70,7 +78,14 @@ module Api
       end
 
       def agreement_params
-        params.permit(:diagnosis)
+        params.permit(
+          :agreement_number,
+          :amount,
+          :diagnosis,
+          :payment_method,
+          :signed_date,
+          :user_id
+        )
       end
 
       def child_params
