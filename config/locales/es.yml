@@ -31,7 +31,7 @@
 es:
   agreements:
     status:
-      active: Active
+      active: Activo
       pending: Pendiente Por Aprobacion
       suspended: Suspendida
       rejected: Rechazada
