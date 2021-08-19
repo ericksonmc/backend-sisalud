@@ -34,7 +34,6 @@ module Api
 
       def update
         @agreement = Agreement.find(params[:id])
-
         if @agreement.update(agreement_params)
           render json: { message: 'Afiliacion Actualizada con exito' }, status: 200 and return
         else
@@ -48,6 +47,18 @@ module Api
 
         # render json: { customer: @form.customer } if @form.save!
 
+      end
+
+      def authorize_agreement
+        @agreement = Agreement.find(params[:agreement_id])
+
+        if @agreement.pending? && params[:status] == 'active'
+          @agreement.activate!
+          render json: @agreement
+        else
+          render json: { message: 'Hubo un problema al actualizar el registro',
+                         errors: @form.errors.messages }, status: 400 and return
+        end
       end
 
       private

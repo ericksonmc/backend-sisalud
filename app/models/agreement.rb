@@ -45,6 +45,10 @@ class Agreement < ApplicationRecord
       transitions from: :active, to: :pending, guard: :ready_for_pending?
       after { send_pending_review_email }
     end
+
+    event :activate do
+      transition from: :pending, to: :active, guard: :valid_to_authorize?
+    end
   end
 
   def ready_for_pending?
@@ -75,5 +79,9 @@ class Agreement < ApplicationRecord
     true
     return
     NotificationsMailer.pending_review(agreement: self).deliver_now
+  end
+
+  def valid_to_authorize?
+    current_user.admin?
   end
 end

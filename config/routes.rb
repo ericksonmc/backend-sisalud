@@ -20,7 +20,9 @@ Rails.application.routes.draw do
       resources :products, only: %i[index update show]
       resources :plans, only: %i[index update create]
       resources :diseases, only: %i[index]
-      resources :agreements
+      resources :agreements do
+        post :authorize_agreement
+      end
       resources :customers, only: [] do
         get :filter_customer, on: :collection
       end
