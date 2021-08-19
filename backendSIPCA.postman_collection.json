@@ -13,7 +13,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI4NzM3NDIzLCJleHAiOjE2MzEzMjk0MjMsImp0aSI6IjU4OGI0YzdiLTllYjUtNDI1Mi05N2ZlLWNkMGQ4NDFlYzI5ZSJ9.BF0TorJoAaoG5g_gGi9HRdib-cCKRDTXVSxAtrj0bIM",
 							"type": "string"
 						}
 					]
@@ -28,7 +28,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"customer\": {\n        \"activity\": \"Programador\",\n        \"address\": \"Isla dorada\",\n        \"age\": 61,\n        \"birthday\": \"1955-09-21\",\n        \"coverage\": null,\n        \"coverage_reference\": null,\n        \"customer_code\": \"SIP-001-01\",\n        \"dni\": \"25245734\",\n        \"email\": \"example@gmail.com\",\n        \"firstname\": \"Zephania\",\n        \"is_insured\": true,\n        \"last_name\": \"Daugherty\",\n        \"legal_representative\": null,\n        \"parent_id\": null,\n        \"phone\": \"\",\n        \"plan_id\": 7,\n        \"second_name\": \"Richmond\",\n        \"secondary_phone\": \"\",\n        \"sex\": \"masculino\",\n        \"size\": \"1.70\",\n        \"step\": \"step_1\",\n        \"id_attachment\": 2,\n        \"diagnosis\": [\n            { \"id\": \"1\" },\n            { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n        ],\n        \"childs\": [\n            {\n                \"firstname\": \"Mohammad Heath\",\n                \"second_name\": \"Eaton\",\n                \"last_name\": \"Larsen\",\n                \"dni\": \"22123456\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 7,\n                \"is_insured\": true,\n                \"diagnosis\": [\n                    { \"id\": \"9\" },\n                    { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n                ]\n            },\n            {\n                \"firstname\": \"Elvis\",\n                \"second_name\": \"Jackson\",\n                \"last_name\": \"Crespo Peres\",\n                \"dni\": \"22123457\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 7,\n                \"is_insured\": true,\n                \"diagnosis\": []\n            }\n        ]\n    }\n}"
+					"raw": "{\n    \"customer\": {\n        \"activity\": \"Programador\",\n        \"address\": \"Isla dorada\",\n        \"age\": 61,\n        \"birthday\": \"1955-09-21\",\n        \"coverage\": null,\n        \"coverage_reference\": null,\n        \"customer_code\": \"SIP-001-01\",\n        \"dni\": \"25245734\",\n        \"email\": \"example@gmail.com\",\n        \"firstname\": \"PETRONILA\",\n        \"is_insured\": true,\n        \"last_name\": \"SINFOROSA\",\n        \"legal_representative\": null,\n        \"parent_id\": null,\n        \"phone\": \"\",\n        \"plan_id\": 7,\n        \"second_name\": \"Richmond\",\n        \"secondary_phone\": \"\",\n        \"sex\": \"masculino\",\n        \"size\": \"1.70\",\n        \"step\": \"step_1\",\n        \"id_attachment\": 2,\n        \"user_id\": 3,\n        \"diagnosis\": [\n            { \"id\": \"1\" },\n            { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n        ],\n        \"childs\": [\n            {\n                \"firstname\": \"Mohammad Heath\",\n                \"second_name\": \"Eaton\",\n                \"last_name\": \"Larsen\",\n                \"dni\": \"22123456\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 7,\n                \"is_insured\": true,\n                \"diagnosis\": [\n                    { \"id\": \"9\" },\n                    { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n                ]\n            },\n            {\n                \"firstname\": \"Elvis\",\n                \"second_name\": \"Jackson\",\n                \"last_name\": \"Crespo Peres\",\n                \"dni\": \"22123457\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 7,\n                \"is_insured\": true,\n                \"diagnosis\": []\n            }\n        ]\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/agreements",
@@ -375,6 +375,134 @@
 						"api",
 						"v1",
 						"diseases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agreements [show] Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3NDM4ODg2LCJleHAiOjE2MzAwMzA4ODYsImp0aSI6IjIxZmZmZjM5LTc3NTEtNDJjMC1hZjBlLTQ2NDZhY2JmMDgzNyJ9.K8eqPMrzf7275fK0wDNNFBZC29sXyG-AcRKNCgEuyz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/agreements/66/authorize_agreement",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"agreements",
+						"66",
+						"authorize_agreement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User [Create]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI5MzQ0MTI0LCJleHAiOjE2MzE5MzYxMjQsImp0aSI6ImQxYWJhOTI1LWUzMzItNGYzNC04OWNjLWJiMGIwZWQ1ODU3YyJ9.WHrDUZP4lBBzqt2Hyazy6dpHMoiFU_vrZXsXnFIK7xY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"johndoe@gmail.com\",\n    \"password\": \"12345678\",\n    \"role\": \"super_admin\",\n    \"active\": true,\n    \"agent_code\": null,\n    \"permissions_attributes\": [\n        {\n            \"section_id\": 1,\n            \"active\": true\n        },\n        {\n            \"section_id\": 2,\n            \"active\": true\n        },\n        {\n            \"section_id\": 3,\n            \"active\": true\n        },\n        {\n            \"section_id\": 4,\n            \"active\": true\n        },\n        {\n            \"section_id\": 5,\n            \"active\": true\n        },\n        {\n            \"section_id\": 6,\n            \"active\": true\n        },\n        {\n            \"section_id\": 7,\n            \"active\": true\n        },\n        {\n            \"section_id\": 8,\n            \"active\": true\n        },\n        {\n            \"section_id\": 9,\n            \"active\": true\n        },\n        {\n            \"section_id\": 10,\n            \"active\": true\n        },\n        {\n            \"section_id\": 11,\n            \"active\": false\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User [Update]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI5MzQ0MTI0LCJleHAiOjE2MzE5MzYxMjQsImp0aSI6ImQxYWJhOTI1LWUzMzItNGYzNC04OWNjLWJiMGIwZWQ1ODU3YyJ9.WHrDUZP4lBBzqt2Hyazy6dpHMoiFU_vrZXsXnFIK7xY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"johndoe@gmail.com\",\n    \"password\": \"12345678\",\n    \"role\": \"super_admin\",\n    \"active\": true,\n    \"agent_code\": null,\n    \"permissions_attributes\": [\n        {\n            \"id\": 23,\n            \"section_id\": 1,\n            \"active\": false\n        },\n        {\n            \"id\": 24,\n            \"section_id\": 2,\n            \"active\": false\n        },\n        {\n            \"id\": 25,\n            \"section_id\": 3,\n            \"active\": false\n        },\n        {\n            \"id\": 26,\n            \"section_id\": 4,\n            \"active\": false\n        },\n        {\n            \"id\": 27,\n            \"section_id\": 5,\n            \"active\": false\n        },\n        {\n            \"id\": 28,\n            \"section_id\": 6,\n            \"active\": true\n        },\n        {\n            \"id\": 29,\n            \"section_id\": 7,\n            \"active\": true\n        },\n        {\n            \"id\": 30,\n            \"section_id\": 8,\n            \"active\": true\n        },\n        {\n            \"id\": 31,\n            \"section_id\": 9,\n            \"active\": true\n        },\n        {\n            \"id\": 32,\n            \"section_id\": 10,\n            \"active\": true\n        },\n        {\n            \"id\": 33,\n            \"section_id\": 11,\n            \"active\": false\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/users/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"users",
+						"5"
 					]
 				}
 			},
