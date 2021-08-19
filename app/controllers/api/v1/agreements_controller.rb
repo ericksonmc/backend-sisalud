@@ -51,13 +51,14 @@ module Api
 
       def authorize_agreement
         @agreement = Agreement.find(params[:agreement_id])
-
+        byebug
         if @agreement.pending? && params[:status] == 'active'
+          byebug
           @agreement.activate!
           render json: @agreement
         else
           render json: { message: 'Hubo un problema al actualizar el registro',
-                         errors: @form.errors.messages }, status: 400 and return
+                         errors: @agreement.errors.messages }, status: 400 and return
         end
       end
 
