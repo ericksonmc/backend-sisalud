@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get '/session', to: 'session#index'
 
       namespace :users do
-        resources :users, only: %i[index create update]
+        resources :users
       end
 
       resources :products, only: %i[index update show]

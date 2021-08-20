@@ -11,4 +11,14 @@
 #
 class Section < ApplicationRecord
   enum module_name: { products: 0, plans: 1, users: 2, customers: 3, admin_dashboars: 4 }
+
+  has_many :permissions
+
+  after_create :add_permission
+
+  def add_permission
+    User.all.each do |user|
+      user.permissions.create(section_id: id, active: false)
+    end
+  end
 end
