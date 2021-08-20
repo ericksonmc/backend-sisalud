@@ -10,6 +10,10 @@ module Api
       def municipalities
         render json: Municipality.where(state_id: params[:state_id])
       end
+
+      def sections
+        render json: Section.all
+      end
     end
   end
 end

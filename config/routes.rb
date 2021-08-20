@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :miscelaneos, only: [] do
         get :states, on: :collection
         get :municipalities, on: :collection
+        get :sections, on: :collection
       end
 
       resources :attachments, only: [:create]
