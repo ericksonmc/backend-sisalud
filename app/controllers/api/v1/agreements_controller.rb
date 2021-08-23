@@ -42,12 +42,10 @@ module Api
                          errors: @form.errors.messages }, status: 400 and return
         end
 
-
         # @form = CustomerForm.new(args: customer_params, customer: customer, step: step_param,
         #                          childs: child_params)
 
         # render json: { customer: @form.customer } if @form.save!
-
       end
 
       def authorize_agreement
