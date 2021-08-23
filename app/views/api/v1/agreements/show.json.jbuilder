@@ -47,6 +47,7 @@ json.customer do
     json.coverage @agreement.customer.plan&.coverage
   end
   json.beneficiaries @agreement.customer.childs do |child|
+    json.id child.id
     json.firstname child.firstname
     json.second_name child.second_name
     json.last_name child.last_name
