@@ -3,6 +3,7 @@
 module Api
   module V1
     class AgreementsController < ApiController
+      include Rails.application.routes.url_helpers
       before_action :agreement, only: [:show]
 
       def index

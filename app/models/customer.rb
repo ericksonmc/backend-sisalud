@@ -51,7 +51,7 @@ class Customer < ApplicationRecord
   has_one :agreement, dependent: :destroy
   has_many :customer_diseases, dependent: :destroy
   has_many :diseases, through: :customer_diseases
-  has_many :attachments,  as: :fileable
+  has_one :attachment, as: :fileable
 
   belongs_to :plan, optional: true
 

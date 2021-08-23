@@ -8,6 +8,9 @@ json.agent do
   json.full_name @agreement.user.to_s
 end
 json.customer do
+  json.attachments @agreement.customer.attachment.files do |file|
+    json.url rails_blob_path(file, disposition: "attachment", only_path: true)
+  end
   json.activity @agreement.customer.activity
   json.address @agreement.customer.address
   json.age @agreement.customer.age
