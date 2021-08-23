@@ -8,8 +8,8 @@ json.agent do
   json.full_name @agreement.user.to_s
 end
 json.customer do
-  json.attachments @agreement.customer.attachment.files do |file|
-    json.url rails_blob_path(file, disposition: "attachment", only_path: true)
+  json.attachments @agreement.customer&.attachment&.files do |file|
+    json.url rails_blob_path(file, disposition: 'attachment', only_path: true)
   end
   json.activity @agreement.customer.activity
   json.address @agreement.customer.address
@@ -71,6 +71,9 @@ json.customer do
       json.title child.plan.title
       json.payment_fee child.plan.payment_fee
       json.coverage child.plan.coverage
+    end
+    json.attachments child&.attachment&.files do |file|
+      json.url rails_blob_path(file, disposition: 'attachment', only_path: true)
     end
   end
 end
