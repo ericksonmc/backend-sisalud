@@ -3,6 +3,10 @@ json.amount @agreement.amount
 json.payment_method @agreement.payment_method
 json.signed_date @agreement.signed_date
 json.status @agreement.status
+json.agent do
+  json.user_id @agreement.user.id
+  json.full_name @agreement.user.to_s
+end
 json.customer do
   json.activity @agreement.customer.activity
   json.address @agreement.customer.address
@@ -25,6 +29,7 @@ json.customer do
   json.sex @agreement.customer.sex
   json.size @agreement.customer.size
   json.weight @agreement.customer.weight
+  json.plan_id @agreement.customer.plan_id
   json.diseases @agreement.customer.diseases do |disease|
     json.other_description disease.other_description(@agreement.customer)
     json.has_description disease.has_description
@@ -50,6 +55,7 @@ json.customer do
     json.plan_id child.plan_id
     json.is_insured child.is_insured
     json.weight child.weight
+    json.plan_id child.plan_id
     json.diseases child.diseases do |disease|
       json.other_description disease.other_description(child)
       json.has_description disease.has_description

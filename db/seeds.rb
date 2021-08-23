@@ -60,63 +60,65 @@ coverage_items_oro = [
   { title: 'Mastología', value: 0, pe: 12 }
 ]
 
-Disease.create([
-  {
-    title: 'ENFERMEDADES CARDIOVASCULARES',
-    list_diases: ["Hipertensión Arterial", " infarto al Miocardio", " Arritmia Cardiaca", " Aneurisma", " Palpitaciones", " Angina de Pecho", " Fiebre Reumática", " Arteriosclerosis", " Trastornos Valvulares", " Tromboflebitis", " Varices"],
-    has_description: false,
-    order: 1,
-  }, {
-    title: 'ENFERMEDADES DE LAS VÍAS RESPIRATORIAS',
-    list_diases: ["Ronquera", " tos persistente", " bronquitis", " asma", " enfisema", " tuberculosis", " pleuresía", " neumonía", " bronconeumonía."],
-    has_description: false,
-    order: 2,
-  }, {
-    title: 'ENFERMEDADES DE LAS VÍAS DIGESTIVAS',
-    list_diases: ["Gastritis", " Ulceras", " Hepatitis", " Cirrosis", " Hemorroides o similares", " Apendicitis", " colitis", " Litiasis Vesicular", " hernias hiatales", " fisura anal"],
-    has_description: false,
-    order: 3,
-  }, {
-    title: 'ENFERMEDADES DEL SISTEMA ENDOCRINO',
-    list_diases: ["Diabetes", " Obesidad", " Tiroides", " Paratiroides."],
-    has_description: false,
-    order: 4,
-  }, {
-    title: 'ENFERMEDADES OSTEOMUSCULARES',
-    list_diases: ["Neuritis", " Ciática", " Reumatismo", " Hernias Discales", " Artritis", " Osteoporosis", " Desviación de la Columna Vertebral", " Problemas en las Articulaciones."],
-    has_description: false,
-    order: 5,
-  }, {
-    title: 'ENFERMEDADES GENITO-URINARIAS',
-    list_diases: ["Cálculos u otra alteración en los riñones", " vejiga o próstata", " prostatitis", " varicocele."],
-    has_description: false,
-    order: 6,
-  }, {
-    title: 'ENFERMEDADES DE LA PIEL, OJOS, OÍDOS, NARÍZ, GARGANTA',
-    list_diases: ["Desviación del Tabique Nasal", " Sinusitis", " Amigdalitis", " Rinitis", " Otitis", " Cataratas", " Hipertrofia de Cornetes"],
-    has_description: false,
-    order: 7,
-  }, {
-    title: 'ENFERMEDADES TRANSITORIAS CRÓNICAS O ALGÚN DEFECTOS NO MENCIONADOS ANTERIORMENTE',
-    list_diases: nil,
-    has_description: false,
-    order: 8,
-  }, {
-    title: 'ENFERMEDADES PROPIAS DE LA MUJER',
-    list_diases: ["Fibroma Uterino", " Prolapso", " Obstrucción en las Trompas", " Ovarios Poliquisticos", " Patologías Mamarias", " Endometriosis."],
-    has_description: false,
-    order: 9,
-  }, {
-    title: 'LE HA SIDO INDICADA O PRACTICADA ALGUNA INTERVENCIÓN QUIRÚRGICA O SE HA SOMETIDO A TRATAMIENTO MÉDICO POR ALGUNA ENFERMEDAD O LESIÓN ADICIONAL A LAS ANTERIORES.',
-    list_diases: nil,
-    has_description: false,
-    order: 10,
-  }, {
-    title: '11. OTROS (Especifique).',
-    list_diases: nil,
-    has_description: true,
-    order: 11,
-  }])
+unless Disease.present?
+  Disease.create([
+    {
+      title: 'ENFERMEDADES CARDIOVASCULARES',
+      list_diases: ["Hipertensión Arterial", " infarto al Miocardio", " Arritmia Cardiaca", " Aneurisma", " Palpitaciones", " Angina de Pecho", " Fiebre Reumática", " Arteriosclerosis", " Trastornos Valvulares", " Tromboflebitis", " Varices"],
+      has_description: false,
+      order: 1,
+    }, {
+      title: 'ENFERMEDADES DE LAS VÍAS RESPIRATORIAS',
+      list_diases: ["Ronquera", " tos persistente", " bronquitis", " asma", " enfisema", " tuberculosis", " pleuresía", " neumonía", " bronconeumonía."],
+      has_description: false,
+      order: 2,
+    }, {
+      title: 'ENFERMEDADES DE LAS VÍAS DIGESTIVAS',
+      list_diases: ["Gastritis", " Ulceras", " Hepatitis", " Cirrosis", " Hemorroides o similares", " Apendicitis", " colitis", " Litiasis Vesicular", " hernias hiatales", " fisura anal"],
+      has_description: false,
+      order: 3,
+    }, {
+      title: 'ENFERMEDADES DEL SISTEMA ENDOCRINO',
+      list_diases: ["Diabetes", " Obesidad", " Tiroides", " Paratiroides."],
+      has_description: false,
+      order: 4,
+    }, {
+      title: 'ENFERMEDADES OSTEOMUSCULARES',
+      list_diases: ["Neuritis", " Ciática", " Reumatismo", " Hernias Discales", " Artritis", " Osteoporosis", " Desviación de la Columna Vertebral", " Problemas en las Articulaciones."],
+      has_description: false,
+      order: 5,
+    }, {
+      title: 'ENFERMEDADES GENITO-URINARIAS',
+      list_diases: ["Cálculos u otra alteración en los riñones", " vejiga o próstata", " prostatitis", " varicocele."],
+      has_description: false,
+      order: 6,
+    }, {
+      title: 'ENFERMEDADES DE LA PIEL, OJOS, OÍDOS, NARÍZ, GARGANTA',
+      list_diases: ["Desviación del Tabique Nasal", " Sinusitis", " Amigdalitis", " Rinitis", " Otitis", " Cataratas", " Hipertrofia de Cornetes"],
+      has_description: false,
+      order: 7,
+    }, {
+      title: 'ENFERMEDADES TRANSITORIAS CRÓNICAS O ALGÚN DEFECTOS NO MENCIONADOS ANTERIORMENTE',
+      list_diases: nil,
+      has_description: false,
+      order: 8,
+    }, {
+      title: 'ENFERMEDADES PROPIAS DE LA MUJER',
+      list_diases: ["Fibroma Uterino", " Prolapso", " Obstrucción en las Trompas", " Ovarios Poliquisticos", " Patologías Mamarias", " Endometriosis."],
+      has_description: false,
+      order: 9,
+    }, {
+      title: 'LE HA SIDO INDICADA O PRACTICADA ALGUNA INTERVENCIÓN QUIRÚRGICA O SE HA SOMETIDO A TRATAMIENTO MÉDICO POR ALGUNA ENFERMEDAD O LESIÓN ADICIONAL A LAS ANTERIORES.',
+      list_diases: nil,
+      has_description: false,
+      order: 10,
+    }, {
+      title: '11. OTROS (Especifique).',
+      list_diases: nil,
+      has_description: true,
+      order: 11,
+    }])
+end
 
 unless Company.all.present?
   company = Company.create({ name: 'SIPCA ', rif: 'J-00000000-0' })

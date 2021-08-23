@@ -131,8 +131,6 @@ class CustomerForm < BaseForm
     @customer.main = true
   end
 
-  
-
   def save_attachments(customer)
     return if customer.id_attachment.blank?
 
