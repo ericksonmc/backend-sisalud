@@ -41,7 +41,7 @@ class AgreementForm < BaseForm
   end
 
   def set_initial_data
-    return if @new_record
+    return unless @new_record
 
     @agreement.signed_date = Date.today
   end

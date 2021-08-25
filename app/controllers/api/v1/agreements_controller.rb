@@ -103,7 +103,7 @@ module Api
         params.require(:customer).permit(childs: [:age, :birthday, :customer_code, :dni, :files,
                                                   :firstname, :is_insured, :last_name, :plan_id,
                                                   :second_name, :sex, :size, :weight, :id,
-                                                  :id_attachment, diagnosis: [:id, :description]])
+                                                  :id_attachment, :is_insured, diagnosis: [:id, :description]])
       end
 
       def step_param
