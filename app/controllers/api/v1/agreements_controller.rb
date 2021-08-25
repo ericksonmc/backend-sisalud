@@ -43,11 +43,6 @@ module Api
           render json: { customer: @form.customer,
                          agreement: @form.customer.agreement }, status: 200 and return
         end
-
-        # @form = CustomerForm.new(args: customer_params, customer: customer, step: step_param,
-        #                          childs: child_params)
-
-        # render json: { customer: @form.customer } if @form.save!
       end
 
       def authorize_agreement

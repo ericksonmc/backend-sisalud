@@ -13,11 +13,11 @@ module Api
       end
 
       def create
-        @plan = Plan.new(plan_params)
+        @form = PlanForm.new(args: plan_params, plan: @plan)
 
-        unless @plan.save!
+        unless @form.save!
           render json: { message: 'Ocurrio un erro al crear el plan',
-                         erros: @plan.errors.messages,
+                         erros: @form.errors.messages,
                          status: 'fail' }, status: 400 and return
         end
 
@@ -25,9 +25,11 @@ module Api
       end
 
       def update
-        unless @plan.update(plan_params)
+        @form = PlanForm.new(args: plan_params, plan: @plan)
+
+        unless @form.save!
           render json: { message: 'Ocurrio un erro al actualizar el plan',
-                         erros: @plan.errors.messages,
+                         erros: @form.errors.messages,
                          status: 'fail' },
                  status: 400 and return
         end
