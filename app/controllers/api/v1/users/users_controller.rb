@@ -12,9 +12,9 @@ module Api
         end
 
         def create
-          @users = User.new(user_params)
+          @form = UserForm.new(args: user_params)
 
-          if @users.save!
+          if @form.save!
             render json: { message: 'Usuario creado con exito' }
           else
             render json: { message: 'Hubo un error al crear el usuario',
@@ -27,7 +27,9 @@ module Api
         end
 
         def update
-          if user.update!(user_params)
+          @form = UserForm.new(args: user_params, user: user)
+
+          if @form.save!
             render json: { message: 'Usuario actualizado con exito' }
           else
             render json: { message: 'Hubo un error al actualizar el usuario',
