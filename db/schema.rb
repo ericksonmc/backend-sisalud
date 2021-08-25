@@ -110,9 +110,6 @@ ActiveRecord::Schema.define(version: 2021_08_19_150734) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "weight"
-    t.index ["coverage"], name: "index_customers_on_coverage"
-    t.index ["coverage_reference"], name: "index_customers_on_coverage_reference"
-    t.index ["customer_code"], name: "index_customers_on_customer_code"
     t.index ["dni"], name: "index_customers_on_dni"
     t.index ["email"], name: "index_customers_on_email"
     t.index ["parent_id"], name: "index_customers_on_parent_id"

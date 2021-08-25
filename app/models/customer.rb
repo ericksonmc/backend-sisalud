@@ -32,13 +32,10 @@
 #
 # Indexes
 #
-#  index_customers_on_coverage            (coverage)
-#  index_customers_on_coverage_reference  (coverage_reference)
-#  index_customers_on_customer_code       (customer_code)
-#  index_customers_on_dni                 (dni)
-#  index_customers_on_email               (email)
-#  index_customers_on_parent_id           (parent_id)
-#  index_customers_on_plan_id             (plan_id)
+#  index_customers_on_dni        (dni)
+#  index_customers_on_email      (email)
+#  index_customers_on_parent_id  (parent_id)
+#  index_customers_on_plan_id    (plan_id)
 #
 # Foreign Keys
 #

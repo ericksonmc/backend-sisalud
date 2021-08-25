@@ -45,6 +45,7 @@ class CustomerForm < BaseForm
 
   def after_save
     save_childs
+    set_coverage_to_childs
     save_agreement
     save_diagnosis(@customer)
     save_attachments(@customer)
@@ -61,14 +62,16 @@ class CustomerForm < BaseForm
 
   private
 
-  def save_diagnosis(customer)
-    return unless customer.diagnosis.present?
-
-    customer.diagnosis.each do |disease|
+  def save_diagnosis(param)
+    return unless param['diagnosis'].present?
+    customer = Customer.find(param['id'])
+    customer.customer_diseases.destroy_all unless @new_record
+    param['diagnosis'].each do |disease|
       customer.customer_diseases.create({
-                                          disease_id: disease['id'],
-                                          description: disease['description']
-                                        })
+                                         disease_id: disease['id'],
+                                         description: disease['description']
+                                       })
+      
     end
   end
 
@@ -87,8 +90,18 @@ class CustomerForm < BaseForm
   def save_childs
     return if @childs.blank?
 
-    @customer.childs.create(@childs[:childs])
-    set_coverage_to_childs
+    @childs[:childs].each do |child|
+      unless child['id'].to_i.zero?
+        customer = Customer.find(child['id'])
+        customer.update(child)
+      else
+        byebug
+        customer = @customer.childs.create(child.except('id'))
+      end
+      child["id"] = customer.id
+      save_diagnosis(child)
+      save_attachments(child)
+    end
   end
 
   def set_coverage_to_childs
@@ -96,8 +109,6 @@ class CustomerForm < BaseForm
       child.coverage_reference = child.plan.coverage
       child.coverage = amount_coverage(child)
       child.save!
-      save_diagnosis(child)
-      save_attachments(child)
     end
   end
 
@@ -131,10 +142,9 @@ class CustomerForm < BaseForm
     @customer.main = true
   end
 
-  def save_attachments(customer)
-    return if customer.id_attachment.blank?
-
-    attachments(customer.id_attachment).update(fileable_id: customer.id)
+  def save_attachments(customer_param)
+    return unless customer_param['id_attachment'].present?
+    attachments(customer_param['id_attachment']).update(fileable_id: customer.id)
   end
 
   def agreement

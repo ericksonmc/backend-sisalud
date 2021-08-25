@@ -28,10 +28,7 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
 
       # indexs
       t.index :dni
-      t.index :coverage
-      t.index :coverage_reference
       t.index :email
-      t.index :customer_code
 
       t.timestamps
     end
