@@ -144,7 +144,7 @@ class CustomerForm < BaseForm
   def save_attachments(customer_param)
     return unless customer_param.id_attachment.present?
 
-    attachments(customer_param.id_attachment).update(fileable_id: customer.id)
+    attachments(customer_param.id_attachment).update(fileable_id: customer_param.id)
   end
 
   def agreement
