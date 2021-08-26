@@ -8,11 +8,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Create user for tests
-if User.find_by_email('admin@sipca.com').nil?
-  User.create(first_name: 'Admin', last_name: 'Sipca', email: 'admin@sipca.com', password: '12345678')
-end
-
 coverage_items = [
   { title: 'Hospitalización', value: 100, pe: 3 },
   { title: 'UCI', value: 100, pe: 12 },
@@ -60,7 +55,7 @@ coverage_items_oro = [
   { title: 'Mastología', value: 0, pe: 12 }
 ]
 
-unless Disease.present?
+unless Disease.all.present?
   Disease.create([
     {
       title: 'ENFERMEDADES CARDIOVASCULARES',
@@ -165,6 +160,18 @@ Section.create(
     { name: 'customers', pretty_name: 'Clientes', module_name: 3 },
     { name: 'create_customers', pretty_name: 'Crear Clientes', module_name: 3 },
     { name: 'show_customers', pretty_name: 'Ver Cliente', module_name: 3 },
-    { name: 'authorize_customers', pretty_name: 'Autorizar Clientes', module_name: 4 }
+    { name: 'authorize_customers', pretty_name: 'Autorizar Clientes', module_name: 3 },
+    { name: 'edit_customers', pretty_name: 'Editar Clientes', module_name: 3 }
   ]
 )
+
+# Create user for tests
+if User.find_by_email('admin@sipca.com').nil?
+  permissions_attributes = Section.all.map do |section|
+    { section_id: section.id, active: true }
+  end
+  User.create(
+    first_name: 'Admin', last_name: 'Sipca', email: 'admin@sipca.com', password: '12345678',
+    permissions_attributes: permissions_attributes
+  )
+end
