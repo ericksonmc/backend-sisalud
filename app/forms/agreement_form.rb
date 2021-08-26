@@ -19,7 +19,6 @@ class AgreementForm < BaseForm
     @agreement = @customer.agreement || @customer.build_agreement(user_id: @user.id)
     @models = [@agreement]
     @new_record = @agreement.new_record?
-    byebug
   end
 
   def before_save

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class UserForm < BaseForm
-
   attr_writer :first_name,
               :last_name,
               :email,
@@ -21,17 +20,14 @@ class UserForm < BaseForm
 
   def before_validation
     assign_attributes_to_admin_user
-
   end
 
   private
 
   def assign_attributes_to_admin_user
-    byebug
     attributes = @args.tap do |args|
-      @args[:id] = @user.id
+      args[:id] = @user.id
     end
     @user.assign_attributes(attributes)
   end
-  
 end

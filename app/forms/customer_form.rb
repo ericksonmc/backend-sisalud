@@ -63,15 +63,15 @@ class CustomerForm < BaseForm
   private
 
   def save_diagnosis(param)
-    return unless param['diagnosis'].present?
-    customer = Customer.find(param['id'])
+    return unless param.diagnosis.present?
+
+    customer = Customer.find(param.id)
     customer.customer_diseases.destroy_all unless @new_record
-    param['diagnosis'].each do |disease|
+    param.diagnosis.each do |disease|
       customer.customer_diseases.create({
                                          disease_id: disease['id'],
                                          description: disease['description']
                                        })
-      
     end
   end
 
@@ -91,16 +91,15 @@ class CustomerForm < BaseForm
     return if @childs.blank?
 
     @childs[:childs].each do |child|
-      unless child['id'].to_i.zero?
+      if child['id'].to_i.zero?
+        customer = @customer.childs.create(child.except('id'))
+      else
         customer = Customer.find(child['id'])
         customer.update(child)
-      else
-        byebug
-        customer = @customer.childs.create(child.except('id'))
       end
       child["id"] = customer.id
-      save_diagnosis(child)
-      save_attachments(child)
+      save_diagnosis(OpenStruct.new(child))
+      save_attachments(OpenStruct.new(child))
     end
   end
 
@@ -143,8 +142,9 @@ class CustomerForm < BaseForm
   end
 
   def save_attachments(customer_param)
-    return unless customer_param['id_attachment'].present?
-    attachments(customer_param['id_attachment']).update(fileable_id: customer.id)
+    return unless customer_param.id_attachment.present?
+
+    attachments(customer_param.id_attachment).update(fileable_id: customer.id)
   end
 
   def agreement
