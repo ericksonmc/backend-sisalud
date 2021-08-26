@@ -10,8 +10,8 @@ json.array! @customers do |customer|
   json.coverage_reference customer.coverage_reference
   json.coverage customer.coverage
   json.agreement do
-    json.signed_date customer.agreement.signed_date
-    json.status customer.agreement.aasm_state
-    json.agreement_number customer.agreement_number
+    json.signed_date customer.agreement&.signed_date
+    json.status customer.agreement&.aasm_state
+    json.agreement_number customer.agreement&.agreement_number
   end
 end
