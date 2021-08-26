@@ -97,7 +97,7 @@ class CustomerForm < BaseForm
         customer = Customer.find(child['id'])
         customer.update(child)
       end
-      child["id"] = customer.id
+      child['id'] = customer.id
       save_diagnosis(OpenStruct.new(child))
       save_attachments(OpenStruct.new(child))
     end
