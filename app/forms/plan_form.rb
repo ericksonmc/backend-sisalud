@@ -10,6 +10,8 @@ class PlanForm < BaseForm
               :product_id,
               :title
 
+  validate :age_min_less_max
+
   def initialize(args: {}, plan: nil)
     super(args)
     @args = args
@@ -29,5 +31,11 @@ class PlanForm < BaseForm
       args[:id] = @plan.id
     end
     @plan.assign_attributes(attributes)
+  end
+
+  def age_min_less_max
+    return unless @plan.age_min > @plan.age_limit
+
+    raise StandardError.new, 'Edad Minima no debe ser mayor al limite de edad'
   end
 end

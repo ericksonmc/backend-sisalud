@@ -6,7 +6,7 @@ module Api
       before_action :find_plan, only: [:show, :update]
       def index
         conditions = { own: false }
-        conditions[:own] if current_user.admin? || current_user.super_admin?
+        conditions[:own] = true if current_user.admin? || current_user.super_admin?
 
         render json: Plan.where(conditions).all
       end
