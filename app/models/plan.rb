@@ -6,8 +6,10 @@
 #
 #  id             :bigint           not null, primary key
 #  age_limit      :integer
+#  age_min        :integer          default(0)
 #  coverage       :float
 #  coverage_items :jsonb
+#  own            :boolean          default(FALSE)
 #  payment_fee    :float
 #  title          :string
 #  created_at     :datetime         not null

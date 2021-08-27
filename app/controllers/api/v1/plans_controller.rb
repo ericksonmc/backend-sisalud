@@ -5,7 +5,10 @@ module Api
     class PlansController < ApiController
       before_action :find_plan, only: [:show, :update]
       def index
-        render json: Plan.all
+        conditions = { own: false }
+        conditions[:own] if current_user.admin? || current_user.super_admin?
+
+        render json: Plan.where(conditions).all
       end
 
       def show
@@ -40,7 +43,7 @@ module Api
       private
 
       def plan_params
-        params.permit(:coverage, :payment_fee, :title, :product_id, :age_limit,
+        params.permit(:age_limit, :age_min, :coverage, :own, :payment_fee, :product_id, :title,
                       coverage_items: [:title, :value, :pe])
       end
 

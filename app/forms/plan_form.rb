@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class PlanForm < BaseForm
-
-  attr_writer :coverage,
-              :payment_fee,
-              :title,
-              :product_id,
-              :age_limit,
+  attr_writer :age_limit,
+              :age_min,
+              :coverage,
               :coverage_items,
+              :own,
+              :payment_fee,
+              :product_id,
+              :title
 
   def initialize(args: {}, plan: nil)
     super(args)
@@ -25,9 +26,8 @@ class PlanForm < BaseForm
 
   def assign_attributes_to_admin_user
     attributes = @args.tap do |args|
-      @args[:id] = @plan.id
+      args[:id] = @plan.id
     end
     @plan.assign_attributes(attributes)
   end
-  
 end
