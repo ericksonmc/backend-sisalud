@@ -26,6 +26,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'sidekiq'
 
+gem "sentry-ruby"
+gem "sentry-rails"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
