@@ -34,7 +34,7 @@ class PlanForm < BaseForm
   end
 
   def age_min_less_max
-    return unless @plan.age_min > @plan.age_limit
+    return unless @plan.age_min.to_i > @plan.age_limit.to_i
 
     raise 'Edad Minima no debe ser mayor al limite de edad'
   end
