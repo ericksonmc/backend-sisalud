@@ -222,14 +222,30 @@ end
 unless Company.all.present?
   company = Company.create({ name: 'SIPCA ', rif: 'J-00000000-0' })
   products = company.products.create({ description: 'Medicina Prepagada', title: 'SIPCA' })
-  bronce = products.plans.create({ coverage: 12_000, coverage_items: coverage_items, payment_fee: 18, title: 'Bronce', age_limit: 60 })
-  plata = products.plans.create({ coverage: 20_000, coverage_items: coverage_items, payment_fee: 25, title: 'Plata', age_limit: 60 })
-  oro = products.plans.create({ coverage: 50_000, coverage_items: coverage_items_oro, payment_fee: 45, title: 'Oro', age_limit: 60 })
-  platino1 = products.plans.create({ coverage: 10_000, coverage_items: coverage_items_platino1, payment_fee: 18, title: 'Platino 1', age_limit: 81 })
-  platino2 = products.plans.create({ coverage: 10_000, coverage_items: coverage_items_platino2, payment_fee: 36, title: 'Platino 2', age_limit: 81 })
-  platino3 = products.plans.create({ coverage: 10_000, coverage_items: coverage_items_platino3, payment_fee: 52, title: 'Platino 3', age_limit: 81 })
-  bronce_empleado = products.plans.create({ coverage: 4_000, coverage_items: coverage_items_bronce_empleado, payment_fee: 10, title: 'Bronce Empleado', age_limit: nil })
-  plata_empleado = products.plans.create({ coverage: 6_000, coverage_items: coverage_items_plata_empleado, payment_fee: 12, title: 'Plata Empleado', age_limit: nil })
+  products.plans.create({ coverage: 12_000,
+                          coverage_items: coverage_items,
+                          payment_fee: 18, title: 'Bronce', age_limit: 60, age_min: nil })
+  products.plans.create({ coverage: 20_000,
+                          coverage_items: coverage_items, payment_fee: 25,
+                          title: 'Plata', age_limit: 60, age_min: nil })
+  products.plans.create({ coverage: 50_000,
+                          coverage_items: coverage_items_oro, payment_fee: 45,
+                          title: 'Oro', age_limit: 60, age_min: nil })
+  products.plans.create({ coverage: 10_000,
+                          coverage_items: coverage_items_platino1, payment_fee: 18,
+                          title: 'Platino 1', age_limit: 81, age_min: 61 })
+  products.plans.create({ coverage: 10_000,
+                          coverage_items: coverage_items_platino2, payment_fee: 36,
+                          title: 'Platino 2', age_limit: 81, age_min: 61 })
+  products.plans.create({ coverage: 10_000,
+                          coverage_items: coverage_items_platino3, payment_fee: 52,
+                          title: 'Platino 3', age_limit: 81, age_min: 61 })
+  products.plans.create({ coverage: 4_000,
+                          coverage_items: coverage_items_bronce_empleado, payment_fee: 10,
+                          title: 'Bronce Empleado', age_limit: nil, age_min: nil, own: true })
+  products.plans.create({ coverage: 6_000,
+                          coverage_items: coverage_items_plata_empleado, payment_fee: 12,
+                          title: 'Plata Empleado', age_limit: nil, age_min: nil, own: true })
 end
 if Customer.all.present?
   child = Customer.create(firstname: 'Mohammad Heath',second_name: 'Eaton',last_name: 'Larsen',dni: '22123456',birthday: '1995-05-04', age: 26,sex: 0,size: 'M',parent_id: Customer.first.id,plan_id: Plan.first.id,is_insured: true,customer_code: '02')
