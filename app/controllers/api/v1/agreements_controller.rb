@@ -60,12 +60,10 @@ module Api
 
       def find_agreements
         case current_user.role
-        when 'admin'
+        when 'admin' || 'super_admin'
           Agreement.all
         when 'agent'
           Agreement.where(user_id: current_user.id)
-        when 'super_admin'
-          Agreement.all
         else
           []
         end

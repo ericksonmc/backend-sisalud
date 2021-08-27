@@ -25,9 +25,8 @@ module Api
         end
 
         render json: { message: 'Plan creado con exito', status: 'ok' }
-      rescue Exception => error
-        render json: { message: 'Error al crear el plan', errors: error.message },
-               status: 400
+      rescue Exception => e
+        render json: { message: 'Error al crear el plan', errors: e.message }, status: 400
       end
 
       def update
@@ -41,9 +40,8 @@ module Api
         end
 
         render json: { message: 'Plan actualizado con exito', status: 'ok' }
-      rescue Exception => error
-        render json: { message: 'Error al crear el plan', errors: error.message },
-               status: 400
+      rescue Exception => e
+        render json: { message: 'Error al crear el plan', errors: e.message }, status: 400
       end
 
       private
