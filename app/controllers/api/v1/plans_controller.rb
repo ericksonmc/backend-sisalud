@@ -8,7 +8,7 @@ module Api
         conditions = { own: false }
         conditions[:own] = [true, false] if current_user.admin? || current_user.super_admin?
 
-        render json: Plan.where(conditions).all
+        render json: Plan.where(conditions).order(:id)
       end
 
       def show
