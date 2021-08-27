@@ -157,6 +157,9 @@ Layout/EmptyLinesAroundBlockBody:
 Metrics/ClassLength:
   Max: 150
 
+Lint/RescueException:
+  Enabled: false
+
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
