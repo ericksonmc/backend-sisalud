@@ -27,8 +27,8 @@ coverage_items = [
   { title: 'Exámenes Especiales', value: 100, pe: 3 },
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
-  { title: 'Gastroscopía', value: 100, pe: 12 },
-  { title: 'Colonoscopía', value: 100, pe: 12 },
+  { title: 'Gastroscopia', value: 100, pe: 12 },
+  { title: 'Colonoscopia', value: 100, pe: 12 },
   { title: 'Mastología', value: 0, pe: 12 }
 ]
 coverage_items_oro = [
@@ -50,8 +50,8 @@ coverage_items_oro = [
   { title: 'Exámenes Especiales', value: 100, pe: 3 },
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: nil },
-  { title: 'Gastroscopía', value: 100, pe: 6 },
-  { title: 'Colonoscopía', value: 100, pe: 6 },
+  { title: 'Gastroscopia', value: 100, pe: 6 },
+  { title: 'Colonoscopia', value: 100, pe: 6 },
   { title: 'Mastología', value: 0, pe: 12 }
 ]
 coverage_items_platino1 = [
@@ -66,7 +66,7 @@ coverage_items_platino1 = [
   { title: 'Electrocardiograma', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: 6 },
   { title: 'Exámenes Lab. Especiales', value: 0, pe: nil },
-  { title: 'Gastroscopía', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
   { title: 'Hospitalización', value: 0, pe: nil },
   { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
   { title: 'Rayos X estudios simples', value: 100, pe: 6 },
@@ -88,7 +88,7 @@ coverage_items_platino2 = [
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Especiales', value: 100, pe: 6 },
-  { title: 'Gastroscopía', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
   { title: 'Hospitalización', value: 0, pe: nil },
   { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
   { title: 'Rayos X estudios simples', value: 100, pe: 3 },
@@ -110,7 +110,7 @@ coverage_items_platino3 = [
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-  { title: 'Gastroscopía', value: 100, pe: 12 },
+  { title: 'Gastroscopia', value: 100, pe: 12 },
   { title: 'Hospitalización', value: 100, pe: 6 },
   { title: 'Mamografía (1 x Año)', value: 100, pe: 6 },
   { title: 'Rayos X estudios simples', value: 100, pe: nil },
@@ -137,7 +137,7 @@ coverage_items_bronce_empleado = [
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: 6 },
   { title: 'Colonoscopia', value: 0, pe: nil },
-  { title: 'Gastroscopía', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
 ]
 coverage_items_plata_empleado = [
   { title: 'Cirugia Electiva', value: 100, pe: 12 },
@@ -156,7 +156,7 @@ coverage_items_plata_empleado = [
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: 3 },
   { title: 'Colonoscopia', value: 100, pe: 8 },
-  { title: 'Gastroscopía', value: 100, pe: 8 },
+  { title: 'Gastroscopia', value: 100, pe: 8 },
 ]
 
 unless Disease.all.present?
