@@ -6,7 +6,7 @@ module Api
       before_action :find_plan, only: [:show, :update]
       def index
         conditions = { own: false }
-        conditions[:own] = true if current_user.admin? || current_user.super_admin?
+        conditions[:own] = [true, false] if current_user.admin? || current_user.super_admin?
 
         render json: Plan.where(conditions).all
       end
@@ -25,6 +25,10 @@ module Api
         end
 
         render json: { message: 'Plan creado con exito', status: 'ok' }
+
+      rescue Exception => error
+        render json: { message: 'Error al crear el plan', errors: error.message },
+               status: 400
       end
 
       def update
@@ -38,6 +42,10 @@ module Api
         end
 
         render json: { message: 'Plan actualizado con exito', status: 'ok' }
+
+      rescue Exception => error
+        render json: { message: 'Error al crear el plan', errors: error.message },
+               status: 400
       end
 
       private
