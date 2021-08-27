@@ -15,6 +15,8 @@ json.array! @customers do |customer|
     json.agreement_number customer.agreement&.agreement_number
   end
   json.beneficiaries customer.childs do |child|
+    json.full_name child&.full_name
+    json.dni child&.dni
     json.coverage_reference child&.coverage_reference
     json.coverage child&.coverage
     json.plan child.plan&.title
