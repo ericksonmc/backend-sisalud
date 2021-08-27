@@ -15,20 +15,20 @@ coverage_items = [
   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
   { title: 'Maternidad', value: 100, pe: 12 },
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-  { title: 'Consultas Básicas', value: 100, pe: nil },
-  { title: 'Consultas Especializadas', value: 100, pe: nil },
+  { title: 'Consultas básicas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
   { title: 'Rayos X', value: 100, pe: nil },
   { title: 'Mamografía', value: 100, pe: 3 },
   { title: 'Tomografía', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-  { title: 'Ecogramas Básicos', value: 100, pe: nil },
+  { title: 'Ecogramas básicos', value: 100, pe: nil },
   { title: 'Exámenes Especiales', value: 100, pe: 3 },
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
-  { title: 'Gastroscopía', value: 100, pe: 12 },
-  { title: 'Colonoscopía', value: 100, pe: 12 },
+  { title: 'Gastroscopia', value: 100, pe: 12 },
+  { title: 'Colonoscopia', value: 100, pe: 12 },
   { title: 'Mastología', value: 0, pe: 12 }
 ]
 coverage_items_oro = [
@@ -38,24 +38,24 @@ coverage_items_oro = [
   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
   { title: 'Maternidad', value: 100, pe: 12 },
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-  { title: 'Consultas Básicas', value: 100, pe: nil },
-  { title: 'Consultas Especializadas', value: 100, pe: nil },
+  { title: 'Consultas básicas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
   { title: 'Rayos X', value: 100, pe: nil },
   { title: 'Mamografía', value: 100, pe: 6 },
   { title: 'Tomografía', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-  { title: 'Ecogramas Básicos', value: 100, pe: nil },
+  { title: 'Ecogramas básicos', value: 100, pe: nil },
   { title: 'Exámenes Especiales', value: 100, pe: 3 },
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: nil },
-  { title: 'Gastroscopía', value: 100, pe: 6 },
-  { title: 'Colonoscopía', value: 100, pe: 6 },
+  { title: 'Gastroscopia', value: 100, pe: 6 },
+  { title: 'Colonoscopia', value: 100, pe: 6 },
   { title: 'Mastología', value: 0, pe: 12 }
 ]
 coverage_items_platino1 = [
-  { title: 'Cirugia Electiva', value: 0, pe: nil },
+  { title: 'Cirugía Electiva', value: 0, pe: nil },
   { title: 'Colonoscopia', value: 0, pe: nil },
   { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
   { title: 'Telemedicina', value: 100, pe: nil },
@@ -66,7 +66,7 @@ coverage_items_platino1 = [
   { title: 'Electrocardiograma', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: 6 },
   { title: 'Exámenes Lab. Especiales', value: 0, pe: nil },
-  { title: 'Gastroscopía', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
   { title: 'Hospitalización', value: 0, pe: nil },
   { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
   { title: 'Rayos X estudios simples', value: 100, pe: 6 },
@@ -77,7 +77,7 @@ coverage_items_platino1 = [
   { title: 'Cirugía de Emergencia', value: 0, pe: nil },
 ]
 coverage_items_platino2 = [
-  { title: 'Cirugia Electiva', value: 0, pe: nil },
+  { title: 'Cirugía Electiva', value: 0, pe: nil },
   { title: 'Colonoscopia', value: 0, pe: nil },
   { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
   { title: 'Telemedicina', value: 100, pe: nil },
@@ -88,7 +88,7 @@ coverage_items_platino2 = [
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: 3 },
   { title: 'Exámenes Lab. Especiales', value: 100, pe: 6 },
-  { title: 'Gastroscopía', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
   { title: 'Hospitalización', value: 0, pe: nil },
   { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
   { title: 'Rayos X estudios simples', value: 100, pe: 3 },
@@ -99,7 +99,7 @@ coverage_items_platino2 = [
   { title: 'Cirugía de Emergencia', value: 0, pe: nil },
 ]
 coverage_items_platino3 = [
-  { title: 'Cirugia Electiva', value: 100, pe: 12 },
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
   { title: 'Colonoscopia', value: 100, pe: 12 },
   { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
   { title: 'Telemedicina', value: 100, pe: nil },
@@ -110,7 +110,7 @@ coverage_items_platino3 = [
   { title: 'Electrocardiograma', value: 100, pe: nil },
   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-  { title: 'Gastroscopía', value: 100, pe: 12 },
+  { title: 'Gastroscopia', value: 100, pe: 12 },
   { title: 'Hospitalización', value: 100, pe: 6 },
   { title: 'Mamografía (1 x Año)', value: 100, pe: 6 },
   { title: 'Rayos X estudios simples', value: 100, pe: nil },
@@ -121,7 +121,7 @@ coverage_items_platino3 = [
   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
 ]
 coverage_items_bronce_empleado = [
-  { title: 'Cirugia Electiva', value: 100, pe: 12 },
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
   { title: 'Consultas básicas', value: 100, pe: nil },
   { title: 'Telemedicina', value: 100, pe: nil },
   { title: 'Consultas especializadas', value: 100, pe: 6 },
@@ -137,10 +137,10 @@ coverage_items_bronce_empleado = [
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: 6 },
   { title: 'Colonoscopia', value: 0, pe: nil },
-  { title: 'Gastroscopía', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
 ]
 coverage_items_plata_empleado = [
-  { title: 'Cirugia Electiva', value: 100, pe: 12 },
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
   { title: 'Consultas básicas', value: 100, pe: nil },
   { title: 'Telemedicina', value: 100, pe: nil },
   { title: 'Consultas especializadas', value: 100, pe: 3 },
@@ -156,7 +156,7 @@ coverage_items_plata_empleado = [
   { title: 'Servicios de Emergencias', value: 100, pe: nil },
   { title: 'Servicios de Odontología Básica', value: 100, pe: 3 },
   { title: 'Colonoscopia', value: 100, pe: 8 },
-  { title: 'Gastroscopía', value: 100, pe: 8 },
+  { title: 'Gastroscopia', value: 100, pe: 8 },
 ]
 
 unless Disease.all.present?
