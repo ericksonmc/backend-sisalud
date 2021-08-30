@@ -36,7 +36,7 @@ class AgreementForm < BaseForm
   def set_contract_number
     return unless @new_record
 
-    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{@user.agreements.count}"
+    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{@user.agreements.count + 1}"
   end
 
   def set_initial_data
