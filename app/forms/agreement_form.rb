@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AgreementForm < BaseForm
-  attr_reader :customer, :step, :user
+  attr_reader :customer, :user
 
   attr_writer :agreement_number,
               :amount,
@@ -11,18 +11,17 @@ class AgreementForm < BaseForm
               :customer_id,
               :user_id
 
-  def initialize(args: {}, customer: nil, step: nil, user: nil)
+  def initialize(args: {}, customer: nil, user: nil, signed_date: nil)
     super(args)
     @customer = customer
-    @step = step
     @user = user
+    @signed_date = signed_date
     @agreement = @customer.agreement || @customer.build_agreement(user_id: @user.id)
     @models = [@agreement]
     @new_record = @agreement.new_record?
   end
 
   def before_save
-    set_initial_data
     set_agreement_data
     set_contract_number
   end
@@ -36,17 +35,15 @@ class AgreementForm < BaseForm
   def set_contract_number
     return unless @new_record
 
-    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{@user.agreements.count + 1}"
-  end
-
-  def set_initial_data
-    return unless @new_record
-
-    @agreement.signed_date = Date.today
+    agreements_counts = @user.agreements.count + 1
+    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{agreements_counts.to_s.rjust(3, '0')}"
   end
 
   def set_agreement_data
     @agreement.amount = calculate_amount
+    return unless @new_record
+
+    @agreement.signed_date = @signed_date.present? ? @signed_date : Date.today
   end
 
   def calculate_amount
