@@ -37,6 +37,24 @@ es:
       rejected: Rechazada
       audit: En Auditoria
       close: Cerrada
+  scale:
+    status:
+      inactive: Inactivo
+      active: Activo
+    category:
+      surgery: Cirugia
+      gynecology_and_obstetrics: 'Ginecologia & Obstetricia'
+      orl: ORL
+      traumatology: Traumatologia
+      endoscopy: Endoscopia
+      ultrasound: Ecografia
+      hospitalization: Hospitalizacion
+      consultation: Consultas
+      cardiology: Cardiologia
+      special_laboratory: Laboratorio Especial
+      studies: Estudios
+      emergency: Emergencia 
+      basic_lab: Laboratorio Basico
   activerecord:
     errors:
       messages:

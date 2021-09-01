@@ -11,6 +11,8 @@
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
 #  last_name              :string
+#  last_otp_at            :integer
+#  otp_secret             :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
