@@ -28,7 +28,7 @@ class User < ApplicationRecord
          :recoverable, :validatable, :timeoutable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
-  enum role: { super_admin: 0, admin: 1, agent: 2, manager: 3, assitant: 4 }
+  enum role: { super_admin: 0, admin: 1, agent: 2, manager: 3, assitant: 4, coordinator: 5}
 
   validates :first_name, presence: true
   validates :last_name, presence: true
