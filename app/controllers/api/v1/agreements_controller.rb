@@ -21,8 +21,8 @@ module Api
       end
 
       def create
-        @form = CustomerForm.new(args: customer_params, step: step_param, user: user_agreement,
-                                 childs: child_params)
+        @form = CustomerForm.new(args: customer_params, user: user_agreement,
+                                 childs: child_params, signed_date: signed_date)
 
         if @form.save!
           render json: { customer: @form.customer,
@@ -99,8 +99,8 @@ module Api
                                                   :id_attachment, :is_insured, diagnosis: [:id, :description]])
       end
 
-      def step_param
-        params[:customer][:step]
+      def signed_date
+        params[:customer][:signed_date]
       end
 
       def customer

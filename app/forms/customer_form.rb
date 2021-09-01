@@ -32,15 +32,15 @@ class CustomerForm < BaseForm
 
   validate :email_presence_for_update
 
-  def initialize(args: {}, customer: nil, step: nil, user: nil, childs: [])
+  def initialize(args: {}, customer: nil, user: nil, childs: [], signed_date: nil)
     super(args)
     @args = args
     @customer = customer || Customer.new(args)
     @new_record = @customer.new_record?
-    @step = step
     @user = user
     @models = [@customer]
     @childs = childs
+    @signed_date = signed_date
   end
 
   def after_save
@@ -69,9 +69,9 @@ class CustomerForm < BaseForm
     customer.customer_diseases.destroy_all unless @new_record
     param.diagnosis.each do |disease|
       customer.customer_diseases.create({
-                                         disease_id: disease['id'],
-                                         description: disease['description']
-                                       })
+                                          disease_id: disease['id'],
+                                          description: disease['description']
+                                        })
     end
   end
 
@@ -148,7 +148,9 @@ class CustomerForm < BaseForm
   end
 
   def agreement
-    @agreement ||= AgreementForm.new(customer: @customer, step: @step, user: @user)
+    @agreement ||= AgreementForm.new(customer: @customer,
+                                     user: @user,
+                                     signed_date: @signed_date)
   end
 
   def attachments(id_attachment)
