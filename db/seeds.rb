@@ -209,7 +209,7 @@ unless Disease.all.present?
     }, {
       title: 'LE HA SIDO INDICADA O PRACTICADA ALGUNA INTERVENCIÓN QUIRÚRGICA O SE HA SOMETIDO A TRATAMIENTO MÉDICO POR ALGUNA ENFERMEDAD O LESIÓN ADICIONAL A LAS ANTERIORES.',
       list_diases: nil,
-      has_description: false,
+      has_description: true,
       order: 10,
     }, {
       title: '11. OTROS (Especifique).',
