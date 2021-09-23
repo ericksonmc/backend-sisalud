@@ -7,7 +7,9 @@ module Api
       before_action :agreement, only: [:show]
 
       def index
-        @agreements = find_agreements
+        conditions = {}
+        conditions[:customer_id] = params[:customer_id] if params[:customer_id].present? 
+        @agreements = find_agreements.where(conditions)
 
         respond_to do |format|
           format.json
