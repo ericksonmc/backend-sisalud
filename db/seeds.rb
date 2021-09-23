@@ -272,23 +272,34 @@ unless State.all.present?
   end
 end
 
-# enum module_name: { products: 0, plans: 1, users: 2, customers: 3, admin_dashboars: 5 }
-Section.create(
-  [
-    { name: 'list_products', pretty_name: 'Productos', module_name: 0 },
-    { name: 'plans', pretty_name: 'Planes', module_name: 1 },
-    { name: 'create_plans', pretty_name: 'Crear Planes', module_name: 1 },
-    { name: 'edit_plans', pretty_name: 'Editar Planes', module_name: 1 },
-    { name: 'users', pretty_name: 'Usuarios', module_name: 2 },
-    { name: 'create_users', pretty_name: 'Crear Usuarios', module_name: 2 },
-    { name: 'edit_users', pretty_name: 'Editar Usuarios', module_name: 2 },
-    { name: 'customers', pretty_name: 'Clientes', module_name: 3 },
-    { name: 'create_customers', pretty_name: 'Crear Clientes', module_name: 3 },
-    { name: 'show_customers', pretty_name: 'Ver Cliente', module_name: 3 },
-    { name: 'authorize_customers', pretty_name: 'Autorizar Clientes', module_name: 3 },
-    { name: 'edit_customers', pretty_name: 'Editar Clientes', module_name: 3 }
-  ]
-)
+# enum module_name: {
+# products: 0,
+# plans: 1,
+# users: 2,
+# customers: 3,
+# admin_dashboars: 4,
+# scales: 5,
+# }
+sections = [
+  { name: 'list_products', pretty_name: 'Productos', module_name: 0 },
+  { name: 'plans', pretty_name: 'Planes', module_name: 1 },
+  { name: 'create_plans', pretty_name: 'Crear Planes', module_name: 1 },
+  { name: 'edit_plans', pretty_name: 'Editar Planes', module_name: 1 },
+  { name: 'users', pretty_name: 'Usuarios', module_name: 2 },
+  { name: 'create_users', pretty_name: 'Crear Usuarios', module_name: 2 },
+  { name: 'edit_users', pretty_name: 'Editar Usuarios', module_name: 2 },
+  { name: 'customers', pretty_name: 'Clientes', module_name: 3 },
+  { name: 'create_customers', pretty_name: 'Crear Clientes', module_name: 3 },
+  { name: 'show_customers', pretty_name: 'Ver Cliente', module_name: 3 },
+  { name: 'authorize_customers', pretty_name: 'Autorizar Clientes', module_name: 3 },
+  { name: 'edit_customers', pretty_name: 'Editar Clientes', module_name: 3 },
+  { name: 'list_scales', pretty_name: 'Baremo', module_name: 5 },
+  { name: 'create_scales', pretty_name: 'Crear Items Baremo', module_name: 5 },
+  { name: 'edit_scales', pretty_name: 'Editar Items Baremo', module_name: 5 }
+]
+existing_sections = Section.all.pluck(:name)
+new_sections = sections.reject { |s| existing_sections.include?(s[:name]) }
+Section.create(new_sections)
 
 # Create user for tests
 if User.find_by_email('admin@sipca.com').nil?
