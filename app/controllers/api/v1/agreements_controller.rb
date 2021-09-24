@@ -8,7 +8,7 @@ module Api
 
       def index
         conditions = {}
-        conditions[:customer_id] = params[:customer_id] if params[:customer_id].present? 
+        conditions[:user_id] = params[:user_id] if params[:user_id].present? 
         @agreements = find_agreements.where(conditions)
 
         respond_to do |format|
