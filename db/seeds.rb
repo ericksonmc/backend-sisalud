@@ -311,3 +311,419 @@ if User.find_by_email('admin@sipca.com').nil?
     permissions_attributes: permissions_attributes
   )
 end
+
+if Scale.count.zero?
+  Scale.create([
+    {
+      title: 'Absceso Sebaceo',
+      amount: 700,
+      category: 0,
+      status: 1
+    },{
+      title: 'Apendicitis Adultos',
+      amount: 1890,
+      category: 0,
+      status: 1
+    },{
+      title: 'Colecistectomia (ABIERTA/LAP)',
+      amount: 1890,
+      category: 0,
+      status: 1
+    },{
+      title: 'Eventracion',
+      amount: 1600,
+      category: 0,
+      status: 1
+    },{
+      title: 'Hemorroidectomia',
+      amount: 1300,
+      category: 0,
+      status: 1
+    },{
+      title: 'Hernia Inglinal Bilateral',
+      amount: 1220,
+      category: 0,
+      status: 1
+    },{
+      title: 'Hernia Umbilical',
+      amount: 1100,
+      category: 0,
+      status: 1
+    },{
+      title: 'Hernia Epigastrica',
+      amount: 1600,
+      category: 0,
+      status: 1
+    },{
+      title: 'Tiroidectomia Parcial',
+      amount: 2100,
+      category: 0,
+      status: 1
+    },{
+      title: 'Tiroidectomia Total',
+      amount: 2550,
+      category: 0,
+      status: 1
+    },{
+      title: 'Cesarea Segmentaria',
+      amount: 1650,
+      category: 1,
+      status: 1
+    },{
+      title: 'Cesarea Gemelar',
+      amount: 1900,
+      category: 1,
+      status: 1
+    },{
+      title: 'Histectomia Abdominal',
+      amount: 2500,
+      category: 1,
+      status: 1
+    },{
+      title: 'Legrado Uterino',
+      amount: 780,
+      category: 1,
+      status: 1
+    },{
+      title: 'Parto Eutocico',
+      amount: 1150,
+      category: 1,
+      status: 1
+    },{
+      title: 'Amigdalectomia',
+      amount: 1250,
+      category: 2,
+      status: 1
+    },{
+      title: 'Quiste Sinovial',
+      amount: 920,
+      category: 3,
+      status: 1
+    },{
+      title: 'Tunel Carpiano',
+      amount: 920,
+      category: 3,
+      status: 1
+    },{
+      title: 'Gastroscopia',
+      amount: 450,
+      category: 4,
+      status: 1
+    },{
+      title: 'Colonoscopia',
+      amount: 590,
+      category: 4,
+      status: 1
+    },{
+      title: 'Gastrocolonoscopia',
+      amount: 750,
+      category: 4,
+      status: 1
+    },{
+      title: 'Ecograms Sencillos',
+      amount: 45,
+      category: 5,
+      status: 1
+    },{
+      title: 'Ecogramas Especiales',
+      amount: 55,
+      category: 5,
+      status: 1
+    },{
+      title: 'Doppler Venoso Arteial SUP/INF',
+      amount: 100,
+      category: 5,
+      status: 1
+    },{
+      title: 'Servicio de Hosp. Privada',
+      amount: 220,
+      category: 6,
+      status: 1
+    },{
+      title: 'Honorarios Medicos Profesionales',
+      amount: 120,
+      category: 6,
+      status: 1
+    },{
+      title: 'Terapia Intensiva Adulto',
+      amount: 1800,
+      category: 6,
+      status: 1
+    },{
+      title: 'Terapia Intensiva Pediatrica',
+      amount: 1800,
+      category: 6,
+      status: 1
+    },{
+      title: 'Honorarios Medicos UCI',
+      amount: 400,
+      category: 6,
+      status: 1
+    },{
+      title: 'Intubacion Traqueal',
+      amount: 320,
+      category: 6,
+      status: 1
+    },{
+      title: 'Consultas Basicas',
+      amount: 45,
+      category: 7,
+      status: 1
+    },{
+      title: 'Consultas de Especialistas',
+      amount: 55,
+      category: 7,
+      status: 1
+    },{
+      title: 'Ecocardiograma Adulto',
+      amount: 45,
+      category: 8,
+      status: 1
+    },{
+      title: 'Mapa',
+      amount: 60,
+      category: 8,
+      status: 1
+    },{
+      title: 'Holter',
+      amount: 60,
+      category: 8,
+      status: 1
+    },{
+      title: 'Electrocardiograma',
+      amount: 20,
+      category: 8,
+      status: 1
+    },{
+      title: 'CPK',
+      amount: 9,
+      category: 9,
+      status: 1
+    },{
+      title: 'LHD',
+      amount: 11,
+      category: 9,
+      status: 1
+    },{
+      title: 'Troponina',
+      amount: 9,
+      category: 9,
+      status: 1
+    },{
+      title: 'VDRL',
+      amount: 12,
+      category: 9,
+      status: 1
+    },{
+      title: 'PCR',
+      amount: 9,
+      category: 9,
+      status: 1
+    },{
+      title: 'Toxo Test Iha',
+      amount: 7,
+      category: 9,
+      status: 1
+    },{
+      title: 'Toxo Test IGM - IGG',
+      amount: 9,
+      category: 9,
+      status: 1
+    },{
+      title: 'H. Pilory',
+      amount: 20,
+      category: 9,
+      status: 1
+    },{
+      title: 'PSA',
+      amount: 9,
+      category: 9,
+      status: 1
+    },{
+      title: 'Hormonas Tiroideas (TSH-T3-T4)',
+      amount: 9,
+      category: 9,
+      status: 1
+    },{
+      title: 'Insulina Basal y Post Pandrial',
+      amount: 15,
+      category: 9,
+      status: 1
+    },{
+      title: 'Glicemia Basal / Post Pandrial',
+      amount: 15,
+      category: 9,
+      status: 1
+    },{
+      title: 'Tomografia Simple',
+      amount: 140,
+      category: 10,
+      status: 1
+    },{
+      title: 'Urotac Simple',
+      amount: 140,
+      category: 10,
+      status: 1
+    },{
+      title: 'Rayos X (1 Proyeccion)',
+      amount: 30,
+      category: 10,
+      status: 1
+    },{
+      title: 'Mamografia',
+      amount: 80,
+      category: 10,
+      status: 1
+    },{
+      title: 'Espirometria',
+      amount: 120,
+      category: 10,
+      status: 1
+    },{
+      title: 'Uso de Emergencia',
+      amount: 120,
+      category: 11,
+      status: 1
+    },{
+      title: 'Sala de Cura (Cirugia Menor)',
+      amount: 150,
+      category: 11,
+      status: 1
+    },{
+      title: 'Uso de Trauma Shock',
+      amount: 160,
+      category: 11,
+      status: 1
+    },{
+      title: 'Terapia Respiratoria',
+      amount: 25,
+      category: 11,
+      status: 1
+    },{
+      title: 'Servicio de Enfermeria',
+      amount: 30,
+      category: 11,
+      status: 1
+    },{
+      title: 'Hematologia Completa',
+      amount: 10,
+      category: 12,
+      status: 1
+    },{
+      title: 'Plaquetas',
+      amount: 10,
+      category: 12,
+      status: 1
+    },{
+      title: 'Fibrinogeno',
+      amount: 10,
+      category: 12,
+      status: 1
+    },{
+      title: 'Glicemia',
+      amount: 7,
+      category: 12,
+      status: 1
+    },{
+      title: 'Urea',
+      amount: 7,
+      category: 12,
+      status: 1
+    },{
+      title: 'Creatinina',
+      amount: 9,
+      category: 12,
+      status: 1
+    },{
+      title: 'Acido urico',
+      amount: 9,
+      category: 12,
+      status: 1
+    },{
+      title: 'Colesterol',
+      amount: 9,
+      category: 12,
+      status: 1
+    },{
+      title: 'Trigliceridos',
+      amount: 9,
+      category: 12,
+      status: 1
+    },{
+      title: 'Perfil Lipidico',
+      amount: 35,
+      category: 12,
+      status: 1
+    },{
+      title: 'Proteorama',
+      amount: 7,
+      category: 12,
+      status: 1
+    },{
+      title: 'TGO - TGP',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Fosfatasa Alcalina',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Amilasa',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Bilirrubina Total y Fraccionada',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Calcio',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Magnesio',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Fosforo',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Factor Reumatoideo',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Aslo',
+      amount: 12,
+      category: 12,
+      status: 1
+    },{
+      title: 'Orina Completa',
+      amount: 7,
+      category: 12,
+      status: 1
+    },{
+      title: 'Depuracion de creatinina',
+      amount: 9,
+      category: 12,
+      status: 1
+    },{
+      title: 'Proteinuria',
+      amount: 7,
+      category: 12,
+      status: 1
+    },{
+      title: 'Heces Directos',
+      amount: 7,
+      category: 12,
+      status: 1
+    }
+  ])
+end

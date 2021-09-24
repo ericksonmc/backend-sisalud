@@ -12,11 +12,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get '/session', to: 'session#index'
-
       namespace :users do
         resources :users
       end
-
       resources :products, only: %i[index update show]
       resources :plans, only: %i[index update create]
       resources :diseases, only: %i[index]
@@ -26,15 +24,13 @@ Rails.application.routes.draw do
       resources :customers, only: [] do
         get :filter_customer, on: :collection
       end
-
-
       resources :miscelaneos, only: [] do
         get :states, on: :collection
         get :municipalities, on: :collection
         get :sections, on: :collection
       end
-
       resources :attachments, only: [:create]
+      resources :scales, except: [:destroy]
     end
   end
 end
