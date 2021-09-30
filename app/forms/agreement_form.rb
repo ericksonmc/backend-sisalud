@@ -11,10 +11,10 @@ class AgreementForm < BaseForm
               :customer_id,
               :user_id
 
-  def initialize(args: {}, customer: nil, user: nil, signed_date: nil)
+  def initialize(args: {}, customer: nil, user: nil, signed_date: nil, user_id: nil)
     super(args)
     @customer = customer
-    @user = user
+    @user = user || User.find(user_id)
     @signed_date = signed_date
     @agreement = @customer.agreement || @customer.build_agreement(user_id: @user.id)
     @models = [@agreement]
@@ -41,6 +41,7 @@ class AgreementForm < BaseForm
 
   def set_agreement_data
     @agreement.amount = calculate_amount
+
     return unless @new_record
 
     @agreement.signed_date = @signed_date.present? ? @signed_date : Date.today

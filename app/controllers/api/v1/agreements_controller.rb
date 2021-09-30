@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+  
 module Api
   module V1
     class AgreementsController < ApiController
@@ -8,7 +8,7 @@ module Api
 
       def index
         conditions = {}
-        conditions[:user_id] = params[:user_id] if params[:user_id].present? 
+        conditions[:user_id] = params[:user_id] if params[:user_id].present?
         @agreements = find_agreements.where(conditions)
 
         respond_to do |format|
@@ -36,32 +36,39 @@ module Api
       end
 
       def update
-        @agreement = Agreement.find(params[:id])
-        @customer = @agreement.customer
+        @customer = agreement.customer
         @form = CustomerForm.new(args: customer_params, customer: @customer, user: user_agreement,
                                  childs: child_params)
 
         if @form.save!
           render json: { customer: @form.customer,
                          agreement: @form.customer.agreement }, status: 200 and return
+        else
+          render json: { message: 'Hubo un problema al actualizar el registro',
+                         errors: agreement.errors.messages }, status: 400 and return
         end
       end
 
       def authorize_agreement
-        @agreement = Agreement.find(params[:agreement_id])
-        if @agreement.pending? && params[:status] == 'active'
-          @agreement.activate!
-          render json: @agreement
+        if agreement.pending? && params[:status] == 'active'
+          agreement.activate!
+          render json: agreement
         else
           render json: { message: 'Hubo un problema al actualizar el registro',
-                         errors: @agreement.errors.messages }, status: 400 and return
+                         errors: agreement.errors.messages }, status: 400 and return
         end
+      end
+
+      def update_agreement
+        @form = AgreementForm.new(args: agreement_params, customer: agreement.customer,
+                                  user_id: agreement_params[:user_id],
+                                  signed_date: agreement_params[:signed_date])
       end
 
       private
 
       def find_agreements
-        case current_user.role
+      case current_user.role
         when 'admin'
           Agreement.all
         when 'agent'
