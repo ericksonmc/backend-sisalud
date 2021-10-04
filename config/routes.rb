@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :diseases, only: %i[index]
       resources :agreements do
         post :authorize_agreement
+        post :update_agreement
       end
       resources :customers, only: [] do
         get :filter_customer, on: :collection
