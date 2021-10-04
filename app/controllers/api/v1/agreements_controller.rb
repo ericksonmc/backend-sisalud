@@ -63,6 +63,7 @@ module Api
         @form = AgreementForm.new(args: agreement_params, customer: agreement.customer,
                                   user_id: agreement_params[:user_id],
                                   signed_date: agreement_params[:signed_date])
+        render json: { message: 'Contrato actualizado con exito' } if @form.save!
       end
 
       private
