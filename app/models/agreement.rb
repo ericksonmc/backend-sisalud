@@ -57,12 +57,16 @@ class Agreement < ApplicationRecord
     end
 
     event :inactive do
-      transitions from: :active, to: :inactive
+      transitions from: [:active, :suspended, :rejected, :audit, :close], to: :inactive
     end
 
     event :to_destroy do
       transitions from: [:active, :suspended, :rejected, :audit, :close, :inactive], to: :deleted
       after { delete_agreement }
+    end
+
+    event :to_suspended do
+      transitions from: [:active, :rejected, :audit, :close, :inactive], to: :suspended
     end
   end
 

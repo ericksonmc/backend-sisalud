@@ -42,6 +42,8 @@ class AgreementForm < BaseForm
       @agreement.activate!
     when 'inactive'
       @agreement.inactive!
+    when 'suspended'
+      @agreement.to_suspended!
     end
   end
 
