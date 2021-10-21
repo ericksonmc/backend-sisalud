@@ -7,7 +7,7 @@ json.array! @agreements do |agree|
   json.payment_method agree.payment_method
   json.signed_date agree.signed_date&.strftime('%d/%m/%Y')
   json.status agree.status
-  json.aasm_state agreement.aasm_state
+  json.aasm_state agree.aasm_state
   json.customer do
     json.full_name agree.customer.full_name
     json.plan agree.customer&.plan&.title
