@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_013914) do
+ActiveRecord::Schema.define(version: 2021_10_21_161439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(version: 2021_09_01_013914) do
     t.string "step"
     t.jsonb "diagnosis"
     t.string "aasm_state"
+    t.datetime "deleted_at"
     t.index ["agreement_number"], name: "index_agreements_on_agreement_number"
     t.index ["customer_id"], name: "index_agreements_on_customer_id"
+    t.index ["deleted_at"], name: "index_agreements_on_deleted_at"
     t.index ["user_id"], name: "index_agreements_on_user_id"
   end
 
@@ -214,8 +216,6 @@ ActiveRecord::Schema.define(version: 2021_09_01_013914) do
     t.integer "role", default: 0, null: false
     t.boolean "active", default: true, null: false
     t.string "agent_code"
-    t.string "otp_secret"
-    t.integer "last_otp_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

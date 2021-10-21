@@ -8,6 +8,7 @@
 #  aasm_state       :string
 #  agreement_number :string
 #  amount           :float
+#  deleted_at       :datetime
 #  diagnosis        :jsonb
 #  payment_method   :integer
 #  signed_date      :date
@@ -21,6 +22,7 @@
 #
 #  index_agreements_on_agreement_number  (agreement_number)
 #  index_agreements_on_customer_id       (customer_id)
+#  index_agreements_on_deleted_at        (deleted_at)
 #  index_agreements_on_user_id           (user_id)
 #
 # Foreign Keys
@@ -33,6 +35,8 @@ class Agreement < ApplicationRecord
   belongs_to :customer
   belongs_to :user
 
+  default_scope { where(deleted_at: nil) }
+
   aasm do
     state :active, initial: true
     state :pending
@@ -40,6 +44,8 @@ class Agreement < ApplicationRecord
     state :rejected
     state :audit
     state :close
+    state :inactive
+    state :deleted
 
     event :to_pending do
       transitions from: :active, to: :pending, guard: :ready_for_pending?
@@ -47,7 +53,16 @@ class Agreement < ApplicationRecord
     end
 
     event :activate do
-      transitions from: :pending, to: :active, guard: :valid_to_authorize?
+      transitions from: [:pending, :inactive, :deleted], to: :active, guard: :valid_to_authorize?
+    end
+
+    event :inactive do
+      transitions from: :active, to: :inactive
+    end
+
+    event :to_destroy do
+      transitions from: [:active, :suspended, :rejected, :audit, :close, :inactive], to: :deleted
+      after { delete_agreement }
     end
   end
 
@@ -81,5 +96,9 @@ class Agreement < ApplicationRecord
 
   def valid_to_authorize?
     true
+  end
+
+  def delete_agreement
+    self.update({ deleted_at: Time.now })
   end
 end

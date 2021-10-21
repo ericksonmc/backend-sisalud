@@ -2,6 +2,8 @@
 
 class AgreementForm < BaseForm
   attr_reader :customer, :user
+  
+  attr_accessor :state_change
 
   attr_writer :agreement_number,
               :amount,
@@ -11,7 +13,7 @@ class AgreementForm < BaseForm
               :customer_id,
               :user_id
 
-  def initialize(args: {}, customer: nil, user: nil, signed_date: nil, user_id: nil)
+  def initialize(args: {}, customer: nil, user: nil, signed_date: nil, user_id: nil, state_change: nil)
     super(args)
     @customer = customer
     @user = user || User.find(user_id)
@@ -19,6 +21,7 @@ class AgreementForm < BaseForm
     @agreement = @customer.agreement || @customer.build_agreement(user_id: @user.id)
     @models = [@agreement]
     @new_record = @agreement.new_record?
+    @state_change = state_change
   end
 
   def before_save
@@ -27,10 +30,26 @@ class AgreementForm < BaseForm
   end
 
   def after_save
-    @agreement.to_pending!
+    check_is_active_or_pending
+    update_state if state_change.present?
   end
 
   private
+
+  def update_state
+    case state_change
+    when 'active'
+      @agreement.activate!
+    when 'inactive'
+      @agreement.inactive!
+    end
+  end
+
+  def check_is_active_or_pending
+    return unless adult_over_sixty?
+
+    @agreement.to_pending!
+  end
 
   def set_contract_number
     return unless @new_record
@@ -53,5 +72,11 @@ class AgreementForm < BaseForm
       amount += child.plan.payment_fee.to_f
     end
     amount
+  end
+
+  def adult_over_sixty?
+    adult = @agreement.contract_members.select { |member| member[:age] > 60 }
+
+    adult.present?
   end
 end

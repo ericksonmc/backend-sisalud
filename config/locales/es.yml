@@ -37,6 +37,8 @@ es:
       rejected: Rechazada
       audit: En Auditoria
       close: Cerrada
+      inactive: Inactivo
+      deleted: Borrado
   scale:
     status:
       inactive: Inactivo

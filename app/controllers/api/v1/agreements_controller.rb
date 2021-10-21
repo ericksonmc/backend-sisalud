@@ -49,6 +49,14 @@ module Api
         end
       end
 
+      def destroy
+        if agreement.to_destroy
+          render json: { message: 'Contrato eliminado con exito' }, status: 200 and return
+        else
+          render json: { message: 'Contrato ya fue eliminado' }, status: 200 and return
+        end
+      end
+
       def authorize_agreement
         if agreement.pending? && params[:status] == 'active'
           agreement.activate!
@@ -62,7 +70,8 @@ module Api
       def update_agreement
         @form = AgreementForm.new(args: agreement_params, customer: agreement.customer,
                                   user_id: agreement_params[:user_id],
-                                  signed_date: agreement_params[:signed_date])
+                                  signed_date: agreement_params[:signed_date],
+                                  state_change: params[:state_change])
         render json: { message: 'Contrato actualizado con exito' } if @form.save!
       end
 
