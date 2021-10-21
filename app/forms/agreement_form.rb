@@ -46,6 +46,8 @@ class AgreementForm < BaseForm
   end
 
   def check_is_active_or_pending
+    return unless @new_record
+
     return unless adult_over_sixty?
 
     @agreement.to_pending!

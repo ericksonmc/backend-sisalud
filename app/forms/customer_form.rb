@@ -30,7 +30,7 @@ class CustomerForm < BaseForm
               :size,
               :weight
 
-  validate :email_presence_for_update
+  # validate :existing_dni
 
   def initialize(args: {}, customer: nil, user: nil, childs: [], signed_date: nil)
     super(args)
@@ -81,10 +81,6 @@ class CustomerForm < BaseForm
     end
 
     @customer.assign_attributes(attributes)
-  end
-
-  def email_presence_for_update
-    return if new_record
   end
 
   def save_childs
