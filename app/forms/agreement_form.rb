@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AgreementForm < BaseForm
-  attr_reader :customer, :user
+  attr_reader :args, :customer, :user
   
   attr_accessor :state_change
 
@@ -15,6 +15,7 @@ class AgreementForm < BaseForm
 
   def initialize(args: {}, customer: nil, user: nil, signed_date: nil, user_id: nil, state_change: nil)
     super(args)
+    @args = args
     @customer = customer
     @user = user || User.find(user_id)
     @signed_date = signed_date
@@ -34,7 +35,19 @@ class AgreementForm < BaseForm
     update_state if state_change.present?
   end
 
+  def before_validation
+    assign_attributes_to_agreement
+  end
+
   private
+
+  def assign_attributes_to_agreement
+    attributes = args.tap do |args|
+      args[:id] = @agreement.id
+    end
+
+    @agreement.assign_attributes(attributes)
+  end
 
   def update_state
     case state_change
