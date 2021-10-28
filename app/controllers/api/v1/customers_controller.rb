@@ -5,14 +5,22 @@ module Api
     class CustomersController < ApiController
       before_action :check_filter
       def filter_customer
+        @customers = []
+
         case @filter_type
         when 'name'
-          @customers = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
+          @records = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
+          @records.each do |b|
+            b.is_holder? ? @customers << b : @customers << b.parent
+          end
         when 'dni'
-          @customers = Customer.where("dni ilike '%#{filter}%'")
-        when 'beneficiarie'
-          beneficiary = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
-          @customer = beneficiary.parent
+          @records = Customer.where("dni ilike '%#{filter}%'")
+          if @records.blank?
+            @records = Customer.where("dni ilike '%#{filter.split('-')[1]}%'")
+          end
+          @records.each do |b|
+            b.is_holder? ? @customers << b : @customers << b.parent
+          end
         else
           []
         end
@@ -24,7 +32,7 @@ module Api
         case filter_type
         when 'name' || 'beneficiarie'
           if filter_split.length < 2
-            render json: { message: 'De Enviar nombre y apellido' },
+            render json: { message: 'Debe Enviar nombre y apellido' },
                    status: 400 and return
           end
         end
@@ -35,7 +43,7 @@ module Api
       end
 
       def filter
-        @filter ||= params[:filter]
+        params[:filter]
       end
 
       def filter_split

@@ -61,7 +61,7 @@ class Agreement < ApplicationRecord
     end
 
     event :to_destroy do
-      transitions from: [:active, :suspended, :rejected, :audit, :close, :inactive], to: :deleted
+      transitions from: [:active, :suspended, :rejected, :audit, :close, :inactive, :pending], to: :deleted
       after { delete_agreement }
     end
 
@@ -104,5 +104,10 @@ class Agreement < ApplicationRecord
 
   def delete_agreement
     self.update({ deleted_at: Time.now })
+    customer = self.customer
+
+    customer.update({ deleted_at: Time.now })
+    customer.childs&.update_all({ deleted_at: Time.now })
+
   end
 end

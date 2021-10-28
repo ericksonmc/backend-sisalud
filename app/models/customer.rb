@@ -12,6 +12,7 @@
 #  coverage             :float
 #  coverage_reference   :float
 #  customer_code        :string
+#  deleted_at           :datetime
 #  dni                  :string
 #  email                :string
 #  firstname            :string
@@ -32,10 +33,11 @@
 #
 # Indexes
 #
-#  index_customers_on_dni        (dni)
-#  index_customers_on_email      (email)
-#  index_customers_on_parent_id  (parent_id)
-#  index_customers_on_plan_id    (plan_id)
+#  index_customers_on_deleted_at  (deleted_at)
+#  index_customers_on_dni         (dni)
+#  index_customers_on_email       (email)
+#  index_customers_on_parent_id   (parent_id)
+#  index_customers_on_plan_id     (plan_id)
 #
 # Foreign Keys
 #
@@ -60,6 +62,8 @@ class Customer < ApplicationRecord
 
   after_create :set_customer_code
 
+  default_scope { where(deleted_at: nil) }
+
   def full_name
     [firstname, second_name, last_name].compact.join(' ')
   end
@@ -68,5 +72,9 @@ class Customer < ApplicationRecord
     return if main?
 
     "00#{parent.childs.length}"
+  end
+
+  def is_holder?
+    parent_id.blank?
   end
 end
