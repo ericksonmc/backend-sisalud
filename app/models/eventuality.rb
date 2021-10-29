@@ -32,13 +32,8 @@ class Eventuality < ApplicationRecord
 
   aasm do
     state :pending, initial: true
-    state :reject
     state :close
     state :cancelled
-
-    event :rejected do
-      transitions from: :pending, to: :reject
-    end
 
     event :closed do
       transitions from: [:pending, :reject], to: :close
