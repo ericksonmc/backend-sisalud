@@ -817,6 +817,47 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Eventuality",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM0ODMxMjU1LCJleHAiOjE2Mzc0MjMyNTUsImp0aSI6ImY0OTMxZWYxLWM4MDQtNGVjNy1iMGY2LWRjNjg2NmZlZjljYyJ9.UFJ4qNZW9kR5WU0agJmMOLFypRXANrRMVRtFYr0Fq2o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"agreement_id\": 9,\n    \"observations\":null,\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 13\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eventualities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eventualities"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
