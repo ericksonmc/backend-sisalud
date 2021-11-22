@@ -29,6 +29,15 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 es:
+  user:
+    role:
+      super_admin: Super Amdin
+      admin: Administrador
+      agent: Asesor
+      manager: Manager
+      assitant: Asistente
+      coordinator: Coordinador
+      doctor: Medico
   agreements:
     status:
       active: Activo

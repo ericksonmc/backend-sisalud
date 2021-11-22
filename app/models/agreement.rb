@@ -52,12 +52,28 @@ class Agreement < ApplicationRecord
       after { send_pending_review_email }
     end
 
+    event :to_suspended do
+      transitions from: [:active, :rejected, :audit, :close, :inactive, :pending], to: :suspended
+    end
+
+    event :reject do
+      transitions from: [:active, :suspended, :audit, :close, :inactive, :pending], to: :rejected
+    end
+
+    event :audit do
+      transitions from: [:active, :suspended, :rejected, :close, :inactive, :pending], to: :audit
+    end
+
+    event :close do
+      transitions from: [:active, :suspended, :rejected, :audit, :inactive, :pending], to: :close
+    end
+
     event :activate do
-      transitions from: [:pending, :inactive, :deleted], to: :active, guard: :valid_to_authorize?
+      transitions from: [:suspended, :rejected, :audit, :close, :inactive, :pending], to: :active, guard: :valid_to_authorize?
     end
 
     event :inactive do
-      transitions from: [:active, :suspended, :rejected, :audit, :close], to: :inactive
+      transitions from: [:active, :suspended, :rejected, :audit, :close, :pending], to: :inactive
     end
 
     event :to_destroy do
@@ -65,9 +81,7 @@ class Agreement < ApplicationRecord
       after { delete_agreement }
     end
 
-    event :to_suspended do
-      transitions from: [:active, :rejected, :audit, :close, :inactive], to: :suspended
-    end
+    
   end
 
   def ready_for_pending?
@@ -105,9 +119,7 @@ class Agreement < ApplicationRecord
   def delete_agreement
     self.update({ deleted_at: Time.now })
     customer = self.customer
-
     customer.update({ deleted_at: Time.now })
     customer.childs&.update_all({ deleted_at: Time.now })
-
   end
 end
