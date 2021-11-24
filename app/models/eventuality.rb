@@ -28,6 +28,8 @@ class Eventuality < ApplicationRecord
   belongs_to :agreement
   belongs_to :customer
 
+  accepts_nested_attributes_for :eventuality_expenses
+
   enum event_type: { emergency: 0, medical_consultation: 1, specialized_medical_consultation: 2 }
 
   aasm do

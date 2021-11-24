@@ -21,6 +21,10 @@ module Api
         end
       end
 
+      def update
+        @form = EventualityForm.new(args: eventuality_params, eventuality: eventuality)
+      end
+
       private
 
       def eventuality_params
@@ -29,8 +33,13 @@ module Api
           :observations,
           :password,
           :agreement_id,
-          :customer_id
+          :customer_id,
+          eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id]
         )
+      end
+
+      def eventuality
+        @eventuality ||= Eventuality.find(params[:id])
       end
     end
   end
