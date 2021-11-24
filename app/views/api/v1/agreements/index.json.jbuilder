@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-json.array! @agreements do |agree|
+json.array! @agreements.order(:agreement_number) do |agree|
   json.id agree.id
   json.agreement_number agree.agreement_number
   json.amount agree.amount

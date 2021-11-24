@@ -8,13 +8,14 @@ module Api
           condition = {}
           condition[:role] = params[:role] if params[:role].present?
 
-          render json: User.where(condition).all
+          @users = User.where(condition).all
         end
 
         def create
           @form = UserForm.new(args: user_params)
 
           if @form.save!
+            byebug
             render json: { message: 'Usuario creado con exito' }
           else
             render json: { message: 'Hubo un error al crear el usuario',
@@ -34,6 +35,15 @@ module Api
           else
             render json: { message: 'Hubo un error al actualizar el usuario',
                            erros: @user.errors.messages }, status: 400
+          end
+        end
+
+        def destroy
+          if user.present? && user.valid_for_delete?
+            user.destroy
+            render json: { message: 'Usuario eliminado con exito' }, status: 200 and return
+          else
+            render json: { message: 'Usuario no existe o tiene afiliaciones asociadas' }, status: 400 and return
           end
         end
 

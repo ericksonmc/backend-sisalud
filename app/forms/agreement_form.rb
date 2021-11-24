@@ -57,6 +57,16 @@ class AgreementForm < BaseForm
       @agreement.inactive!
     when 'suspended'
       @agreement.to_suspended!
+    when 'rejected'
+      @agreement.reject!
+    when 'audit'
+      @agreement.audit!
+    when 'close'
+      @agreement.close!
+    when 'reject'
+      @agreement.reject!
+    when 'reject'
+      @agreement.reject!
     end
   end
 
@@ -76,6 +86,7 @@ class AgreementForm < BaseForm
   end
 
   def set_agreement_data
+    byebug
     @agreement.amount = calculate_amount
 
     return unless @new_record

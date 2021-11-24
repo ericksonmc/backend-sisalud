@@ -28,7 +28,7 @@ class User < ApplicationRecord
          :recoverable, :validatable, :timeoutable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
-  enum role: { super_admin: 0, admin: 1, agent: 2, manager: 3, assitant: 4, coordinator: 5}
+  enum role: { super_admin: 0, admin: 1, agent: 2, manager: 3, assitant: 4, coordinator: 5, doctor: 6 }
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -50,5 +50,9 @@ class User < ApplicationRecord
       authorize_permissions[permission.section.name]['active'] = permission.active
     }
     authorize_permissions
+  end
+
+  def valid_for_delete?
+    !agreements.present?
   end
 end
