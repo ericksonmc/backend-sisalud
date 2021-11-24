@@ -3,8 +3,11 @@
 module Api
   module V1
     class EventualitiesController < ApiController
+      def index
+        render json: Eventuality.all and return if current_user.admin? || current_user.assitant?
 
-      def index; end
+        render json: Eventuality.where(agreement_id: current_user.agreements.ids)
+      end
 
       def create
         @form = EventualityForm.new(args: eventuality_params)
