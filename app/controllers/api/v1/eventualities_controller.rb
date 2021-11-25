@@ -15,7 +15,8 @@ module Api
         @form = EventualityForm.new(args: eventuality_params)
 
         if @form.save
-          render json: { message: 'Eventualidad creada con exito' }, status: 200 and return
+          render json: { message: 'Eventualidad creada con exito',
+                         data: @form.eventuality }, status: 200 and return
         else
           render json: { message: 'Ocurrio un error al crear el item',
                          erros: @form.errors.messages,
@@ -25,14 +26,12 @@ module Api
 
       def update
         @form = EventualityForm.new(args: eventuality_params,
-                                    eventuality: eventuality.eventuality, state_change: state_change_params)
-        if @form.save
-          render json: { message: 'Eventualidad actualizada con exito', eventuality: @form }, status: 200 and return
-        else
-          render json: { message: 'Ocurrio un error al actualizar el item',
-                         erros: @form.errors.messages,
-                         status: 'fail' }, status: 400 and return
-        end
+                                    eventuality: eventuality,
+                                    state_change: state_change_params).save!
+
+        render json: { message: 'Eventualidad actualizada con exito', data: @form.eventuality }
+      rescue Exception => e
+        render json: { message: e }, status: 400 and return
       end
 
       private

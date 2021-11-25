@@ -13,6 +13,8 @@ class EventualityForm < BaseForm
               :date,
               :eventuality_expenses_attributes
 
+  validate :validate_state
+
   def initialize(args: {}, eventuality: nil, state_change: nil)
     super(args)
     @args = args
@@ -69,6 +71,16 @@ class EventualityForm < BaseForm
 
   def total
     @total ||= @eventuality.eventuality_expenses.inject(0) { |sum, item| sum + item.amount }
+  end
+
+  def validate_state
+    return true if @new_record
+
+    return true if @eventuality.pending?
+
+    errors.add(:closed, 'Esta eventualidad esta cerrada o cancelada')
+
+    raise StandardError.new, 'Esta eventualidad esta cerrada o cancelada'
   end
 
   def customer
