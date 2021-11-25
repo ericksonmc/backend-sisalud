@@ -15,7 +15,6 @@ module Api
           @form = UserForm.new(args: user_params)
 
           if @form.save!
-            byebug
             render json: { message: 'Usuario creado con exito' }
           else
             render json: { message: 'Hubo un error al crear el usuario',

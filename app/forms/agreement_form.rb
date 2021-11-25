@@ -86,7 +86,6 @@ class AgreementForm < BaseForm
   end
 
   def set_agreement_data
-    byebug
     @agreement.amount = calculate_amount
 
     return unless @new_record
