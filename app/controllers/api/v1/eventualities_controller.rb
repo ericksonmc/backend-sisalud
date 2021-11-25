@@ -4,6 +4,8 @@ module Api
   module V1
     class EventualitiesController < ApiController
       def index
+        date = params[:date].to_time
+
         render json: Eventuality.all and return if current_user.admin? || current_user.assitant?
 
         render json: Eventuality.where(agreement_id: current_user.agreements.ids)
@@ -15,14 +17,22 @@ module Api
         if @form.save
           render json: { message: 'Eventualidad creada con exito' }, status: 200 and return
         else
-          render json: { message: 'Ocurrio un erro al crear el item',
+          render json: { message: 'Ocurrio un error al crear el item',
                          erros: @form.errors.messages,
                          status: 'fail' }, status: 400 and return
         end
       end
 
       def update
-        @form = EventualityForm.new(args: eventuality_params, eventuality: eventuality)
+        @form = EventualityForm.new(args: eventuality_params,
+                                    eventuality: eventuality.eventuality, state_change: state_change_params)
+        if @form.save
+          render json: { message: 'Eventualidad actualizada con exito', eventuality: @form }, status: 200 and return
+        else
+          render json: { message: 'Ocurrio un error al actualizar el item',
+                         erros: @form.errors.messages,
+                         status: 'fail' }, status: 400 and return
+        end
       end
 
       private
@@ -34,8 +44,13 @@ module Api
           :password,
           :agreement_id,
           :customer_id,
+          :date,
           eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id]
         )
+      end
+
+      def state_change_params
+        params.permit(:state_change)
       end
 
       def eventuality

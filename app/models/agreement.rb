@@ -31,6 +31,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Agreement < ApplicationRecord
+  audited
   include AASM
   belongs_to :customer
   belongs_to :user
@@ -80,8 +81,6 @@ class Agreement < ApplicationRecord
       transitions from: [:active, :suspended, :rejected, :audit, :close, :inactive, :pending], to: :deleted
       after { delete_agreement }
     end
-
-    
   end
 
   def ready_for_pending?

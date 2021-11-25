@@ -5,6 +5,7 @@
 #  id           :bigint           not null, primary key
 #  aasm_state   :string
 #  amount       :float
+#  date         :datetime
 #  event_type   :integer
 #  observations :string
 #  password     :string
@@ -24,9 +25,13 @@
 #  fk_rails_...  (customer_id => customers.id)
 #
 class Eventuality < ApplicationRecord
+  audited
   include AASM
+  
   belongs_to :agreement
   belongs_to :customer
+
+  has_many :eventuality_expenses, dependent: :destroy
 
   accepts_nested_attributes_for :eventuality_expenses
 
@@ -34,14 +39,14 @@ class Eventuality < ApplicationRecord
 
   aasm do
     state :pending, initial: true
-    state :close
+    state :closed
     state :cancelled
 
-    event :closed do
-      transitions from: [:pending, :reject], to: :close
+    event :close do
+      transitions from: [:pending, :reject], to: :closed
     end
 
-    event :cancelled do
+    event :cancel do
       transitions from: :pending, to: :cancelled
     end
   end

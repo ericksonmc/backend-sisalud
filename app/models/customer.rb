@@ -77,4 +77,8 @@ class Customer < ApplicationRecord
   def is_holder?
     parent_id.blank?
   end
+
+  def update_coverage(total)
+    update(coverage: coverage + total)
+  end
 end

@@ -29,6 +29,8 @@ gem 'sidekiq'
 gem "sentry-ruby"
 gem "sentry-rails"
 
+gem "audited", "~> 5.0"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

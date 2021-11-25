@@ -9,9 +9,11 @@ class EventualityForm < BaseForm
               :observations,
               :password,
               :agreement_id,
-              :customer_id
+              :customer_id,
+              :date,
+              :eventuality_expenses_attributes
 
-  def initialize(args: {}, eventuality: nil)
+  def initialize(args: {}, eventuality: nil, state_change: nil)
     super(args)
     @args = args
     @eventuality = eventuality || Eventuality.new(args)
@@ -22,6 +24,8 @@ class EventualityForm < BaseForm
 
   def before_validation
     assign_attributes_to_model
+    create_base_expense
+    parse_date
   end
 
   def after_save
@@ -38,11 +42,51 @@ class EventualityForm < BaseForm
   end
 
   def update_state
-    case state_change
+    case state_change['state_change']
     when 'close'
       @eventuality.close!
+      update_coverage
     when 'cancelled'
-      @eventuality.cancelled!
+      @eventuality.cancel!
     end
+  end
+
+  def create_base_expense
+    return unless @new_record
+
+    @eventuality.eventuality_expenses_attributes = [find_scale(@eventuality.event_type)]
+  end
+
+  def parse_date
+    return unless @new_record
+
+    @eventuality.date = DateTime.parse(@args['date']) # '%Y-%m-%d %H:%M:%S+4'
+  end
+
+  def update_coverage
+    customer.update_coverage(total)
+  end
+
+  def total
+    @total ||= @eventuality.eventuality_expenses.inject(0) { |sum, item| sum + item.amount }
+  end
+
+  def customer
+    @customer ||= Customer.find(@eventuality.customer_id)
+  end
+
+  def find_scale(type)
+    case type
+    when 'emergency'
+      scale = Scale.find(54)
+    when 'medical_consultation'
+      scale = Scale.find(31)
+    when 'specialized_medical_consultation'
+      scale = Scale.find(32)
+    end
+    {
+      amount: scale.amount,
+      scale_id: scale.id
+    }
   end
 end
