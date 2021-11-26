@@ -6,9 +6,9 @@ module Api
       def index
         condition = {}
         condition[:date] = params[:date].present? ? params[:date].to_time.all_day : Time.now.all_day
-        condition[:agreement_id] = search_eventualities if search_eventualities.present?
-        byebug
-        render json: Eventuality.where(condition)
+        condition[:agreement_id] = agreement_ids if agreement_ids.present?
+        
+        @eventualities = Eventuality.where(condition) 
       end
 
       def create
@@ -46,19 +46,16 @@ module Api
         )
       end
 
-      def search_eventualities
-        case current_user.role
-        when 'admin' || 'super_admin'
-          []
-        when 'assistant'
-          []
-        else
-          agreement_ids
-        end
-      end
-
       def agreement_ids
-        current_user.agreements.ids
+        if current_user.role == 'admin' || current_user.role == 'assistant' || current_user.role == 'super_admin'
+          if params[:user_id].present?
+            Agreement.where(user_id: params[:user_id]).ids
+          else
+            []
+          end
+        else
+          current_user.agreements.ids
+        end
       end
 
       def state_change_params
