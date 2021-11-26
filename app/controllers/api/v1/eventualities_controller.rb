@@ -6,8 +6,8 @@ module Api
       def index
         condition = {}
         condition[:date] = params[:date].present? ? params[:date].to_time.all_day : Time.now.all_day
-        condition[:agreement_id] = current_user.role.between?('admin', 'assistant') ? ids : []
-
+        condition[:agreement_id] = search_eventualities if search_eventualities.present?
+        byebug
         render json: Eventuality.where(condition)
       end
 
@@ -15,7 +15,7 @@ module Api
         @form = EventualityForm.new(args: eventuality_params)
 
         if @form.save; render json: { message: 'Eventualidad creada con exito',
-                                      data: @form.eventuality }, status: 200 and return; end
+                                      data: @form }, status: 200 and return; end
 
         render json: { message: 'Ocurrio un error al crear el item',
                        erros: @form.errors.messages,
@@ -27,7 +27,7 @@ module Api
                                     eventuality: eventuality,
                                     state_change: state_change_params).save!
 
-        render json: { message: 'Eventualidad actualizada con exito', data: @form.eventuality }
+        render json: { message: 'Eventualidad actualizada con exito', data: @form }
       rescue Exception => e
         render json: { message: e }, status: 400 and return
       end
@@ -46,7 +46,18 @@ module Api
         )
       end
 
-      def ids
+      def search_eventualities
+        case current_user.role
+        when 'admin' || 'super_admin'
+          []
+        when 'assistant'
+          []
+        else
+          agreement_ids
+        end
+      end
+
+      def agreement_ids
         current_user.agreements.ids
       end
 

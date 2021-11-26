@@ -841,7 +841,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"agreement_id\": 9,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 13,\n    \"date\":\"2020-11-25 13:30:00+04\"\n}"
+					"raw": "{\n    \"agreement_id\": 9,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 13,\n    \"date\":\"2021-11-26 13:30:00+04\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/eventualities",
@@ -867,7 +867,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM1NDMzMDQ0LCJleHAiOjE2MzgwMjUwNDQsImp0aSI6IjQ4OTFmMjlhLTc1ZTYtNGJmZS05ZmE4LTM4NmUyMDA1MjdkYyJ9.ffMqtOdVSyYVc_YekGRzfkM4GFiDB9KjeBFcLfBc0ME",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
 							"type": "string"
 						}
 					]
@@ -875,7 +875,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/v1/eventualities",
+					"raw": "http://localhost:3000/api/v1/eventualities?date=2021-11-26",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -885,6 +885,12 @@
 						"api",
 						"v1",
 						"eventualities"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2021-11-26"
+						}
 					]
 				}
 			},
