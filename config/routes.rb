@@ -32,7 +32,9 @@ Rails.application.routes.draw do
       end
       resources :attachments, only: [:create]
       resources :scales, except: [:destroy]
-      resources :eventualities, except: [:destroy]
+      resources :eventualities, except: [:destroy] do
+        post :eventuality_invoice
+      end
     end
   end
 end

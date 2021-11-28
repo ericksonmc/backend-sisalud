@@ -18,6 +18,7 @@ module Backend
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
     config.i18n.fallbacks = true
+    config.action_cable.mount_path = '/cable'
 
     # Configuration for the application, engines, and railties goes here.
     #

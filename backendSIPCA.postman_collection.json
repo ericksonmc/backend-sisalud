@@ -954,7 +954,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/v1/eventualities?date=2021-11-26",
+					"raw": "http://localhost:3000/api/v1/eventualities/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -963,13 +963,57 @@
 					"path": [
 						"api",
 						"v1",
-						"eventualities"
-					],
-					"query": [
+						"eventualities",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eventualities [eventuality_invoice]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "date",
-							"value": "2021-11-26"
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
+							"type": "string"
 						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "invoice_image",
+							"type": "file",
+							"src": "/home/erickson/Downloads/WhatsApp Image 2021-11-16 at 3.48.07 PM.jpeg"
+						},
+						{
+							"key": "invoice_image",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eventualities/11/eventuality_invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eventualities",
+						"11",
+						"eventuality_invoice"
 					]
 				}
 			},
