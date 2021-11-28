@@ -7,8 +7,8 @@ module Api
         condition = {}
         condition[:date] = params[:date].present? ? params[:date].to_time.all_day : Time.now.all_day
         condition[:agreement_id] = agreement_ids if agreement_ids.present?
-        
-        @eventualities = Eventuality.where(condition) 
+
+        @eventualities = Eventuality.where(condition)
       end
 
       def create
@@ -20,6 +20,10 @@ module Api
         render json: { message: 'Ocurrio un error al crear el item',
                        erros: @form.errors.messages,
                        status: 'fail' }, status: 400 and return
+      end
+
+      def show
+        @eventuality = eventuality
       end
 
       def update

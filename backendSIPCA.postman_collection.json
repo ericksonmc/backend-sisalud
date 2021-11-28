@@ -937,6 +937,43 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "eventualities Show",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eventualities?date=2021-11-26",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eventualities"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2021-11-26"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

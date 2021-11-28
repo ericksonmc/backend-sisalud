@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       end
       resources :attachments, only: [:create]
       resources :scales, except: [:destroy]
-      resources :eventualities, only: [:index, :create, :update]
+      resources :eventualities, except: [:destroy]
     end
   end
 end
