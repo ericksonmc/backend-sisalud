@@ -10,7 +10,8 @@
 #  updated_at  :datetime         not null
 #
 class Section < ApplicationRecord
-  enum module_name: { products: 0, plans: 1, users: 2, customers: 3, admin_dashboars: 4, scales: 5 }
+  enum module_name: { products: 0, plans: 1, users: 2, customers: 3, admin_dashboars: 4, scales: 5,
+                      eventualities: 6 }
 
   has_many :permissions
 
