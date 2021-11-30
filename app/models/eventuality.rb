@@ -26,6 +26,7 @@
 #
 class Eventuality < ApplicationRecord
   audited
+  include Rails.application.routes.url_helpers
   include AASM
   
   belongs_to :agreement
@@ -51,5 +52,15 @@ class Eventuality < ApplicationRecord
     event :cancel do
       transitions from: :pending, to: :cancelled
     end
+
+    event :reopen do
+      transitions from: :closed, to: :pending
+    end
+  end
+
+  def invoice_url_image
+    return nil if invoice_image.blank?
+
+    rails_blob_path(invoice_image, disposition: 'attachment', only_path: true)
   end
 end

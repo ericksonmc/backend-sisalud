@@ -40,7 +40,7 @@ module Api
       def eventuality_invoice
         if eventuality.update!(event_params)
           ActionCable.server.broadcast "uploader_#{current_user.id}_channel",
-                                       { url: invoice_url_image }
+                                       { url: eventuality.invoice_url_image }
 
           render json: { message: 'Imagen guardada con exito' }, status: 200 and return
         else
@@ -83,10 +83,6 @@ module Api
       def eventuality
         id = params[:id] || params[:eventuality_id]
         @eventuality ||= Eventuality.find(id)
-      end
-
-      def invoice_url_image
-        rails_blob_path(eventuality.invoice_image, disposition: 'attachment', only_path: true)
       end
     end
   end

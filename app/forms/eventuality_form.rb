@@ -67,6 +67,11 @@ class EventualityForm < BaseForm
 
   def update_coverage
     customer.update_coverage(total)
+    set_amount
+  end
+
+  def set_amount
+    @eventuality.update(amount: total) 
   end
 
   def total
