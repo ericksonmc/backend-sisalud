@@ -5,7 +5,7 @@
 #  id           :bigint           not null, primary key
 #  aasm_state   :string
 #  amount       :float
-#  date         :datetime
+#  date         :date
 #  event_type   :integer
 #  observations :string
 #  password     :string
