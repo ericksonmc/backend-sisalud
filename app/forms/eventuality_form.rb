@@ -71,11 +71,11 @@ class EventualityForm < BaseForm
   end
 
   def set_amount
-    @eventuality.update(amount: total) 
+    @eventuality.update(amount: total)
   end
 
   def total
-    @total ||= @eventuality.eventuality_expenses.inject(0) { |sum, item| sum + item.amount }
+    @total ||= @eventuality.calculate_total
   end
 
   def validate_state

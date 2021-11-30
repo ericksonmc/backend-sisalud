@@ -44,17 +44,24 @@ class Eventuality < ApplicationRecord
     state :pending, initial: true
     state :closed
     state :cancelled
+    state :reopened
 
     event :close do
-      transitions from: [:pending, :reject], to: :closed
+      transitions from: [:pending], to: :closed
     end
 
     event :cancel do
-      transitions from: :pending, to: :cancelled
+      transitions from: [:pending, :reopened], to: :cancelled
+      after { update_coverage }
     end
 
     event :reopen do
-      transitions from: :closed, to: :pending
+      transitions from: [:cancelled, :closed], to: :reopened
+    end
+
+    event :close_again do
+      transitions from: :reopened, to: :close
+      # after { update_amount }
     end
   end
 
@@ -62,5 +69,16 @@ class Eventuality < ApplicationRecord
     return nil if invoice_image.blank?
 
     rails_blob_path(invoice_image, disposition: 'attachment', only_path: true)
+  end
+
+  def update_coverage
+    return if date.to_i > Time.now.to_i
+
+    customer.update(coverage: customer.coverage + calculate_total)
+    self.update(amount: calculate_total)
+  end
+
+  def calculate_total
+    eventuality_expenses.inject(0) { |sum, item| sum + item.amount }
   end
 end
