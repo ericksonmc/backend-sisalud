@@ -136,7 +136,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV['PRODUCTION_HOST'] }
 
-    # config.hosts = ["46bf-186-148-195-70.ngrok.io"]
+  # config.hosts = ["46bf-186-148-195-70.ngrok.io"]
 
   config.action_cable.url = 'wss://beta.sistemaintegral.com/cable'
   config.action_cable.allowed_request_origins = ['*']
