@@ -27,6 +27,9 @@ module Backend
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.web_console.permissions = '186.148.195.70'
+
     config.active_job.queue_adapter = :sidekiq
 
     config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
