@@ -28,4 +28,6 @@ class Scale < ApplicationRecord
     emergency: 11,
     basic_lab: 12
   }
+
+  scope :with_limit, -> { where.not(quantity: nil) }
 end

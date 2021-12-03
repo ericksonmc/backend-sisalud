@@ -11,7 +11,7 @@ module Api
         when 'name'
           @records = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
           @records.each do |b|
-            b.is_holder? ? @customers << b : @customers << b.parent
+            b.holder? ? @customers << b : @customers << b.parent
           end
         when 'dni'
           @records = Customer.where("dni ilike '%#{filter}%'")
@@ -19,14 +19,39 @@ module Api
             @records = Customer.where("dni ilike '%#{filter.split('-')[1]}%'")
           end
           @records.each do |b|
-            b.is_holder? ? @customers << b : @customers << b.parent
+            b.holder? ? @customers << b : @customers << b.parent
           end
         else
           []
         end
       end
 
+      def scale_quantity
+        # actual_expenses.map do |expense|
+        #   return {
+        #     title: expense.scale.title,
+        #     cant: 
+        #   }
+        # end
+      end
+
       private
+
+      def customer
+        @customer ||= Customer.find(params[:customer_id])
+      end
+
+      def agreement
+        @agreement ||= customer.agreement
+      end
+
+      def actual_expenses
+        @actual_expenses ||= customer.actual_eventualities
+      end
+
+      def scales
+        Scale.with_limit
+      end
 
       def check_filter
         case filter_type

@@ -10,6 +10,7 @@
 #  amount           :float
 #  deleted_at       :datetime
 #  diagnosis        :jsonb
+#  insurance_period :string
 #  payment_method   :integer
 #  signed_date      :date
 #  step             :string
@@ -70,7 +71,8 @@ class Agreement < ApplicationRecord
     end
 
     event :activate do
-      transitions from: [:suspended, :rejected, :audit, :close, :inactive, :pending], to: :active, guard: :valid_to_authorize?
+      transitions from: [:suspended, :rejected, :audit, :close, :inactive, :pending],
+                  to: :active, guard: :valid_to_authorize?
     end
 
     event :inactive do

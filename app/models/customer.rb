@@ -45,24 +45,26 @@
 #  fk_rails_...  (plan_id => plans.id)
 #
 class Customer < ApplicationRecord
+  attr_accessor :diagnosis, :id_attachment
+
   belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id', optional: true
-  has_many :childs, class_name: 'Customer', foreign_key: 'parent_id', dependent: :destroy
-  has_one :agreement, dependent: :destroy
-  has_many :customer_diseases, dependent: :destroy
-  has_many :diseases, through: :customer_diseases
-  has_one :attachment, as: :fileable
-
   belongs_to :plan, optional: true
-
-  has_one_attached :files
 
   enum sex: { femenino: 0, masculino: 1 }
 
-  attr_accessor :diagnosis, :id_attachment
+  has_many :childs, class_name: 'Customer', foreign_key: 'parent_id', dependent: :destroy
+  has_many :customer_diseases, dependent: :destroy
+  has_many :diseases, through: :customer_diseases, dependent: :destroy
+  has_many :eventualities, dependent: :destroy
 
-  after_create :set_customer_code
+  has_one :agreement, dependent: :destroy
+  has_one :attachment, as: :fileable
+
+  has_one_attached :files
 
   default_scope { where(deleted_at: nil) }
+
+  after_create :set_customer_code
 
   def full_name
     [firstname, second_name, last_name].compact.join(' ')
@@ -74,11 +76,29 @@ class Customer < ApplicationRecord
     "00#{parent.childs.length}"
   end
 
-  def is_holder?
+  def holder?
     parent_id.blank?
+  end
+
+  def act_agreement
+    return agreement if holder?
+
+    parent.agreement
   end
 
   def update_coverage(total)
     update(coverage: coverage + total)
+  end
+
+  def actual_eventualities
+    eventualities.where(created_at: init_agreement..end_agreement)
+  end
+
+  def init_agreement
+    agreement.insurance_period.split('/').first.to_date.beginning_of_day
+  end
+
+  def end_agreement
+    agreement.insurance_period.split('/').last.to_date.end_of_day
   end
 end
