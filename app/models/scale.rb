@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  amount     :float
 #  category   :integer
+#  quantity   :integer
 #  status     :integer
 #  title      :string
 #  created_at :datetime         not null
