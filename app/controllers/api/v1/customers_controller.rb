@@ -15,9 +15,7 @@ module Api
           end
         when 'dni'
           @records = Customer.where("dni ilike '%#{filter}%'")
-          if @records.blank?
-            @records = Customer.where("dni ilike '%#{filter.split('-')[1]}%'")
-          end
+          @records = Customer.where("dni ilike '%#{filter.split('-')[1]}%'") if @records.blank?
           @records.each do |b|
             b.holder? ? @customers << b : @customers << b.parent
           end
@@ -26,31 +24,32 @@ module Api
         end
       end
 
-      def scale_quantity
-        # actual_expenses.map do |expense|
-        #   return {
-        #     title: expense.scale.title,
-        #     cant: 
-        #   }
-        # end
+      def customer_scales_limit
+        render json: scale_quantity
       end
 
       private
+
+      def scale_quantity
+        scales.where(id: actual_expenses.pluck(:scale_id).uniq).map do |scale|
+          {
+            title: scale.title,
+            count: actual_expenses.where(scale_id: scale.id).count,
+            limit: scale.quantity
+          }
+        end
+      end
 
       def customer
         @customer ||= Customer.find(params[:customer_id])
       end
 
-      def agreement
-        @agreement ||= customer.agreement
-      end
-
       def actual_expenses
-        @actual_expenses ||= customer.actual_eventualities
+        @actual_expenses ||= EventualityExpense.where(eventuality_id: customer.act_events.ids)
       end
 
       def scales
-        Scale.with_limit
+        @scales ||= Scale.with_limit
       end
 
       def check_filter

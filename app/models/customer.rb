@@ -90,7 +90,7 @@ class Customer < ApplicationRecord
     update(coverage: coverage + total)
   end
 
-  def actual_eventualities
+  def act_events
     eventualities.where(created_at: init_agreement..end_agreement)
   end
 
