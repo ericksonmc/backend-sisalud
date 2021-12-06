@@ -35,7 +35,8 @@ module Api
           {
             title: scale.title,
             count: actual_expenses.where(scale_id: scale.id).count,
-            limit: scale.quantity
+            limit: scale.quantity,
+            scale_id: scale.id
           }
         end
       end
