@@ -95,10 +95,10 @@ class Customer < ApplicationRecord
   end
 
   def init_agreement
-    agreement.insurance_period.split('/').first.to_date.beginning_of_day
+    act_agreement.insurance_period.split('/').first.to_date.beginning_of_day
   end
 
   def end_agreement
-    agreement.insurance_period.split('/').last.to_date.end_of_day
+    act_agreement.insurance_period.split('/').last.to_date.end_of_day
   end
 end
