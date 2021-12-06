@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PlanForm < BaseForm
+  attr_reader :new_record
+
   attr_writer :age_limit,
               :age_min,
               :coverage,

@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class ScaleForm < BaseForm
+  attr_reader :new_record
+
   attr_writer :amount,
               :category,
               :id,
               :status,
-              :title
+              :title,
+              :quantity
 
   def initialize(args: {}, scale: nil)
     super(args)

@@ -28,6 +28,7 @@ class AgreementForm < BaseForm
   def before_save
     set_agreement_data
     set_contract_number
+    set_insurance_period
   end
 
   def after_save
@@ -57,16 +58,12 @@ class AgreementForm < BaseForm
       @agreement.inactive!
     when 'suspended'
       @agreement.to_suspended!
-    when 'rejected'
+    when 'rejected' || 'reject'
       @agreement.reject!
     when 'audit'
       @agreement.audit!
     when 'close'
       @agreement.close!
-    when 'reject'
-      @agreement.reject!
-    when 'reject'
-      @agreement.reject!
     end
   end
 
@@ -91,6 +88,12 @@ class AgreementForm < BaseForm
     return unless @new_record
 
     @agreement.signed_date = @signed_date.present? ? @signed_date : Date.today
+  end
+
+  def set_insurance_period
+    return unless @new_record
+
+    @agreement.signed_date = "#{@agreement.signed_date}/#{@agreement.signed_date + 1.year}"
   end
 
   def calculate_amount

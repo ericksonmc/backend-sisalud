@@ -40,7 +40,7 @@ module Api
       private
 
       def scale_params
-        params.permit(:id, :title, :category, :status, :amount)
+        params.permit(:id, :title, :category, :status, :amount, :quantity)
       end
 
       def find_scale

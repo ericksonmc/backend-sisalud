@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_034726) do
+ActiveRecord::Schema.define(version: 2021_12_03_215920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_034726) do
     t.jsonb "diagnosis"
     t.string "aasm_state"
     t.datetime "deleted_at"
+    t.string "insurance_period"
     t.index ["agreement_number"], name: "index_agreements_on_agreement_number"
     t.index ["customer_id"], name: "index_agreements_on_customer_id"
     t.index ["deleted_at"], name: "index_agreements_on_deleted_at"
@@ -234,6 +235,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_034726) do
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
   end
 
   create_table "sections", force: :cascade do |t|

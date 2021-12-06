@@ -2,7 +2,7 @@ json.array! @customers do |customer|
   json.id customer.id
   json.full_name customer.full_name
   json.dni customer.dni
-  json.agreement_id customer.is_holder? ? customer&.agreement&.id : customer&.parent&.agreement&.id
+  json.agreement_id customer.holder? ? customer&.agreement&.id : customer&.parent&.agreement&.id
   json.status customer&.agreement&.status
   json.plan do
     json.plan customer.plan&.title

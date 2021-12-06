@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
       resources :customers, only: [] do
         get :filter_customer, on: :collection
+        get :customer_scales_limit
       end
       resources :miscelaneos, only: [] do
         get :states, on: :collection

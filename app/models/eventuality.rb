@@ -28,7 +28,7 @@ class Eventuality < ApplicationRecord
   audited
   include Rails.application.routes.url_helpers
   include AASM
-  
+
   belongs_to :agreement
   belongs_to :customer
 
