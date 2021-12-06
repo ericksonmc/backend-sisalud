@@ -12,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 class Scale < ApplicationRecord
+  audited
   enum status: { inactive: 0, active: 1 }
   enum category: {
     surgery: 0,
