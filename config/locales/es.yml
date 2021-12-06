@@ -71,6 +71,8 @@ es:
       studies: Estudios
       emergency: Emergencia 
       basic_lab: Laboratorio Basico
+      odontology: Odontología
+      gynecology: Ginecología
   activerecord:
     errors:
       messages:

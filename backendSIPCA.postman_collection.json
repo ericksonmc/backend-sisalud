@@ -1064,6 +1064,51 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Scale [types_scale]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/scales/types_scale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"scales",
+						"types_scale"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -26,7 +26,9 @@ class Scale < ApplicationRecord
     special_laboratory: 9,
     studies: 10,
     emergency: 11,
-    basic_lab: 12
+    basic_lab: 12,
+    odontology: 13,
+    gynecology: 14
   }
 
   scope :with_limit, -> { where.not(quantity: nil) }
