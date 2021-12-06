@@ -25,7 +25,7 @@ class EventualityForm < BaseForm
   end
 
   def before_validation
-    assign_attributes_to_model
+    assign_attributes_to_model unless @new_record
     create_base_expense
     parse_date
   end

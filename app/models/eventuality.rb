@@ -28,7 +28,7 @@ class Eventuality < ApplicationRecord
   audited
   include Rails.application.routes.url_helpers
   include AASM
-  
+
   belongs_to :agreement
   belongs_to :customer
 
@@ -39,11 +39,6 @@ class Eventuality < ApplicationRecord
   enum event_type: { emergency: 0, medical_consultation: 1, specialized_medical_consultation: 2 }
 
   has_one_attached :invoice_image
-  scope :actual, lambda {
-    where(created_at:
-      customer.agreement.insurance_period.split('/').first.to_date.beginning_of_day..customer.agreement.insurance_period.split('/').last.to_date.end_of_day
-    )
-  }
 
   aasm do
     state :pending, initial: true
