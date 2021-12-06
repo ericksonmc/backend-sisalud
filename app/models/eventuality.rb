@@ -66,7 +66,7 @@ class Eventuality < ApplicationRecord
   end
 
   def invoice_url_image
-    return nil if invoice_image.blank?
+    return if invoice_image.blank?
 
     rails_blob_path(invoice_image, disposition: 'attachment', only_path: true)
   end
