@@ -75,6 +75,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, /file:\/\/*/, 'file://', nil]
 
   config.action_mailer.default_url_options = { host: 'http://localhost', port: 3000 }
 
@@ -84,4 +85,13 @@ Rails.application.configure do
   # settings for letter_opener
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
+
+  # config.hosts = ["46bf-186-148-195-70.ngrok.io"]
+
+  # config.action_cable.url = 'wss://46bf-186-148-195-70.ngrok.io/cable'
+  config.action_cable.allowed_request_origins = ['*']
+  config.action_cable.disable_request_forgery_protection = true
+  
+
+  # config.force_ssl = true
 end

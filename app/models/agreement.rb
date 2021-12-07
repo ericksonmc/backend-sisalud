@@ -10,6 +10,7 @@
 #  amount           :float
 #  deleted_at       :datetime
 #  diagnosis        :jsonb
+#  insurance_period :string
 #  payment_method   :integer
 #  signed_date      :date
 #  step             :string
@@ -31,6 +32,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Agreement < ApplicationRecord
+  audited
   include AASM
   belongs_to :customer
   belongs_to :user
@@ -69,7 +71,8 @@ class Agreement < ApplicationRecord
     end
 
     event :activate do
-      transitions from: [:suspended, :rejected, :audit, :close, :inactive, :pending], to: :active, guard: :valid_to_authorize?
+      transitions from: [:suspended, :rejected, :audit, :close, :inactive, :pending],
+                  to: :active, guard: :valid_to_authorize?
     end
 
     event :inactive do
@@ -80,8 +83,6 @@ class Agreement < ApplicationRecord
       transitions from: [:active, :suspended, :rejected, :audit, :close, :inactive, :pending], to: :deleted
       after { delete_agreement }
     end
-
-    
   end
 
   def ready_for_pending?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_145002) do
+ActiveRecord::Schema.define(version: 2021_12_03_215920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_10_28_145002) do
     t.jsonb "diagnosis"
     t.string "aasm_state"
     t.datetime "deleted_at"
+    t.string "insurance_period"
     t.index ["agreement_number"], name: "index_agreements_on_agreement_number"
     t.index ["customer_id"], name: "index_agreements_on_customer_id"
     t.index ["deleted_at"], name: "index_agreements_on_deleted_at"
@@ -68,6 +69,28 @@ ActiveRecord::Schema.define(version: 2021_10_28_145002) do
     t.string "fileable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.integer "auditable_id"
+    t.string "auditable_type"
+    t.integer "associated_id"
+    t.string "associated_type"
+    t.integer "user_id"
+    t.string "user_type"
+    t.string "username"
+    t.string "action"
+    t.text "audited_changes"
+    t.integer "version", default: 0
+    t.string "comment"
+    t.string "remote_address"
+    t.string "request_uuid"
+    t.datetime "created_at"
+    t.index ["associated_type", "associated_id"], name: "associated_index"
+    t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
+    t.index ["created_at"], name: "index_audits_on_created_at"
+    t.index ["request_uuid"], name: "index_audits_on_request_uuid"
+    t.index ["user_id", "user_type"], name: "user_index"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -129,6 +152,31 @@ ActiveRecord::Schema.define(version: 2021_10_28_145002) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "eventualities", force: :cascade do |t|
+    t.string "observations"
+    t.integer "event_type"
+    t.string "aasm_state"
+    t.string "password"
+    t.float "amount"
+    t.bigint "agreement_id", null: false
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
+    t.index ["agreement_id"], name: "index_eventualities_on_agreement_id"
+    t.index ["customer_id"], name: "index_eventualities_on_customer_id"
+  end
+
+  create_table "eventuality_expenses", force: :cascade do |t|
+    t.bigint "eventuality_id", null: false
+    t.bigint "scale_id", null: false
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["eventuality_id"], name: "index_eventuality_expenses_on_eventuality_id"
+    t.index ["scale_id"], name: "index_eventuality_expenses_on_scale_id"
+  end
+
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
@@ -187,6 +235,7 @@ ActiveRecord::Schema.define(version: 2021_10_28_145002) do
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -218,8 +267,6 @@ ActiveRecord::Schema.define(version: 2021_10_28_145002) do
     t.integer "role", default: 0, null: false
     t.boolean "active", default: true, null: false
     t.string "agent_code"
-    t.string "otp_secret"
-    t.integer "last_otp_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -232,6 +279,10 @@ ActiveRecord::Schema.define(version: 2021_10_28_145002) do
   add_foreign_key "customer_diseases", "diseases"
   add_foreign_key "customers", "customers", column: "parent_id"
   add_foreign_key "customers", "plans"
+  add_foreign_key "eventualities", "agreements"
+  add_foreign_key "eventualities", "customers"
+  add_foreign_key "eventuality_expenses", "eventualities"
+  add_foreign_key "eventuality_expenses", "scales"
   add_foreign_key "municipalities", "states"
   add_foreign_key "permissions", "sections"
   add_foreign_key "permissions", "users"

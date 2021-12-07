@@ -297,7 +297,12 @@ sections = [
   { name: 'edit_customers', pretty_name: 'Editar Clientes', module_name: 3 },
   { name: 'list_scales', pretty_name: 'Baremo', module_name: 5 },
   { name: 'create_scales', pretty_name: 'Crear Items Baremo', module_name: 5 },
-  { name: 'edit_scales', pretty_name: 'Editar Items Baremo', module_name: 5 }
+  { name: 'edit_scales', pretty_name: 'Editar Items Baremo', module_name: 5 },
+  { name: 'list_eventualities', pretty_name: 'Eventualidades', module_name: 6 },
+  { name: 'create_eventualities', pretty_name: 'Crear eventualidades', module_name: 6 },
+  { name: 'edit_eventualities', pretty_name: 'Editar eventualidades', module_name: 6 },
+  { name: 'expenses_eventualities', pretty_name: 'Eventualidad agregar items Baremo', module_name: 6 },
+  { name: 'ignore_scale_limit_eventualities', pretty_name: 'Eventualidad ignorar limite item baremo', module_name: 6 }
 ]
 existing_sections = Section.all.pluck(:name)
 new_sections = sections.reject { |s| existing_sections.include?(s[:name]) }

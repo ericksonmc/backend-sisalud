@@ -60,6 +60,8 @@ json.customer do
     json.is_insured child.is_insured
     json.weight child.weight
     json.plan_id child.plan_id
+    json.coverage child.coverage
+    json.coverage_reference child.coverage_reference
     json.diseases child.diseases do |disease|
       json.other_description disease.other_description(child)
       json.has_description disease.has_description

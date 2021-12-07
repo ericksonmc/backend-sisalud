@@ -5,12 +5,14 @@
 #  id         :bigint           not null, primary key
 #  amount     :float
 #  category   :integer
+#  quantity   :integer
 #  status     :integer
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 class Scale < ApplicationRecord
+  audited
   enum status: { inactive: 0, active: 1 }
   enum category: {
     surgery: 0,
@@ -25,6 +27,10 @@ class Scale < ApplicationRecord
     special_laboratory: 9,
     studies: 10,
     emergency: 11,
-    basic_lab: 12
+    basic_lab: 12,
+    odontology: 13,
+    gynecology: 14
   }
+
+  scope :with_limit, -> { where.not(quantity: nil) }
 end
