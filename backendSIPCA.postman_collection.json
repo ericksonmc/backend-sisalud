@@ -13,7 +13,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI4NzM3NDIzLCJleHAiOjE2MzEzMjk0MjMsImp0aSI6IjU4OGI0YzdiLTllYjUtNDI1Mi05N2ZlLWNkMGQ4NDFlYzI5ZSJ9.BF0TorJoAaoG5g_gGi9HRdib-cCKRDTXVSxAtrj0bIM",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
 							"type": "string"
 						}
 					]
@@ -28,7 +28,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"customer\": {\n        \"activity\": \"Programador\",\n        \"address\": \"Isla dorada\",\n        \"age\": 61,\n        \"birthday\": \"1955-09-21\",\n        \"coverage\": null,\n        \"coverage_reference\": null,\n        \"customer_code\": \"SIP-001-01\",\n        \"dni\": \"25245734\",\n        \"email\": \"example@gmail.com\",\n        \"firstname\": \"PETRONILA\",\n        \"is_insured\": true,\n        \"last_name\": \"SINFOROSA\",\n        \"legal_representative\": null,\n        \"parent_id\": null,\n        \"phone\": \"\",\n        \"plan_id\": 7,\n        \"second_name\": \"Richmond\",\n        \"secondary_phone\": \"\",\n        \"sex\": \"masculino\",\n        \"size\": \"1.70\",\n        \"step\": \"step_1\",\n        \"id_attachment\": 2,\n        \"user_id\": 3,\n        \"diagnosis\": [\n            { \"id\": \"1\" },\n            { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n        ],\n        \"childs\": [\n            {\n                \"firstname\": \"Mohammad Heath\",\n                \"second_name\": \"Eaton\",\n                \"last_name\": \"Larsen\",\n                \"dni\": \"22123456\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 7,\n                \"is_insured\": true,\n                \"diagnosis\": [\n                    { \"id\": \"9\" },\n                    { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n                ]\n            },\n            {\n                \"firstname\": \"Elvis\",\n                \"second_name\": \"Jackson\",\n                \"last_name\": \"Crespo Peres\",\n                \"dni\": \"22123457\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 7,\n                \"is_insured\": true,\n                \"diagnosis\": []\n            }\n        ]\n    }\n}"
+					"raw": "{\n    \"customer\": {\n        \"activity\": \"Programador\",\n        \"address\": \"Isla dorada\",\n        \"age\": 61,\n        \"birthday\": \"1955-09-21\",\n        \"coverage\": null,\n        \"coverage_reference\": 10000,\n        \"payment_fee\": 15,\n        \"customer_code\": \"SIP-001-01\",\n        \"dni\": \"25245734\",\n        \"email\": \"example@gmail.com\",\n        \"firstname\": \"PETRONILA\",\n        \"is_insured\": true,\n        \"last_name\": \"SINFOROSA\",\n        \"legal_representative\": null,\n        \"parent_id\": null,\n        \"phone\": \"\",\n        \"plan_id\": 1,\n        \"second_name\": \"Richmond\",\n        \"secondary_phone\": \"\",\n        \"sex\": \"masculino\",\n        \"size\": \"1.70\",\n        \"step\": \"step_1\",\n        \"id_attachment\": 2,\n        \"user_id\": 3,\n        \"diagnosis\": [\n            { \"id\": \"1\" },\n            { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n        ],\n        \"childs\": [\n            {\n                \"firstname\": \"Mohammad Heath\",\n                \"second_name\": \"Eaton\",\n                \"last_name\": \"Larsen\",\n                \"dni\": \"22123456\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 1,\n                \"is_insured\": true,\n                \"coverage_reference\": 10000,\n                \"payment_fee\": 15,\n                \"diagnosis\": [\n                    { \"id\": \"9\" },\n                    { \"id\": \"11\", \"description\": \"otras enfermedaded\" }\n                ]\n            },\n            {\n                \"firstname\": \"Elvis\",\n                \"second_name\": \"Jackson\",\n                \"last_name\": \"Crespo Peres\",\n                \"dni\": \"22123457\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": 0,\n                \"size\": \"M\",\n                \"plan_id\": 1,\n                \"is_insured\": true,\n                \"coverage_reference\": 10000,\n                \"payment_fee\": 15,\n                \"diagnosis\": []\n            }\n        ]\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/agreements",
@@ -867,7 +867,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
 							"type": "string"
 						}
 					]
@@ -875,7 +875,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/v1/eventualities?date=2021-11-26",
+					"raw": "http://localhost:3000/api/v1/eventualities?date=2021-09-26&date_to=2021-12-16",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -889,7 +889,11 @@
 					"query": [
 						{
 							"key": "date",
-							"value": "2021-11-26"
+							"value": "2021-09-26"
+						},
+						{
+							"key": "date_to",
+							"value": "2021-12-16"
 						}
 					]
 				}

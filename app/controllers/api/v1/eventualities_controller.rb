@@ -6,7 +6,7 @@ module Api
       include Rails.application.routes.url_helpers
       def index
         condition = {}
-        condition[:date] = params[:date].present? ? params[:date].to_time.all_day : Time.now.all_day
+        condition[:date] = params[:date_to].present? ? date_range : date_param
         condition[:agreement_id] = agreement_ids if agreement_ids.present?
 
         @eventualities = Eventuality.where(condition)
@@ -59,9 +59,23 @@ module Api
           :agreement_id,
           :customer_id,
           :date,
+          :date_to,
           :invoice_image,
           eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id]
         )
+      end
+
+      def date_range
+        return unless event_params[:date_to].present?
+
+        date_from = event_params[:date].to_time.beginning_of_day
+        date_to = event_params[:date_to].to_time.end_of_day
+
+        [date_from..date_to]
+      end
+
+      def date_param
+        event_params[:date].present? ? event_params[:date].to_time.all_day : Time.now.all_day
       end
 
       def agreement_ids
