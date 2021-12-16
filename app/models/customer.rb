@@ -20,6 +20,7 @@
 #  last_name            :string
 #  legal_representative :string
 #  main                 :boolean
+#  payment_fee          :float
 #  phone                :string
 #  second_name          :string
 #  secondary_phone      :string

@@ -78,24 +78,23 @@ module Api
       private
 
       def find_agreements
-      case current_user.role
-        when 'admin'
+        case current_user.role
+        when 'admin' || 'super_admin'
           Agreement.all
         when 'agent'
           Agreement.where(user_id: current_user.id)
-        when 'super_admin'
-          Agreement.all
         else
           []
         end
       end
 
       def customer_params
-        params.require(:customer).permit(:activity, :age, :birthday, :coverage, :files,
-                                         :coverage_reference, :customer_code, :dni,
-                                         :email, :firstname, :id_attachment, :is_insured, :last_name,
+        params.require(:customer).permit(:activity, :age, :birthday, :files,
+                                         :coverage_reference, :customer_code, :last_name,
+                                         :email, :firstname, :id_attachment, :is_insured, :dni,
                                          :legal_representative, :main, :parent_id, :phone, :plan_id,
                                          :second_name, :secondary_phone, :sex, :size, :weight,
+                                         :payment_fee,
                                          diagnosis: [:id, :description],
                                          address: [:first_line, :zip_code,
                                                    state: [:title, :id],
@@ -117,7 +116,9 @@ module Api
         params.require(:customer).permit(childs: [:age, :birthday, :customer_code, :dni, :files,
                                                   :firstname, :is_insured, :last_name, :plan_id,
                                                   :second_name, :sex, :size, :weight, :id,
-                                                  :id_attachment, :is_insured, diagnosis: [:id, :description]])
+                                                  :coverage_reference, :payment_fee,
+                                                  :id_attachment, :is_insured,
+                                                  diagnosis: [:id, :description]])
       end
 
       def signed_date

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_215920) do
+ActiveRecord::Schema.define(version: 2021_12_16_170505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_215920) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "weight"
     t.datetime "deleted_at"
+    t.float "payment_fee"
     t.index ["deleted_at"], name: "index_customers_on_deleted_at"
     t.index ["dni"], name: "index_customers_on_dni"
     t.index ["email"], name: "index_customers_on_email"
