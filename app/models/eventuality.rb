@@ -33,8 +33,10 @@ class Eventuality < ApplicationRecord
   belongs_to :customer
 
   has_many :eventuality_expenses, dependent: :destroy
+  has_many :eventuality_expense_manuals, dependent: :destroy
 
   accepts_nested_attributes_for :eventuality_expenses
+  accepts_nested_attributes_for :eventuality_expense_manuals
 
   enum event_type: { emergency: 0, medical_consultation: 1, specialized_medical_consultation: 2 }
 
@@ -51,16 +53,16 @@ class Eventuality < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:pending, :reopened], to: :cancelled
+      transitions from: [:pending], to: :cancelled
       after { update_coverage }
     end
 
     event :reopen do
-      transitions from: [:cancelled, :closed], to: :reopened
+      transitions from: [:closed], to: :reopened
     end
 
     event :close_again do
-      transitions from: :reopened, to: :close
+      transitions from: :reopened, to: :closed
       # after { update_amount }
     end
   end
@@ -79,6 +81,17 @@ class Eventuality < ApplicationRecord
   end
 
   def calculate_total
-    eventuality_expenses.inject(0) { |sum, item| sum + item.amount }
+    expenses = eventuality_expenses.where(charged: false)
+                                   .inject(0) { |sum, item| sum + item.amount }
+
+    manual_expenses = eventuality_expense_manuals&.where(charged: false)
+                                                 &.inject(0) { |sum, item| sum + item.amount }
+
+    expenses + manual_expenses
+  end
+
+  def set_charded_expenses
+    eventuality_expenses.update_all(charged: true)
+    eventuality_expense_manuals.update_all(charged: true)
   end
 end

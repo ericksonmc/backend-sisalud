@@ -88,7 +88,7 @@ class Customer < ApplicationRecord
   end
 
   def update_coverage(total)
-    update(coverage: coverage + total)
+    update(coverage: coverage.to_f + total.to_f)
   end
 
   def act_events

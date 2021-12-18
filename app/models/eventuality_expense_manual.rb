@@ -1,26 +1,23 @@
 # == Schema Information
 #
-# Table name: eventuality_expenses
+# Table name: eventuality_expense_manuals
 #
 #  id             :bigint           not null, primary key
 #  amount         :float
 #  charged        :boolean          default(FALSE)
+#  title          :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  eventuality_id :bigint           not null
-#  scale_id       :bigint           not null
 #
 # Indexes
 #
-#  index_eventuality_expenses_on_eventuality_id  (eventuality_id)
-#  index_eventuality_expenses_on_scale_id        (scale_id)
+#  index_eventuality_expense_manuals_on_eventuality_id  (eventuality_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (eventuality_id => eventualities.id)
-#  fk_rails_...  (scale_id => scales.id)
 #
-class EventualityExpense < ApplicationRecord
+class EventualityExpenseManual < ApplicationRecord
   belongs_to :eventuality
-  belongs_to :scale
 end
