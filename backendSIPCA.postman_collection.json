@@ -826,7 +826,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
 							"type": "string"
 						}
 					]
@@ -841,7 +841,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"agreement_id\": 9,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 13,\n    \"date\":\"2021-11-26 13:30:00+04\"\n}"
+					"raw": "{\n    \"agreement_id\": 183,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 380,\n    \"date\":\"2021-12-18 13:30:00+04\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/eventualities",
@@ -901,14 +901,14 @@
 			"response": []
 		},
 		{
-			"name": "Create Eventuality Update",
+			"name": "Eventuality Update",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
 							"type": "string"
 						}
 					]
@@ -923,10 +923,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"agreement_id\": 9,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 13,\n    \"date\":\"2020-11-25 13:30:00-04\",\n    \"state_change\": \"close\",\n    \"eventuality_expenses_attributes\": [\n        {\n            \"amount\": 700,\n            \"scale_id\": 1,\n            \"id\":6\n        },\n        {\n            \"amount\": 7,\n            \"scale_id\": 82,\n            \"id\":7\n        },\n        {\n            \"amount\": 7,\n            \"scale_id\": 81\n        }\n    ]\n}"
+					"raw": "{\n    \"agreement_id\": 183,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 380,\n    \"date\":\"2020-11-25 13:30:00-04\",\n    \"state_change\": \"close\",\n    \"eventuality_expenses_attributes\": [\n        {\n            \"amount\": 7,\n            \"scale_id\": 82\n        },\n        {\n            \"amount\": 7,\n            \"scale_id\": 81\n        }\n    ],\n    \"eventuality_expense_manuals_attributes\": [\n        {\n            \"amount\": 100,\n            \"title\": \"Medicinas\"\n        }\n    ]\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/v1/eventualities/6",
+					"raw": "http://localhost:3000/api/v1/eventualities/246",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -936,7 +936,7 @@
 						"api",
 						"v1",
 						"eventualities",
-						"6"
+						"246"
 					]
 				}
 			},
@@ -950,7 +950,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM3MDgzMTkwLCJleHAiOjE2Mzk2NzUxOTAsImp0aSI6IjQwNTZhNTkwLWE0YmMtNDU0ZC1hZmE0LTgxOWI2ZTc5ZmVkZiJ9._mBB5UVGk2mv5IaobqIgdIe63A0qCTrmRzVZky-3fCU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
 							"type": "string"
 						}
 					]
@@ -958,7 +958,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/v1/eventualities/11",
+					"raw": "http://localhost:3000/api/v1/eventualities/246",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -968,7 +968,7 @@
 						"api",
 						"v1",
 						"eventualities",
-						"11"
+						"246"
 					]
 				}
 			},
