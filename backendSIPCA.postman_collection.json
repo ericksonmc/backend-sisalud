@@ -1113,6 +1113,48 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Agreement [Delete Beneficiario]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer\": {\n        \"signed_date\": \"2021-07-08\",\n        \"id\": 74,\n        \"user_id\": 3,\n        \"activity\": \"estudiante\",\n        \"address\": {\n            \"first_line\": \"San jacinto , sector 10. Edif 32\",\n            \"state\": {\n                \"id\": 23,\n                \"title\": \"Zulia\"\n            },\n            \"municipality\": {\n                \"id\": 327,\n                \"title\": \"Maracaibo\"\n            },\n            \"zip_code\": \"4001\"\n        },\n        \"birthday\": \"2001-10-04\",\n        \"age\": 20,\n        \"dni\": \"V-29509401\",\n        \"email\": \"tonyrojas905@gmail.com\",\n        \"firstname\": \"Antonio\",\n        \"second_name\": \"Jose\",\n        \"last_name\": \"Rojas Agelvis\",\n        \"legal_representative\": \"\",\n        \"phone\": \"4122179254\",\n        \"secondary_phone\": \"\",\n        \"plan_id\": 1,\n        \"is_insured\": true,\n        \"sex\": \"masculino\",\n        \"size\": \"1.79\",\n        \"weight\": \"80\",\n        \"diagnosis\": [\n            {\n                \"id\": 5,\n                \"description\": \"\"\n            },\n            {\n                \"id\": 8,\n                \"description\": \"\"\n            }\n        ],\n        \"files\": [],\n        \"coverage_reference\": 12000,\n        \"payment_fee\": 18,\n        \"childs\": [\n            {\n                \"id\": 345,\n                \"_destroy\": true,\n                \"firstname\": \"Mohammad\",\n                \"second_name\": \"Heath\",\n                \"last_name\": \"Larsen\",\n                \"dni\": \"V-22123456\",\n                \"birthday\": \"1995-05-04\",\n                \"age\": 26,\n                \"sex\": \"femenino\",\n                \"size\": \"1\",\n                \"weight\": \"1\",\n                \"plan_id\": \"1\",\n                \"is_insured\": true,\n                \"files\": [],\n                \"coverage_reference\": \"12000\",\n                \"payment_fee\": \"18\"\n            }\n        ]\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/agreements/42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"agreements",
+						"42"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -117,7 +117,7 @@ module Api
                                                   :firstname, :is_insured, :last_name, :plan_id,
                                                   :second_name, :sex, :size, :weight, :id,
                                                   :coverage_reference, :payment_fee,
-                                                  :id_attachment, :is_insured,
+                                                  :id_attachment, :is_insured, :_destroy,
                                                   diagnosis: [:id, :description]])
       end
 

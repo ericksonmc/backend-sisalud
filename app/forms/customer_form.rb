@@ -88,6 +88,8 @@ class CustomerForm < BaseForm
     return if @childs.blank?
 
     @childs[:childs].each do |child|
+      Customer.find(child['id'])&.destroy && next if child['_destroy'].present?
+
       if child['id'].to_i.zero?
         customer = @customer.childs.create(child.except('id'))
       else

@@ -247,9 +247,6 @@ unless Company.all.present?
                           coverage_items: coverage_items_plata_empleado, payment_fee: 12,
                           title: 'Plata Empleado', age_limit: nil, age_min: nil, own: true })
 end
-if Customer.all.present?
-  child = Customer.create(firstname: 'Mohammad Heath',second_name: 'Eaton',last_name: 'Larsen',dni: '22123456',birthday: '1995-05-04', age: 26,sex: 0,size: 'M',parent_id: Customer.first.id,plan_id: Plan.first.id,is_insured: true,customer_code: '02')
-end
 
 unless State.all.present?
   response = HTTParty.get('https://raw.githubusercontent.com/zokeber/venezuela-json/master/venezuela.json')

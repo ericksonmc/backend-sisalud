@@ -51,17 +51,17 @@ class Customer < ApplicationRecord
   belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id', optional: true
   belongs_to :plan, optional: true
 
-  enum sex: { femenino: 0, masculino: 1 }
-
   has_many :childs, class_name: 'Customer', foreign_key: 'parent_id', dependent: :destroy
   has_many :customer_diseases, dependent: :destroy
   has_many :diseases, through: :customer_diseases, dependent: :destroy
   has_many :eventualities, dependent: :destroy
 
   has_one :agreement, dependent: :destroy
-  has_one :attachment, as: :fileable
+  has_one :attachment, as: :fileable, dependent: :destroy
 
   has_one_attached :files
+
+  enum sex: { femenino: 0, masculino: 1 }
 
   default_scope { where(deleted_at: nil) }
 
