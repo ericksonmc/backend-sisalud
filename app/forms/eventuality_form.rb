@@ -52,6 +52,8 @@ class EventualityForm < BaseForm
       update_expenses
     when 'cancelled'
       @eventuality.cancel!
+    when 'reopen'
+      @eventuality.reopen!
     when 'close_again'
       @eventuality.close_again!
       update_coverage
