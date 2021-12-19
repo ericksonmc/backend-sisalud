@@ -96,6 +96,8 @@ class EventualityForm < BaseForm
 
     return true if @eventuality.pending?
 
+    return true if state_change == 'reopen'
+
     return true if @eventuality.reopened?
 
     errors.add(:closed, 'Esta eventualidad esta cerrada o cancelada')
