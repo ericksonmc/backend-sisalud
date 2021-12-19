@@ -20,4 +20,10 @@
 #
 class EventualityExpenseManual < ApplicationRecord
   belongs_to :eventuality
+
+  before_save :downcase_fields
+
+  def downcase_fields
+    title.downcase
+  end
 end
