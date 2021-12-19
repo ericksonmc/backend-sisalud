@@ -94,7 +94,7 @@ class AgreementForm < BaseForm
   def set_insurance_period
     return unless @new_record
 
-    @agreement.signed_date = "#{@agreement.signed_date}/#{@agreement.signed_date + 1.year}"
+    @agreement.insurance_period = "#{@agreement.signed_date}/#{@agreement.signed_date + 1.year}"
   end
 
   def calculate_amount
