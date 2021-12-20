@@ -6,6 +6,185 @@
 	},
 	"item": [
 		{
+			"name": "Reportes",
+			"item": [
+				{
+					"name": "Customers [json]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filter",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/customers.xlsx?page=1&per=todos&filter=antonio Briceño",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"customers.xlsx"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per",
+									"value": "todos"
+								},
+								{
+									"key": "filter",
+									"value": "antonio Briceño"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eventualities [xlsx]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filter",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/eventualities.xlsx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"eventualities.xlsx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customers [xlsx]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filter",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/customers.xlsx?page=1&per=todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"customers.xlsx"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per",
+									"value": "todos"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Agreement Step1 [Main Customer]",
 			"request": {
 				"auth": {
@@ -923,7 +1102,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"agreement_id\": 183,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 380,\n    \"date\":\"2020-11-25 13:30:00-04\",\n    \"state_change\": \"close\",\n    \"eventuality_expenses_attributes\": [\n        {\n            \"amount\": 7,\n            \"scale_id\": 82\n        },\n        {\n            \"amount\": 7,\n            \"scale_id\": 81\n        }\n    ],\n    \"eventuality_expense_manuals_attributes\": [\n        {\n            \"amount\": 100,\n            \"title\": \"Medicinas\"\n        }\n    ]\n}"
+					"raw": "{\n    \"agreement_id\": 183,\n    \"observations\":\"Lorem\",\n    \"event_type\": 0,\n    \"password\":\"123qwe456w\",\n    \"customer_id\": 380,\n    \"date\":\"2020-11-25 13:30:00-04\",\n    \"state_change\": \"reopen\",\n    \"eventuality_expenses_attributes\": [\n        {\n            \"amount\": 7,\n            \"scale_id\": 82\n        },\n        {\n            \"amount\": 7,\n            \"scale_id\": 81\n        }\n    ],\n    \"eventuality_expense_manuals_attributes\": [\n        {\n            \"amount\": 100,\n            \"title\": \"Medicinas\"\n        }\n    ]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/eventualities/246",

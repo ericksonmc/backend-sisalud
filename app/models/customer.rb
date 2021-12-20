@@ -102,4 +102,10 @@ class Customer < ApplicationRecord
   def end_agreement
     act_agreement.insurance_period.split('/').last.to_date.end_of_day
   end
+
+  def remaining_coverage
+    return 'N/A' if plan_id.blank?
+
+    coverage_reference.to_f - coverage.to_f
+  end
 end

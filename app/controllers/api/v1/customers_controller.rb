@@ -4,12 +4,40 @@ module Api
   module V1
     class CustomersController < ApiController
       before_action :check_filter
+
+      def index
+        per = params[:per] || 20
+        page = params[:page]
+        
+        if params[:filter].present?
+          byebug
+          @customers = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
+                                      "or last_name ilike '%#{filter_split[1]}%'")
+        else
+          @customers = Customer.all.order(:id)
+        end
+
+        per = @customers.count if params[:per] == 'todos'
+
+        @pagination = @customers.page(page).per(per)
+
+        respond_to do |format|
+          format.json
+          format.xlsx { render xlsx: "clientes_#{Time.now.to_i}",
+                        template: 'api/v1/customers/index.xlsx.axlsx',
+                        filename: "clientes_#{Time.now.to_i}_SIPCA",
+                        disposition: 'inline'
+                      }
+        end
+      end
+
       def filter_customer
         @customers = []
 
         case @filter_type
         when 'name'
-          @records = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
+          @records = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
+                                    "or last_name ilike '%#{filter_split[1]}%'")
           @records.each do |b|
             b.holder? ? @customers << b : @customers << b.parent
           end
