@@ -11,6 +11,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
     'Fecha de Nacimiento',
     'Total Consumido',
     'Cobertura',
+    'Cobertura Restante'
     'CI/RIF',
     'Correo',
     'Esta Asegurado?',
@@ -34,6 +35,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
       customer.birthday,
       customer.coverage,
       customer.coverage_reference,
+      customer.remaining_coverage,
       customer.dni,
       customer.email,
       "#{customer.is_insured ? 'Si' : 'No'}",
