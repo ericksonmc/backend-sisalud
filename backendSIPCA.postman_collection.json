@@ -181,6 +181,110 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Customers Eventualities [json]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filter",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/customers/89/eventualities.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"89",
+								"eventualities.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customers Eventualities [xlsx]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjM4NDAyMzg2LCJleHAiOjE2NDA5OTQzODYsImp0aSI6Ijg2YjhhOTNlLTEyMWMtNDM3ZS1iOWU3LWFlYmE4MjIyMzhjOCJ9.B-7gm7wmywGpJccqaXFJOfoNdS-9dW40qzzNBrcRcSo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filter",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/customers/89/eventualities.xlsx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"89",
+								"eventualities.xlsx"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

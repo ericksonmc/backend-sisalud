@@ -8,9 +8,8 @@ module Api
       def index
         per = params[:per] || 20
         page = params[:page]
-        
+
         if params[:filter].present?
-          byebug
           @customers = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
                                       "or last_name ilike '%#{filter_split[1]}%'")
         else
@@ -23,11 +22,30 @@ module Api
 
         respond_to do |format|
           format.json
-          format.xlsx { render xlsx: "clientes_#{Time.now.to_i}",
-                        template: 'api/v1/customers/index.xlsx.axlsx',
-                        filename: "clientes_#{Time.now.to_i}_SIPCA",
-                        disposition: 'inline'
-                      }
+          format.xlsx {
+            render xlsx: "clientes_#{Time.now.to_i}",
+                   template: 'api/v1/customers/index.xlsx.axlsx',
+                   filename: "clientes_#{Time.now.to_i}_SIPCA",
+                   disposition: 'inline'
+          }
+        end
+      end
+
+      def eventualities
+        @eventualities = customer.act_events
+        @pie_data = @eventualities&.select('event_type as label, count(event_type) as value')
+                                  &.group(:label)
+                                  &.order(:value)
+                                  &.map { |event| [pretty_key(event.label), event.value] }
+
+        respond_to do |format|
+          format.json
+          format.xlsx {
+            render xlsx: "clientes_#{Time.now.to_i}",
+                   template: 'api/v1/customers/eventualities.xlsx.axlsx',
+                   filename: "cliente_#{customer.full_name}_#{Time.now.to_i}_SIPCA",
+                   disposition: 'inline'
+          }
         end
       end
 
@@ -101,6 +119,10 @@ module Api
 
       def filter_split
         @filter_split ||= params[:filter].split
+      end
+
+      def pretty_key(label)
+        I18n.t("eventuality.event_type.#{Eventuality.event_types.invert[label]}")
       end
     end
   end

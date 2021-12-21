@@ -11,7 +11,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
     'Fecha de Nacimiento',
     'Total Consumido',
     'Cobertura',
-    'Cobertura Restante'
+    'Cobertura Restante',
     'CI/RIF',
     'Correo',
     'Esta Asegurado?',
@@ -23,7 +23,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
     'Sexo',
     'Talla',
     'Peso',
-    'Plan',
+    'Plan'
   ], style: header
 
   @customers.each_with_index do |customer, index|
@@ -38,7 +38,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
       customer.remaining_coverage,
       customer.dni,
       customer.email,
-      "#{customer.is_insured ? 'Si' : 'No'}",
+      customer.is_insured ? 'Si' : 'No',
       customer.legal_representative,
       customer.main,
       customer.payment_fee,
@@ -47,7 +47,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
       customer.sex,
       customer.size,
       customer.weight,
-      customer.plan.title,
+      customer.plan.title
     ]
   end
 
