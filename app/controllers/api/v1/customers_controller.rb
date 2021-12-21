@@ -36,7 +36,7 @@ module Api
         @pie_data = @eventualities&.select('event_type as label, count(event_type) as value')
                                   &.group(:label)
                                   &.order(:value)
-                                  &.map { |event| [pretty_key(event.label), event.value] }
+                                  &.map { |event| [pretty_key_event(event.label), event.value] }
 
         respond_to do |format|
           format.json
@@ -119,10 +119,6 @@ module Api
 
       def filter_split
         @filter_split ||= params[:filter].split
-      end
-
-      def pretty_key(label)
-        I18n.t("eventuality.event_type.#{Eventuality.event_types.invert[label]}")
       end
     end
   end

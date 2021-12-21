@@ -6,6 +6,7 @@ header = wb.styles.add_style(
 
 wb.add_worksheet(name: 'Clientes') do |sheet|
   sheet.add_row [
+    'Cliente',
     'Estado',
     'Monto',
     'Fecha',
@@ -16,6 +17,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
 
   @eventualities.each do |event|
     sheet.add_row [
+      event.customer.full_name,
       I18n.t("eventuality.status.#{event.aasm_state}"),
       event.amount.to_f,
       event.date,
@@ -24,19 +26,33 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
       event.password
     ]
   end
-  sheet.add_row [nil.to_s, @eventualities.sum(:amount).to_f]
+  sheet.add_row [nil.to_s, nil.to_s, @eventualities.sum(:amount).to_f]
 end
 
-wb.add_worksheet(name: 'Graficos') do |sheet|
-  sheet.add_row ['Uso por tipos de eventualidades'], style: header
+wb.add_worksheet(name: 'Tipos de Eventualidades') do |sheet|
+  sheet.add_row ['Uso por tipos de eventualidades','Cantidad'], style: header
 
   @pie_data.each do |data|
     sheet.add_row data
   end
 
-  sheet.add_chart(Axlsx::Pie3DChart, start_at: 'A6', end_at: 'F20') do |chart|
+  sheet.add_chart(Axlsx::Pie3DChart, start_at: 'D2', end_at: 'J16') do |chart|
     chart.add_series data: sheet["B2:B#{@pie_data.count + 1}"],
                      labels: sheet["A2:A#{@pie_data.count + 1}"],
+                     title: sheet['A1']
+  end
+end
+
+wb.add_worksheet(name: 'Items del baremos mas usados') do |sheet|
+  sheet.add_row ['Uso por tipos de eventualidades', 'Cantidad'], style: header
+
+  @scale_consumption.each do |data|
+    sheet.add_row data
+  end
+
+  sheet.add_chart(Axlsx::Pie3DChart, start_at: 'D2', end_at: 'L18') do |chart|
+    chart.add_series data: sheet["B2:B#{@scale_consumption.count + 1}"],
+                     labels: sheet["A2:A#{@scale_consumption.count + 1}"],
                      title: sheet['A1']
   end
 end

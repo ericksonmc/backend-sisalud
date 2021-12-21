@@ -8,8 +8,21 @@ module Api
         condition = {}
         condition[:date] = params[:date_to].present? ? date_range : date_param
         condition[:agreement_id] = agreement_ids if agreement_ids.present?
+        condition[:event_type] = params[:event_type] if params[:event_type].present?
 
         @eventualities = Eventuality.where(condition)
+        @pie_data = char_data
+        @scale_consumption = scale_consumption
+
+        respond_to do |format|
+          format.json
+          format.xlsx {
+            render xlsx: "clientes_#{Time.now.to_i}",
+                   template: 'api/v1/eventualities/index.xlsx.axlsx',
+                   filename: "Eventualidades_desde_#{date_range}_SIPCA",
+                   disposition: 'inline'
+          }
+        end
       end
 
       def create
@@ -98,6 +111,20 @@ module Api
       def eventuality
         id = params[:id] || params[:eventuality_id]
         @eventuality ||= Eventuality.find(id)
+      end
+
+      def char_data
+        @eventualities&.select('event_type as label, count(event_type) as value')
+                      &.group(:label)
+                      &.order(:value)
+                      &.map { |event| [pretty_key_event(event.label), event.value] }
+      end
+
+      def scale_consumption
+        EventualityExpense.select('scale_id, count(scale_id) as scale_count, (select title from '\
+                                  'scales where id = eventuality_expenses.scale_id) as title')
+                          .where(eventuality_id: @eventualities.ids)
+                          .order(:scale_count).group(:scale_id).map { |i| [i.title, i.scale_count] }
       end
     end
   end
