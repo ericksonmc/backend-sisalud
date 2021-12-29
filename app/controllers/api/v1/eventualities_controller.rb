@@ -5,11 +5,7 @@ module Api
     class EventualitiesController < ApiController
       include Rails.application.routes.url_helpers
       def index
-        filters = {}
-        filters[:date] = params[:date_to].present? ? date_range : date_param
-        filters[:agreement_id] = agreement_ids if agreement_ids.present?
-        filters[:event_type] = params[:event_type] if params[:event_type].present?
-        filters[:customer_id] = params[:customer_id].to_i if params[:customer_id].present?
+        filters = set_filters
 
         @eventualities = Eventuality.where(filters)
         @pie_data = char_data
@@ -78,6 +74,14 @@ module Api
           eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id],
           eventuality_expense_manuals_attributes: [:id, :title, :amount, :eventuality_id]
         )
+      end
+
+      def set_filters
+        filters = {}
+        filters[:date] = params[:date_to].present? ? date_range : date_param
+        filters[:agreement_id] = agreement_ids if agreement_ids.present?
+        filters[:event_type] = params[:event_type] if params[:event_type].present?
+        filters[:customer_id] = params[:customer_id].to_i if params[:customer_id].present?
       end
 
       def date_range
