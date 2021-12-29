@@ -5,12 +5,13 @@ module Api
     class EventualitiesController < ApiController
       include Rails.application.routes.url_helpers
       def index
-        condition = {}
-        condition[:date] = params[:date_to].present? ? date_range : date_param
-        condition[:agreement_id] = agreement_ids if agreement_ids.present?
-        condition[:event_type] = params[:event_type] if params[:event_type].present?
+        filters = {}
+        filters[:date] = params[:date_to].present? ? date_range : date_param
+        filters[:agreement_id] = agreement_ids if agreement_ids.present?
+        filters[:event_type] = params[:event_type] if params[:event_type].present?
+        filters[:customer_id] = params[:customer_id].to_i if params[:customer_id].present?
 
-        @eventualities = Eventuality.where(condition)
+        @eventualities = Eventuality.where(filters)
         @pie_data = char_data
         @scale_consumption = scale_consumption
 
@@ -19,7 +20,7 @@ module Api
           format.xlsx {
             render xlsx: "clientes_#{Time.now.to_i}",
                    template: 'api/v1/eventualities/index.xlsx.axlsx',
-                   filename: "Eventualidades_desde_#{date_range}_SIPCA",
+                   filename: 'Eventualidades_SIPCA',
                    disposition: 'inline'
           }
         end
