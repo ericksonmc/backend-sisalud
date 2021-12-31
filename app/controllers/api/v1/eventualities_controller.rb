@@ -6,7 +6,7 @@ module Api
       include Rails.application.routes.url_helpers
       def index
         filters = set_filters
-
+        byebug
         @eventualities = Eventuality.where(filters)
         @pie_data = char_data
         @scale_consumption = scale_consumption
@@ -82,6 +82,8 @@ module Api
         filters[:agreement_id] = agreement_ids if agreement_ids.present?
         filters[:event_type] = params[:event_type] if params[:event_type].present?
         filters[:customer_id] = params[:customer_id].to_i if params[:customer_id].present?
+        filters.delete(:date) if filters[:date].nil?
+        filters
       end
 
       def date_range
@@ -94,6 +96,7 @@ module Api
       end
 
       def date_param
+        return if event_params[:customer_id].present? and !event_params[:date].present?
         event_params[:date].present? ? event_params[:date].to_time.all_day : Time.now.all_day
       end
 
