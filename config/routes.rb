@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       resources :attachments, only: [:create]
       resources :scales, except: [:destroy] do
         get :types_scale, on: :collection
+        get :scale_usage, on: :collection
       end
       resources :eventualities, except: [:destroy] do
         post :eventuality_invoice

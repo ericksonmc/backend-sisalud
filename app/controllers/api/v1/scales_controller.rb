@@ -37,6 +37,20 @@ module Api
         render json: { message: 'Error al crear el scale', errors: e.message }, status: 400
       end
 
+      def scale_usage
+        @scales_services = ScaleServices.new(date_from: params[:date_from],
+                                             date_to: params[:date_to]).scale_consumption_graph
+        respond_to do |format|
+          format.json
+          format.xlsx {
+            render xlsx: "uso_del_baremo_#{Time.now.to_i}",
+                   template: 'api/v1/scales/scale_usage.xlsx.axlsx',
+                   filename: 'uso_del_baremo',
+                   disposition: 'inline'
+          }
+        end
+      end
+
       def types_scale
         render json: [
           { title: 'surgery', value: 0, title_es: 'Cirugia' },
@@ -50,10 +64,10 @@ module Api
           { title: 'cardiology', value: 8, title_es: 'Cardiologia' },
           { title: 'special_laboratory', value: 9, title_es: 'Laboratorio Especial' },
           { title: 'studies', value: 10, title_es: 'Estudios' },
-          { title: 'emergency', value: 11, title_es: 'Emergencia'  },
+          { title: 'emergency', value: 11, title_es: 'Emergencia' },
           { title: 'basic_lab', value: 12, title_es: 'Laboratorio Basico' },
           { title: 'odontology', value: 13, title_es: 'Odontología' },
-          { title: 'gynecology', value: 14, title_es: 'Ginecología'}
+          { title: 'gynecology', value: 14, title_es: 'Ginecología' }
         ]
       end
 
@@ -65,6 +79,10 @@ module Api
 
       def find_scale
         @scale = Scale.find_by(id: params[:id])
+      end
+
+      def eventualities
+        date_range(date_from: params[:date_from], date_to: params[:date_to])
       end
     end
   end
