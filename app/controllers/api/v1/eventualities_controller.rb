@@ -6,7 +6,6 @@ module Api
       include Rails.application.routes.url_helpers
       def index
         filters = set_filters
-        byebug
         @eventualities = Eventuality.where(filters)
         @pie_data = char_data
         @scale_consumption = scale_consumption
