@@ -22,7 +22,7 @@ wb.add_worksheet(name: 'Consumo del baremo') do |sheet|
 end
 
 wb.add_worksheet(name: 'Consumo Grafico') do |sheet|
-  sheet.add_row ['Uso de los items dle baremo', 'Cantidad', 'total'], style: header
+  sheet.add_row ['Uso de los items del baremo', 'Cantidad', 'total'], style: header
 
   @scales_services.each do |data|
     sheet.add_row data

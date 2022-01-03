@@ -11,7 +11,7 @@ json.data @pagination do |customer|
     json.coverage customer.coverage
     json.remaining_coverage customer.remaining_coverage
     json.coverage_reference customer.coverage_reference
-    json.plan customer.plan.title
+    json.plan customer&.plan&.title
     json.dni customer.dni
     json.is_insured customer.is_insured
     json.payment_fee customer.payment_fee
