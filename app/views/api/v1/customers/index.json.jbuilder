@@ -8,9 +8,9 @@ json.data @pagination do |customer|
     json.id customer.id
     json.name customer.full_name
     json.birthday customer.birthday
-    json.coverage customer.coverage
-    json.remaining_coverage customer.remaining_coverage
-    json.coverage_reference customer.coverage_reference
+    json.coverage customer.coverage.round(2)
+    json.remaining_coverage customer.remaining_coverage.round(2)
+    json.coverage_reference customer.coverage_reference.round(2)
     json.plan customer&.plan&.title
     json.dni customer.dni
     json.is_insured customer.is_insured
