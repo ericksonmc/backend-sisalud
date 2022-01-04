@@ -40,6 +40,8 @@ class Eventuality < ApplicationRecord
 
   enum event_type: { emergency: 0, medical_consultation: 1, specialized_medical_consultation: 2 }
 
+  scope :emergencies, -> { where(event_type: 'emergency') }
+
   has_one_attached :invoice_image
 
   aasm do

@@ -40,6 +40,12 @@ Rails.application.routes.draw do
       resources :eventualities, except: [:destroy] do
         post :eventuality_invoice
       end
+      resources :dashboard, only: [:index] do
+        get :eventualities_total, on: :collection
+        get :new_customers_total, on: :collection
+        get :eventuality_types_graph, on: :collection
+        get :scale_consumption_graph, on: :collection
+      end
     end
   end
 end
