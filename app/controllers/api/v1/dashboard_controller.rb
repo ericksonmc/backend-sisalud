@@ -10,14 +10,12 @@ module Api
           eventualities_total: eventualities_total,
           new_customers_total: new_customers_total,
           emergency_eventualities: emergency_eventualities,
-          scale_consumption_graph: [],
+          scale_consumption_graph: scale_consumption_graph,
           eventuality_types_graph: eventuality_types_graph,
           best_selling_plans_graph: best_selling_plans_graph,
         }
         render json: data
       end
-
-      private
 
       def payment_fee_total
         @payment_feed_total ||= Customer.all.reduce(0) do |memo, data|
@@ -68,8 +66,15 @@ module Api
       end
 
       def scale_consumption_graph
-        
+        @scale_consumption_graph ||= EventualityExpense.select('scale_id, count(scale_id) as scale_count, (select title from '\
+                                                               'scales where id = eventuality_expenses.scale_id) as title, '\
+                                                               'sum(amount) as total')
+                                                       .where(created_at: set_interval(params[:scale_consumption_interval]))
+                                                       .order(:scale_count)
+                                                       .group(:scale_id)
       end
+
+      private
 
       def set_interval(param)
         interval = param || 'week'
