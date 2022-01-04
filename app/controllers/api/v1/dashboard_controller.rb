@@ -20,9 +20,9 @@ module Api
       def payment_fee_total
         @payment_feed_total ||= Customer.all.reduce(0) do |memo, data|
           if data.payment_fee.present?
-            memo + data.payment_fee 
+            memo + data.payment_fee.to_f 
           else
-            memo + data&.plan&.payment_fee
+            memo + data&.plan&.payment_fee.to_f
           end
         end
       end
@@ -85,6 +85,8 @@ module Api
           [Time.now.beginning_of_week..Time.now.end_of_week]
         when 'month'
           [Time.now.beginning_of_month..Time.now.end_of_month]
+        when 'year'
+          [Time.now.beginning_of_year..Time.now.end_of_year]
         end
       end
     end
