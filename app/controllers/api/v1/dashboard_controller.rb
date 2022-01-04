@@ -51,7 +51,9 @@ module Api
             coverage_referencen: event.customer.coverage_reference || event.customer.plan.coverage,
             id: event.id,
             date: event.date,
-            status: I18n.t("eventuality.status.#{event.aasm_state}")
+            status: I18n.t("eventuality.status.#{event.aasm_state}"),
+            agent: event.customer.act_agreement.user.to_s,
+            agreement_number: event.customer.act_agreement.agreement_number
           }
         end
       end
