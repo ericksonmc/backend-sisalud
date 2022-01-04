@@ -106,6 +106,6 @@ class Customer < ApplicationRecord
   def remaining_coverage
     return 'N/A' if plan_id.blank?
 
-    coverage_reference.to_f - coverage.to_f
+    (coverage_reference.to_f - coverage.to_f).round(2)
   end
 end

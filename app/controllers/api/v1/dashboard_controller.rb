@@ -46,7 +46,7 @@ module Api
           {
             agreement_id: event.customer.act_agreement.id,
             customer: event.customer.full_name,
-            total: event.amount,
+            total: event.amount&.round(2),
             remaining_coverage: event.customer.remaining_coverage,
             coverage_referencen: event.customer.coverage_reference || event.customer.plan.coverage,
             id: event.id,
