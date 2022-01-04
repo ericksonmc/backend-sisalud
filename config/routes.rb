@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :eventualities, except: [:destroy] do
         post :eventuality_invoice
       end
+      resources :dashboard, only: [:index]
     end
   end
 end
