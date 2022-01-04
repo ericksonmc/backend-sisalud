@@ -50,7 +50,8 @@ module Api
             remaining_coverage: event.customer.remaining_coverage,
             coverage_referencen: event.customer.coverage_reference || event.customer.plan.coverage,
             id: event.id,
-            date: event.date
+            date: event.date,
+            status: I18n.t("eventuality.status.#{event.aasm_state}")
           }
         end
       end
