@@ -79,13 +79,14 @@ module Api
                                                        .where(created_at: set_interval(params[:scale_consumption_interval]))
                                                        .order(:scale_count)
                                                        .group(:scale_id)
+                                                       .limit(10)
       end
 
       private
 
       def set_interval(param)
-        interval = param || 'week'
-        case param
+        interval = param.nil? ? 'week' : param
+        case interval
         when 'day'
           return [Time.now.beginning_of_day..Time.now.end_of_day]
         when 'week'
