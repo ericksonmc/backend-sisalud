@@ -34,6 +34,7 @@ es:
       pending: Pendiente
       closed: Cerrada
       cancelled: Cancelada
+      reopened: Reabierto
     event_type:
       emergency: Emergencia
       medical_consultation: Consulta Medica
@@ -57,7 +58,6 @@ es:
       close: Cerrada
       inactive: Inactivo
       deleted: Borrado
-      reopened: Reabierto
   scale:
     status:
       inactive: Inactivo
