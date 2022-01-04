@@ -79,7 +79,6 @@ module Api
         @scale_consumption_graph ||= EventualityExpense.select('scale_id, count(scale_id) as scale_count, (select title from '\
                                                                'scales where id = eventuality_expenses.scale_id) as title, '\
                                                                'sum(amount) as total')
-                                                       .where.not(id: [54, 31, 32])
                                                        .where(created_at: set_interval(params[:scale_consumption_interval]))
                                                        .order(:scale_count)
                                                        .group(:scale_id)

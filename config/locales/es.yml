@@ -57,6 +57,7 @@ es:
       close: Cerrada
       inactive: Inactivo
       deleted: Borrado
+      reopened: Reabierto
   scale:
     status:
       inactive: Inactivo
