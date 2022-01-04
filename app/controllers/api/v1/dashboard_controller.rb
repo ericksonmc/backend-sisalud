@@ -44,6 +44,7 @@ module Api
       def emergency_eventualities
         @emergency_eventualities ||= Eventuality.emergencies.order(id: :DESC).limit(10).map do |event|
           {
+            agreement_id: event.customer.act_agreement.id,
             customer: event.customer.full_name,
             total: event.amount,
             remaining_coverage: event.customer.remaining_coverage,
