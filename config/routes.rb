@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         post :authorize_agreement
         post :update_agreement
       end
-      resources :customers, only: [:index, :show] do
+      resources :customers, only: [:index, :show, :update] do
         get :filter_customer, on: :collection
         get :customer_scales_limit
         get :eventualities

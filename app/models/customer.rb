@@ -67,6 +67,17 @@ class Customer < ApplicationRecord
 
   after_create :set_customer_code
 
+  before_update :update_agreement, :if => proc { |obj| obj.is_insured_changed? }
+
+  def update_agreement
+    payment = payment_fee.present? ? payment_fee : plan.payment_fee
+    if is_insured
+      act_agreement.update(amount: act_agreement.amount + payment)
+    else
+      act_agreement.update(amount: act_agreement.amount - payment)
+    end
+  end
+
   def full_name
     [firstname, second_name, last_name].compact.join(' ')
   end

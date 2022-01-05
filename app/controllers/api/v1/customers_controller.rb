@@ -49,6 +49,16 @@ module Api
         end
       end
 
+      def update
+        unless customer.present?
+          render json: { message: 'CLiente no encontrado' }, status: 400 and return
+        end
+
+        customer_form = SingleCustomerForm.new(args: customer_param, customer: customer)
+
+        render json: { message: 'Cliente actualziado con exito' } if customer_form.save!
+      end
+
       def filter_customer
         @customers = []
 
@@ -76,6 +86,36 @@ module Api
 
       private
 
+      def customer_param
+        params.permit(
+          :activity,
+          :address,
+          :age,
+          :birthday,
+          :childs,
+          :coverage,
+          :coverage_reference,
+          :customer_code,
+          :dni,
+          :diagnosis,
+          :email,
+          :firstname,
+          :is_insured,
+          :last_name,
+          :legal_representative,
+          :main,
+          :parent_id,
+          :phone,
+          :payment_fee,
+          :plan_id,
+          :second_name,
+          :secondary_phone,
+          :sex,
+          :size,
+          :weight
+        )
+      end
+
       def scale_quantity
         scales.where(id: actual_expenses.pluck(:scale_id).uniq).map do |scale|
           {
@@ -88,7 +128,8 @@ module Api
       end
 
       def customer
-        @customer ||= Customer.find(params[:customer_id])
+        customer_id = params[:customer_id] || params[:id]
+        @customer ||= Customer.find(customer_id)
       end
 
       def actual_expenses
