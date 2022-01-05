@@ -288,6 +288,7 @@ sections = [
   { name: 'edit_users', pretty_name: 'Editar Usuarios', module_name: 2 },
   { name: 'delete_users', pretty_name: 'Eliminar Usuarios', module_name: 2 },
   { name: 'customers', pretty_name: 'Clientes', module_name: 3 },
+  { name: 'edit_customers', pretty_name: 'Editar Clientes', module_name: 3 },
   { name: 'list_scales', pretty_name: 'Baremo', module_name: 5 },
   { name: 'create_scales', pretty_name: 'Crear Items Baremo', module_name: 5 },
   { name: 'edit_scales', pretty_name: 'Editar Items Baremo', module_name: 5 },
