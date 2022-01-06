@@ -32,7 +32,7 @@ module Api
       end
 
       def eventualities_total
-        @eventualities_total ||= Eventuality.where(created_at: set_interval(params[:event_total_interval]))
+        @eventualities_total ||= Eventuality.where(date: set_interval(params[:event_total_interval]))
                                             .where(aasm_state: 'closed')
                                             .sum(:amount)
       end
@@ -60,7 +60,7 @@ module Api
 
       def eventuality_types_graph
         @eventuality_types_graph ||= Eventuality.select("event_type, count(event_type)")
-                                                .where(created_at: set_interval(params[:event_type_graph_interval]))
+                                                .where(date: set_interval(params[:event_type_graph_interval]))
                                                 .group(:event_type)
       end
 
