@@ -16,6 +16,7 @@ class EventualityForm < BaseForm
 
   validate :validate_state
   validate :beneficiary_insured
+  validate :beneficiary_has_coverage
 
   def initialize(args: {}, eventuality: nil, state_change: nil)
     super(args)
@@ -109,6 +110,12 @@ class EventualityForm < BaseForm
     return true if customer.is_insured
 
     raise StandardError.new, 'El beneficiario no se encuentra asegurado'
+  end
+
+  def beneficiary_has_coverage
+    return true if customer.coverage < customer.coverage_reference
+
+    raise StandardError.new, 'El beneficiario no tiene covertura suficiente'
   end
 
   def customer
