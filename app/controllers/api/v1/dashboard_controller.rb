@@ -76,10 +76,11 @@ module Api
       end
 
       def scale_consumption_graph
+        events = Eventuality.where(date: set_interval(params[:scale_consumption_interval])).ids
         @scale_consumption_graph ||= EventualityExpense.select('scale_id, count(scale_id) as scale_count, (select title from '\
                                                                'scales where id = eventuality_expenses.scale_id) as title, '\
                                                                'sum(amount) as total')
-                                                       .where(created_at: set_interval(params[:scale_consumption_interval]))
+                                                       .where(eventuality_id: events)
                                                        .order(:scale_count)
                                                        .group(:scale_id)
                                                        .limit(10)
