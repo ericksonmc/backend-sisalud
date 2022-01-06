@@ -15,6 +15,7 @@ class EventualityForm < BaseForm
               :eventuality_expense_manuals_attributes
 
   validate :validate_state
+  validate :beneficiary_insured
 
   def initialize(args: {}, eventuality: nil, state_change: nil)
     super(args)
@@ -102,6 +103,12 @@ class EventualityForm < BaseForm
     errors.add(:closed, 'Esta eventualidad esta cerrada o cancelada')
 
     raise StandardError.new, 'Esta eventualidad esta cerrada o cancelada'
+  end
+
+  def beneficiary_insured
+    return true if customer.is_insured
+
+    raise StandardError.new, 'El beneficiario no se encuentra asegurado'
   end
 
   def customer

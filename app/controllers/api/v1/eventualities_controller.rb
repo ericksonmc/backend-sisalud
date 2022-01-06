@@ -30,6 +30,8 @@ module Api
         render json: { message: 'Ocurrio un error al crear el item',
                        erros: @form.errors.messages,
                        status: 'fail' }, status: 400 and return
+      rescue Exception => e
+        render json: { message: e }, status: 400 and return
       end
 
       def show
