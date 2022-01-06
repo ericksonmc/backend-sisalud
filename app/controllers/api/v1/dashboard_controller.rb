@@ -18,9 +18,9 @@ module Api
       end
 
       def payment_fee_total
-        @payment_feed_total ||= Customer.all.reduce(0) do |memo, data|
+        @payment_fee_total ||= Customer.where(is_insured: true).reduce(0) do |memo, data|
           if data.payment_fee.present?
-            memo + data.payment_fee.to_f 
+            memo + data.payment_fee.to_f
           else
             memo + data&.plan&.payment_fee.to_f
           end
