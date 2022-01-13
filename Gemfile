@@ -31,6 +31,8 @@ gem "sentry-rails"
 
 gem "audited", "~> 5.0"
 
+gem 'kaminari'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -46,6 +48,9 @@ gem 'httparty'
 gem 'figaro'
 
 gem 'aasm'
+
+gem 'caxlsx'
+gem 'caxlsx_rails'
 
 group :development, :test do
   gem 'rspec-rails'

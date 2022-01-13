@@ -247,9 +247,6 @@ unless Company.all.present?
                           coverage_items: coverage_items_plata_empleado, payment_fee: 12,
                           title: 'Plata Empleado', age_limit: nil, age_min: nil, own: true })
 end
-if Customer.all.present?
-  child = Customer.create(firstname: 'Mohammad Heath',second_name: 'Eaton',last_name: 'Larsen',dni: '22123456',birthday: '1995-05-04', age: 26,sex: 0,size: 'M',parent_id: Customer.first.id,plan_id: Plan.first.id,is_insured: true,customer_code: '02')
-end
 
 unless State.all.present?
   response = HTTParty.get('https://raw.githubusercontent.com/zokeber/venezuela-json/master/venezuela.json')
@@ -280,6 +277,7 @@ end
 # admin_dashboars: 4,
 # scales: 5,
 # }
+
 sections = [
   { name: 'list_products', pretty_name: 'Productos', module_name: 0 },
   { name: 'plans', pretty_name: 'Planes', module_name: 1 },
@@ -290,10 +288,6 @@ sections = [
   { name: 'edit_users', pretty_name: 'Editar Usuarios', module_name: 2 },
   { name: 'delete_users', pretty_name: 'Eliminar Usuarios', module_name: 2 },
   { name: 'customers', pretty_name: 'Clientes', module_name: 3 },
-  { name: 'create_customers', pretty_name: 'Crear Clientes', module_name: 3 },
-  { name: 'show_customers', pretty_name: 'Ver Cliente', module_name: 3 },
-  { name: 'delete_customers', pretty_name: 'Eliminar Cliente', module_name: 3 },
-  { name: 'authorize_customers', pretty_name: 'Autorizar Clientes', module_name: 3 },
   { name: 'edit_customers', pretty_name: 'Editar Clientes', module_name: 3 },
   { name: 'list_scales', pretty_name: 'Baremo', module_name: 5 },
   { name: 'create_scales', pretty_name: 'Crear Items Baremo', module_name: 5 },
@@ -302,7 +296,18 @@ sections = [
   { name: 'create_eventualities', pretty_name: 'Crear eventualidades', module_name: 6 },
   { name: 'edit_eventualities', pretty_name: 'Editar eventualidades', module_name: 6 },
   { name: 'expenses_eventualities', pretty_name: 'Eventualidad agregar items Baremo', module_name: 6 },
-  { name: 'ignore_scale_limit_eventualities', pretty_name: 'Eventualidad ignorar limite item baremo', module_name: 6 }
+  { name: 'expenses_manual_eventualities', pretty_name: 'Eventualidad agregar items manuales', module_name: 6 },
+  { name: 'ignore_scale_limit_eventualities', pretty_name: 'Eventualidad ignorar limite item baremo', module_name: 6 },
+  { name: 'reopen_eventualities', pretty_name: 'Reabrir eventualidades', module_name: 6 },
+  { name: 'scale_usage_reports', pretty_name: 'Reporte del uso del baremo', module_name: 7 },
+  { name: 'agreements', pretty_name: 'Contratos', module_name: 8 },
+  { name: 'create_agreements', pretty_name: 'Crear Contratos', module_name: 8 },
+  { name: 'show_agreements', pretty_name: 'Ver Contrato', module_name: 8 },
+  { name: 'delete_agreements', pretty_name: 'Eliminar Contrato', module_name: 8 },
+  { name: 'authorize_agreements', pretty_name: 'Autorizar Contratos', module_name: 8 },
+  { name: 'edit_agreements', pretty_name: 'Editar Contratos', module_name: 8 },
+  { name: 'edit_plan_values_agreements', pretty_name: 'Editar cobertura y costo del plan por beneficiario', module_name: 8 },
+  { name: 'dashboard', pretty_name: 'Dashboard', module_name: 4 }
 ]
 existing_sections = Section.all.pluck(:name)
 new_sections = sections.reject { |s| existing_sections.include?(s[:name]) }

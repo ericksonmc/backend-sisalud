@@ -2,7 +2,7 @@
 
 class AgreementForm < BaseForm
   attr_reader :args, :customer, :user
-  
+
   attr_accessor :state_change
 
   attr_writer :agreement_number,
@@ -13,7 +13,8 @@ class AgreementForm < BaseForm
               :customer_id,
               :user_id
 
-  def initialize(args: {}, customer: nil, user: nil, signed_date: nil, user_id: nil, state_change: nil)
+  def initialize(args: {}, customer: nil, user: nil, signed_date: nil, user_id: nil,
+                 state_change: nil)
     super(args)
     @args = args
     @customer = customer
@@ -93,13 +94,13 @@ class AgreementForm < BaseForm
   def set_insurance_period
     return unless @new_record
 
-    @agreement.signed_date = "#{@agreement.signed_date}/#{@agreement.signed_date + 1.year}"
+    @agreement.insurance_period = "#{@agreement.signed_date}/#{@agreement.signed_date + 1.year}"
   end
 
   def calculate_amount
-    amount = @customer.is_insured ? @customer.plan.payment_fee.to_f : 0
+    amount = @customer.is_insured ? @customer.payment_fee.to_f : 0
     @customer.childs.each do |child|
-      amount += child.plan.payment_fee.to_f
+      amount += child.payment_fee.to_f
     end
     amount
   end

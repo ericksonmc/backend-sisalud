@@ -34,6 +34,11 @@ es:
       pending: Pendiente
       closed: Cerrada
       cancelled: Cancelada
+      reopened: Reabierto
+    event_type:
+      emergency: Emergencia
+      medical_consultation: Consulta Medica
+      specialized_medical_consultation: Consulta Medica Especializada
   user:
     role:
       super_admin: Super Amdin

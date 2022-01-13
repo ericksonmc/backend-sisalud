@@ -17,6 +17,7 @@ json.customer do
   json.birthday @agreement.customer.birthday
   json.coverage @agreement.customer.coverage
   json.coverage_reference @agreement.customer.coverage_reference
+  json.payment_fee @agreement.customer.payment_fee
   json.customer_code @agreement.customer.customer_code
   json.dni @agreement.customer.dni
   json.email @agreement.customer.email
@@ -62,6 +63,7 @@ json.customer do
     json.plan_id child.plan_id
     json.coverage child.coverage
     json.coverage_reference child.coverage_reference
+    json.payment_fee child.payment_fee
     json.diseases child.diseases do |disease|
       json.other_description disease.other_description(child)
       json.has_description disease.has_description

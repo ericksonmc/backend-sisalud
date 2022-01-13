@@ -1,0 +1,37 @@
+wb = xlsx_package.workbook
+header = wb.styles.add_style(
+  { alignment: { horizontal: :center, vertical: :center, wrap_text: true },
+    border: { style: :thin, color: '000000' } }
+)
+
+wb.add_worksheet(name: 'Consumo del baremo') do |sheet|
+  sheet.add_row [
+    'Item',
+    'Cantidad',
+    'Total'
+  ], style: header
+
+  @scales_services.each do |event|
+    sheet.add_row [
+      event[0],
+      event[1],
+      event[2]
+    ]
+  end
+  sheet.add_row [nil.to_s, nil.to_s, @scales_services.reduce(0) { |memo, data| memo + data[2].to_f }]
+end
+
+wb.add_worksheet(name: 'Consumo Grafico') do |sheet|
+  sheet.add_row ['Uso de los items del baremo', 'Cantidad', 'total'], style: header
+
+  @scales_services.each do |data|
+    sheet.add_row data
+  end
+  sheet.add_row [nil.to_s, nil.to_s, @scales_services.reduce(0) { |memo, data| memo + data[2].to_f }]
+
+  sheet.add_chart(Axlsx::Pie3DChart, start_at: 'E2', end_at: "O#{@scales_services.count + 10}") do |chart|
+    chart.add_series data: sheet["B2:B#{@scales_services.count + 1}"],
+                     labels: sheet["A2:A#{@scales_services.count + 1}"],
+                     title: sheet['A1']
+  end
+end

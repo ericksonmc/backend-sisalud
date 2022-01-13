@@ -1,0 +1,58 @@
+wb = xlsx_package.workbook
+header = wb.styles.add_style(
+  { alignment: { horizontal: :center, vertical: :center, wrap_text: true },
+    border: { style: :thin, color: '000000' } }
+)
+
+wb.add_worksheet(name: 'Clientes') do |sheet|
+  sheet.add_row [
+    'Cliente',
+    'Estado',
+    'Monto',
+    'Fecha',
+    'Tipo',
+    'Observaciones',
+    'Clave'
+  ], style: header
+
+  @eventualities.each do |event|
+    sheet.add_row [
+      event.customer.full_name,
+      I18n.t("eventuality.status.#{event.aasm_state}"),
+      event.amount.to_f,
+      event.date,
+      I18n.t("eventuality.event_type.#{event.event_type}"),
+      event.observations,
+      event.password
+    ]
+  end
+  sheet.add_row [nil.to_s, nil.to_s, @eventualities.sum(:amount).to_f]
+end
+
+wb.add_worksheet(name: 'Tipos de Eventualidades') do |sheet|
+  sheet.add_row ['Uso por tipos de eventualidades','Cantidad'], style: header
+
+  @pie_data.each do |data|
+    sheet.add_row data
+  end
+
+  sheet.add_chart(Axlsx::Pie3DChart, start_at: 'D2', end_at: 'J16') do |chart|
+    chart.add_series data: sheet["B2:B#{@pie_data.count + 1}"],
+                     labels: sheet["A2:A#{@pie_data.count + 1}"],
+                     title: sheet['A1']
+  end
+end
+
+wb.add_worksheet(name: 'Items del baremos mas usados') do |sheet|
+  sheet.add_row ['Uso por tipos de eventualidades', 'Cantidad'], style: header
+
+  @scale_consumption.each do |data|
+    sheet.add_row data
+  end
+
+  sheet.add_chart(Axlsx::Pie3DChart, start_at: 'D2', end_at: 'L18') do |chart|
+    chart.add_series data: sheet["B2:B#{@scale_consumption.count + 1}"],
+                     labels: sheet["A2:A#{@scale_consumption.count + 1}"],
+                     title: sheet['A1']
+  end
+end

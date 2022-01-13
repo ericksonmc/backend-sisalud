@@ -23,6 +23,7 @@ class CustomerForm < BaseForm
               :main,
               :parent_id,
               :phone,
+              :payment_fee,
               :plan_id,
               :second_name,
               :secondary_phone,
@@ -57,7 +58,7 @@ class CustomerForm < BaseForm
   end
 
   def before_validation
-    assign_attributes_to_admin_user
+    assign_attributes_to_admin_user unless new_record
   end
 
   private
@@ -87,6 +88,8 @@ class CustomerForm < BaseForm
     return if @childs.blank?
 
     @childs[:childs].each do |child|
+      Customer.find(child['id'])&.destroy && next if child['_destroy'].present?
+
       if child['id'].to_i.zero?
         customer = @customer.childs.create(child.except('id'))
       else
@@ -101,7 +104,7 @@ class CustomerForm < BaseForm
 
   def set_coverage_to_childs
     @customer.childs.each do |child|
-      child.coverage_reference = child.plan.coverage
+      child.coverage_reference = child.coverage_reference
       child.coverage = amount_coverage(child)
       child.save!
     end
@@ -110,7 +113,7 @@ class CustomerForm < BaseForm
   def set_insurance_data
     return unless @customer.plan_id.present?
 
-    @customer.coverage_reference = @customer.plan.coverage
+    @customer.coverage_reference = @customer.coverage_reference
     @customer.coverage = amount_coverage(@customer)
   end
 

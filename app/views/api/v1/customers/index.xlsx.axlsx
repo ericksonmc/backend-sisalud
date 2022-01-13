@@ -1,0 +1,55 @@
+wb = xlsx_package.workbook # create excel book
+
+wb.add_worksheet(name: 'Clientes') do |sheet|
+  header = wb.styles.add_style({ alignment: { horizontal: :center, vertical: :center, wrap_text: true }, border: { style: :thin, color: '000000' } })
+
+  sheet.add_row [
+    '#',
+    'Nombre Completo',
+    'Actividad',
+    'Edad',
+    'Fecha de Nacimiento',
+    'Total Consumido',
+    'Cobertura',
+    'Cobertura Restante',
+    'CI/RIF',
+    'Correo',
+    'Esta Asegurado?',
+    'Representante Legal',
+    'Titular',
+    'Importe Mensual',
+    'Telefono',
+    'Telefono Secundario',
+    'Sexo',
+    'Talla',
+    'Peso',
+    'Plan'
+  ], style: header
+
+  @customers.each_with_index do |customer, index|
+    sheet.add_row [
+      index + 1,
+      customer.full_name,
+      customer.activity,
+      customer.age,
+      customer.birthday,
+      customer.coverage,
+      customer.coverage_reference,
+      customer.remaining_coverage,
+      customer.dni,
+      customer.email,
+      customer.is_insured ? 'Si' : 'No',
+      customer.legal_representative,
+      customer.main,
+      customer.payment_fee,
+      customer.phone,
+      customer.secondary_phone,
+      customer.sex,
+      customer.size,
+      customer.weight,
+      customer.plan.title
+    ]
+  end
+
+  sheet.add_row [nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,@customers.sum(:coverage),nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s,nil.to_s]
+end

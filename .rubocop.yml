@@ -11,6 +11,7 @@
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, no_empty_lines
 AllCops:
+  TargetRubyVersion: 3.0.0
   NewCops: enable
   RubyInterpreters:
     - ruby
@@ -156,7 +157,9 @@ Layout/EmptyLinesAroundBlockBody:
     - 'db/schema.rb'
 Metrics/ClassLength:
   Max: 150
-
+Metrics/ParameterLists:
+  Exclude:
+    - 'app/forms/agreement_form.rb'
 Lint/RescueException:
   Enabled: false
 

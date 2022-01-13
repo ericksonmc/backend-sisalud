@@ -11,7 +11,7 @@
 #
 class Section < ApplicationRecord
   enum module_name: { products: 0, plans: 1, users: 2, customers: 3, admin_dashboars: 4, scales: 5,
-                      eventualities: 6 }
+                      eventualities: 6, reports: 7, agreements: 8 }
 
   has_many :permissions
 

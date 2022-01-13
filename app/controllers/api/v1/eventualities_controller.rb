@@ -5,11 +5,20 @@ module Api
     class EventualitiesController < ApiController
       include Rails.application.routes.url_helpers
       def index
-        condition = {}
-        condition[:date] = params[:date].present? ? params[:date].to_time.all_day : Time.now.all_day
-        condition[:agreement_id] = agreement_ids if agreement_ids.present?
+        filters = set_filters
+        @eventualities = Eventuality.where(filters)
+        @pie_data = char_data
+        @scale_consumption = scale_consumption
 
-        @eventualities = Eventuality.where(condition)
+        respond_to do |format|
+          format.json
+          format.xlsx {
+            render xlsx: "clientes_#{Time.now.to_i}",
+                   template: 'api/v1/eventualities/index.xlsx.axlsx',
+                   filename: 'Eventualidades_SIPCA',
+                   disposition: 'inline'
+          }
+        end
       end
 
       def create
@@ -21,6 +30,8 @@ module Api
         render json: { message: 'Ocurrio un error al crear el item',
                        erros: @form.errors.messages,
                        status: 'fail' }, status: 400 and return
+      rescue Exception => e
+        render json: { message: e }, status: 400 and return
       end
 
       def show
@@ -59,9 +70,35 @@ module Api
           :agreement_id,
           :customer_id,
           :date,
+          :date_to,
           :invoice_image,
-          eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id]
+          eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id],
+          eventuality_expense_manuals_attributes: [:id, :title, :amount, :eventuality_id]
         )
+      end
+
+      def set_filters
+        filters = {}
+        filters[:date] = params[:date_to].present? ? date_range : date_param
+        filters[:agreement_id] = agreement_ids if agreement_ids.present?
+        filters[:event_type] = params[:event_type] if params[:event_type].present?
+        filters[:customer_id] = params[:customer_id].to_i if params[:customer_id].present?
+        filters.delete(:date) if filters[:date].nil?
+        filters
+      end
+
+      def date_range
+        return unless event_params[:date_to].present?
+
+        date_from = event_params[:date].to_time.beginning_of_day
+        date_to = event_params[:date_to].to_time.end_of_day
+
+        [date_from..date_to]
+      end
+
+      def date_param
+        return if event_params[:customer_id].present? and !event_params[:date].present?
+        event_params[:date].present? ? event_params[:date].to_time.all_day : Time.now.all_day
       end
 
       def agreement_ids
@@ -83,6 +120,20 @@ module Api
       def eventuality
         id = params[:id] || params[:eventuality_id]
         @eventuality ||= Eventuality.find(id)
+      end
+
+      def char_data
+        @eventualities&.select('event_type as label, count(event_type) as value')
+                      &.group(:label)
+                      &.order(:value)
+                      &.map { |event| [pretty_key_event(event.label), event.value] }
+      end
+
+      def scale_consumption
+        EventualityExpense.select('scale_id, count(scale_id) as scale_count, (select title from '\
+                                  'scales where id = eventuality_expenses.scale_id) as title')
+                          .where(eventuality_id: @eventualities.ids)
+                          .order(:scale_count).group(:scale_id).map { |i| [i.title, i.scale_count] }
       end
     end
   end

@@ -4,12 +4,68 @@ module Api
   module V1
     class CustomersController < ApiController
       before_action :check_filter
+
+      def index
+        per = params[:per] || 20
+        page = params[:page]
+
+        if params[:filter].present?
+          @customers = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
+                                      "or last_name ilike '%#{filter_split[1]}%'")
+        else
+          @customers = Customer.all.order(:id)
+        end
+
+        per = @customers.count if params[:per] == 'todos'
+
+        @pagination = @customers.page(page).per(per)
+
+        respond_to do |format|
+          format.json
+          format.xlsx {
+            render xlsx: "clientes_#{Time.now.to_i}",
+                   template: 'api/v1/customers/index.xlsx.axlsx',
+                   filename: "clientes_#{Time.now.to_i}_SIPCA",
+                   disposition: 'inline'
+          }
+        end
+      end
+
+      def eventualities
+        @eventualities = customer.act_events
+        @pie_data = @eventualities&.select('event_type as label, count(event_type) as value')
+                                  &.group(:label)
+                                  &.order(:value)
+                                  &.map { |event| [pretty_key_event(event.label), event.value] }
+
+        respond_to do |format|
+          format.json
+          format.xlsx {
+            render xlsx: "clientes_#{Time.now.to_i}",
+                   template: 'api/v1/customers/eventualities.xlsx.axlsx',
+                   filename: "cliente_#{customer.full_name}_#{Time.now.to_i}_SIPCA",
+                   disposition: 'inline'
+          }
+        end
+      end
+
+      def update
+        unless customer.present?
+          render json: { message: 'CLiente no encontrado' }, status: 400 and return
+        end
+
+        customer_form = SingleCustomerForm.new(args: customer_param, customer: customer)
+
+        render json: { message: 'Cliente actualziado con exito' } if customer_form.save!
+      end
+
       def filter_customer
         @customers = []
 
         case @filter_type
         when 'name'
-          @records = Customer.where("firstname ilike '%#{filter_split[0]}%' or last_name ilike '%#{filter_split[1]}%'")
+          @records = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
+                                    "or last_name ilike '%#{filter_split[1]}%'")
           @records.each do |b|
             b.holder? ? @customers << b : @customers << b.parent
           end
@@ -30,6 +86,36 @@ module Api
 
       private
 
+      def customer_param
+        params.permit(
+          :activity,
+          :address,
+          :age,
+          :birthday,
+          :childs,
+          :coverage,
+          :coverage_reference,
+          :customer_code,
+          :dni,
+          :diagnosis,
+          :email,
+          :firstname,
+          :is_insured,
+          :last_name,
+          :legal_representative,
+          :main,
+          :parent_id,
+          :phone,
+          :payment_fee,
+          :plan_id,
+          :second_name,
+          :secondary_phone,
+          :sex,
+          :size,
+          :weight
+        )
+      end
+
       def scale_quantity
         scales.where(id: actual_expenses.pluck(:scale_id).uniq).map do |scale|
           {
@@ -42,7 +128,8 @@ module Api
       end
 
       def customer
-        @customer ||= Customer.find(params[:customer_id])
+        customer_id = params[:customer_id] || params[:id]
+        @customer ||= Customer.find(customer_id)
       end
 
       def actual_expenses

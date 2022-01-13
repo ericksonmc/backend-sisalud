@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_215920) do
+ActiveRecord::Schema.define(version: 2021_12_18_211657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_215920) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "weight"
     t.datetime "deleted_at"
+    t.float "payment_fee"
     t.index ["deleted_at"], name: "index_customers_on_deleted_at"
     t.index ["dni"], name: "index_customers_on_dni"
     t.index ["email"], name: "index_customers_on_email"
@@ -167,12 +168,23 @@ ActiveRecord::Schema.define(version: 2021_12_03_215920) do
     t.index ["customer_id"], name: "index_eventualities_on_customer_id"
   end
 
+  create_table "eventuality_expense_manuals", force: :cascade do |t|
+    t.float "amount"
+    t.bigint "eventuality_id", null: false
+    t.string "title"
+    t.boolean "charged", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["eventuality_id"], name: "index_eventuality_expense_manuals_on_eventuality_id"
+  end
+
   create_table "eventuality_expenses", force: :cascade do |t|
     t.bigint "eventuality_id", null: false
     t.bigint "scale_id", null: false
     t.float "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "charged", default: false
     t.index ["eventuality_id"], name: "index_eventuality_expenses_on_eventuality_id"
     t.index ["scale_id"], name: "index_eventuality_expenses_on_scale_id"
   end
@@ -281,6 +293,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_215920) do
   add_foreign_key "customers", "plans"
   add_foreign_key "eventualities", "agreements"
   add_foreign_key "eventualities", "customers"
+  add_foreign_key "eventuality_expense_manuals", "eventualities"
   add_foreign_key "eventuality_expenses", "eventualities"
   add_foreign_key "eventuality_expenses", "scales"
   add_foreign_key "municipalities", "states"

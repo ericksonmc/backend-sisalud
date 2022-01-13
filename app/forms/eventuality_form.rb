@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventualityForm < BaseForm
-  attr_reader :args
+  attr_reader :args, :new_record
 
   attr_accessor :state_change
 
@@ -11,9 +11,12 @@ class EventualityForm < BaseForm
               :agreement_id,
               :customer_id,
               :date,
-              :eventuality_expenses_attributes
+              :eventuality_expenses_attributes,
+              :eventuality_expense_manuals_attributes
 
   validate :validate_state
+  validate :beneficiary_insured
+  validate :beneficiary_has_coverage
 
   def initialize(args: {}, eventuality: nil, state_change: nil)
     super(args)
@@ -25,7 +28,7 @@ class EventualityForm < BaseForm
   end
 
   def before_validation
-    assign_attributes_to_model unless @new_record
+    assign_attributes_to_model unless new_record
     create_base_expense
     parse_date
   end
@@ -48,8 +51,15 @@ class EventualityForm < BaseForm
     when 'close'
       @eventuality.close!
       update_coverage
+      update_expenses
     when 'cancelled'
       @eventuality.cancel!
+    when 'reopen'
+      @eventuality.reopen!
+    when 'close_again'
+      @eventuality.close_again!
+      update_coverage
+      update_expenses
     end
   end
 
@@ -70,8 +80,12 @@ class EventualityForm < BaseForm
     set_amount
   end
 
+  def update_expenses
+    @eventuality.set_charded_expenses
+  end
+
   def set_amount
-    @eventuality.update(amount: total)
+    @eventuality.update(amount: @eventuality.amount.to_f + total)
   end
 
   def total
@@ -83,9 +97,25 @@ class EventualityForm < BaseForm
 
     return true if @eventuality.pending?
 
+    return true if state_change['state_change'] == 'reopen'
+
+    return true if @eventuality.reopened?
+
     errors.add(:closed, 'Esta eventualidad esta cerrada o cancelada')
 
     raise StandardError.new, 'Esta eventualidad esta cerrada o cancelada'
+  end
+
+  def beneficiary_insured
+    return true if customer.is_insured
+
+    raise StandardError.new, 'El beneficiario no se encuentra asegurado'
+  end
+
+  def beneficiary_has_coverage
+    return true if customer.coverage < customer.coverage_reference
+
+    raise StandardError.new, 'El beneficiario no tiene covertura suficiente'
   end
 
   def customer
