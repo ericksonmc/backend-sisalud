@@ -42,7 +42,8 @@ module Api
       end
 
       def emergency_eventualities
-        @emergency_eventualities ||= Eventuality.emergencies.order(id: :DESC).limit(10).map do |event|
+        @emergency_eventualities ||= Eventuality.joins(:customer).where(customer: { deleted_at: nil })
+                                                .order(id: :DESC).limit(10).map do |event|
           {
             agreement_id: event.customer&.act_agreement&.id,
             customer: event.customer.full_name,
