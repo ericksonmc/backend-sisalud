@@ -307,6 +307,7 @@ sections = [
   { name: 'authorize_agreements', pretty_name: 'Autorizar Contratos', module_name: 8 },
   { name: 'edit_agreements', pretty_name: 'Editar Contratos', module_name: 8 },
   { name: 'edit_plan_values_agreements', pretty_name: 'Editar cobertura y costo del plan por beneficiario', module_name: 8 },
+  { name: 'edit_delete_beneficiaries_agreements', pretty_name: 'Remover beneficiarios al editar contrato', module_name: 8 },
   { name: 'dashboard', pretty_name: 'Dashboard', module_name: 4 }
 ]
 existing_sections = Section.all.pluck(:name)
