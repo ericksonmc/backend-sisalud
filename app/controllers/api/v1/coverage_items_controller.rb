@@ -4,7 +4,7 @@ module Api
   module V1
     class CoverageItemsController < ApiController
       def index
-        render json: CoverageItem.all
+        render json: CoverageItem.all.order(:id)
       end
 
       def create

@@ -28,5 +28,6 @@ class Plan < ApplicationRecord
   belongs_to :product
   has_many :coverage_items_plans, dependent: :destroy
 
-  accepts_nested_attributes_for :coverage_items_plans
+  accepts_nested_attributes_for :coverage_items_plans,
+                                :allow_destroy => true
 end
