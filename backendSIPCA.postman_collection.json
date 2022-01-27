@@ -759,6 +759,48 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Customers [PUT]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQxMjIyNDA4LCJleHAiOjE2NDM4MTQ0MDgsImp0aSI6ImY2YjQwYjViLWM1YjMtNDAyNy05MzQ1LWVkNWQzZDQyOTI1YiJ9.IUV8qjGb33__-WEPrTPHSILNJJ1R1tcJvME57tik4HM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_insured\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/customers/189",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"189"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1322,14 +1364,14 @@
 			"response": []
 		},
 		{
-			"name": "Plan",
+			"name": "Plan [Modificado]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjMwMDE2MDU2LCJleHAiOjE2MzI2MDgwNTYsImp0aSI6IjIxMDA3OGUzLTZkMDgtNDI5YS1iYzcyLTEyMTZhZGU4ODBlYiJ9.4Vb53ofTEheATdHzM_nhCnKr6MB2BxFish8kd3dgAK8",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQxMjIyNDA4LCJleHAiOjE2NDM4MTQ0MDgsImp0aSI6ImY2YjQwYjViLWM1YjMtNDAyNy05MzQ1LWVkNWQzZDQyOTI1YiJ9.IUV8qjGb33__-WEPrTPHSILNJJ1R1tcJvME57tik4HM",
 							"type": "string"
 						}
 					]
@@ -1344,7 +1386,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": null,\n    \"title\": \"sad\",\n    \"coverage\": \"20000\",\n    \"payment_fee\": \"50\",\n    \"coverage_items\": [\n        {\n            \"pe\": 3,\n            \"title\": \"Hospitalización\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"UCI\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 12,\n            \"title\": \"Cirugía Electiva\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Cirugía de Emergencia\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 12,\n            \"title\": \"Maternidad\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Servicios de Emergencias\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Consultas Básicas\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Consultas Especializadas\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Servicios de Odontología Básica\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Rayos X\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"Mamografía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 3,\n            \"title\": \"Tomografía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Exámenes Lab. Básicos\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 3,\n            \"title\": \"Exámenes Lab. Especiales\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Ecogramas Básicos\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 3,\n            \"title\": \"Exámenes Especiales\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Electrocardiograma\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Ecocardiograma, Mapa, Holter\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"Gastroscopía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"Colonoscopía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 12,\n            \"title\": \"Mastología\",\n            \"value\": 0\n        }\n    ],\n    \"product_id\": 1,\n    \"created_at\": \"2021-08-26T21:08:30.409+00:00\",\n    \"updated_at\": \"2021-08-26T21:08:30.409+00:00\",\n    \"age_min\": 61,\n    \"age_limit\": 60\n}"
+					"raw": "{\n    \"title\": \"sad\",\n    \"coverage\": \"20000\",\n    \"payment_fee\": \"50\",\n    \"product_id\": 1,\n    \"age_min\": 61,\n    \"age_limit\": 90,\n    \"coverage_items_plans_attributes\": [\n        {\n            \"coverage_item_id\": 15,\n            \"waiting_period\": 6,\n            \"coverage\": 100\n        }\n    ]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/plans",
@@ -1363,22 +1405,19 @@
 			"response": []
 		},
 		{
-			"name": "Plan Copy",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Coverage Items",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI5NzgzNzE1LCJleHAiOjE2MzIzNzU3MTUsImp0aSI6IjA1MmQ5NzM0LWUxZmItNDE1Ni1hZmU0LWY5YTFhYTRlNGFkNSJ9.-pCDJYwC3NoaEmdS5RprdbktvqPf7a76PxDVwdUiqVM",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQxMjIyNDA4LCJleHAiOjE2NDM4MTQ0MDgsImp0aSI6ImY2YjQwYjViLWM1YjMtNDAyNy05MzQ1LWVkNWQzZDQyOTI1YiJ9.IUV8qjGb33__-WEPrTPHSILNJJ1R1tcJvME57tik4HM",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -1388,10 +1427,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": null,\n    \"title\": \"sad\",\n    \"coverage\": \"20000\",\n    \"payment_fee\": \"50\",\n    \"coverage_items\": [\n        {\n            \"pe\": 3,\n            \"title\": \"Hospitalización\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"UCI\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 12,\n            \"title\": \"Cirugía Electiva\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Cirugía de Emergencia\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 12,\n            \"title\": \"Maternidad\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Servicios de Emergencias\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Consultas Básicas\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Consultas Especializadas\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Servicios de Odontología Básica\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Rayos X\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"Mamografía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 3,\n            \"title\": \"Tomografía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Exámenes Lab. Básicos\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 3,\n            \"title\": \"Exámenes Lab. Especiales\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Ecogramas Básicos\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 3,\n            \"title\": \"Exámenes Especiales\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Electrocardiograma\",\n            \"value\": 100\n        },\n        {\n            \"pe\": \"\",\n            \"title\": \"Ecocardiograma, Mapa, Holter\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"Gastroscopía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 6,\n            \"title\": \"Colonoscopía\",\n            \"value\": 100\n        },\n        {\n            \"pe\": 12,\n            \"title\": \"Mastología\",\n            \"value\": 0\n        }\n    ],\n    \"product_id\": 1,\n    \"created_at\": \"2021-08-26T21:08:30.409+00:00\",\n    \"updated_at\": \"2021-08-26T21:08:30.409+00:00\",\n    \"age_min\": 61,\n    \"age_limit\": 60\n}"
+					"raw": "{\n    \"title\": \"Covid-19\",\n    \"scale_items\": []\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/v1/plans",
+					"raw": "http://localhost:3000/api/v1/coverage_items",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1400,7 +1439,7 @@
 					"path": [
 						"api",
 						"v1",
-						"plans"
+						"coverage_items"
 					]
 				}
 			},
@@ -1908,6 +1947,50 @@
 						"v1",
 						"agreements",
 						"42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Coverage Items index",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjQxMjIyNDA4LCJleHAiOjE2NDM4MTQ0MDgsImp0aSI6ImY2YjQwYjViLWM1YjMtNDAyNy05MzQ1LWVkNWQzZDQyOTI1YiJ9.IUV8qjGb33__-WEPrTPHSILNJJ1R1tcJvME57tik4HM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Covid-19\",\n    \"scale_items\": []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/coverage_items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"coverage_items"
 					]
 				}
 			},

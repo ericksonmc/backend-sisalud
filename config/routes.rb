@@ -46,6 +46,8 @@ Rails.application.routes.draw do
         get :eventuality_types_graph, on: :collection
         get :scale_consumption_graph, on: :collection
       end
+
+      resources :coverage_items, except: [:destroy]
     end
   end
 end

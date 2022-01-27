@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_211657) do
+ActiveRecord::Schema.define(version: 2022_01_26_235716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,24 @@ ActiveRecord::Schema.define(version: 2021_12_18_211657) do
     t.string "rif"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "coverage_items", force: :cascade do |t|
+    t.string "title"
+    t.jsonb "scale_items", default: []
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "coverage_items_plans", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "coverage_item_id", null: false
+    t.integer "waiting_period"
+    t.integer "coverage"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coverage_item_id"], name: "index_coverage_items_plans_on_coverage_item_id"
+    t.index ["plan_id"], name: "index_coverage_items_plans_on_plan_id"
   end
 
   create_table "customer_diseases", force: :cascade do |t|
@@ -287,6 +305,8 @@ ActiveRecord::Schema.define(version: 2021_12_18_211657) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agreements", "customers"
   add_foreign_key "agreements", "users"
+  add_foreign_key "coverage_items_plans", "coverage_items"
+  add_foreign_key "coverage_items_plans", "plans"
   add_foreign_key "customer_diseases", "customers"
   add_foreign_key "customer_diseases", "diseases"
   add_foreign_key "customers", "customers", column: "parent_id"

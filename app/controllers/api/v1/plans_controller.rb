@@ -48,7 +48,8 @@ module Api
 
       def plan_params
         params.permit(:age_limit, :age_min, :coverage, :own, :payment_fee, :product_id, :title,
-                      coverage_items: [:title, :value, :pe])
+                      coverage_items_plans_attributes: [:id, :coverage, :waiting_period,
+                                                        :coverage_item_id, :plan_id])
       end
 
       def find_plan

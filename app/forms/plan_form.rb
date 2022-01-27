@@ -10,7 +10,8 @@ class PlanForm < BaseForm
               :own,
               :payment_fee,
               :product_id,
-              :title
+              :title,
+              :coverage_items_plans_attributes
 
   validate :age_min_less_max
 
@@ -23,7 +24,7 @@ class PlanForm < BaseForm
   end
 
   def before_validation
-    assign_attributes_to_admin_user
+    assign_attributes_to_admin_user unless @new_record
   end
 
   private
