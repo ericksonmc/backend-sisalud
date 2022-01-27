@@ -85,8 +85,7 @@ module Api
       end
 
       def customer_scales_uses
-        @coverage_items = CoverageItem.all
-        @scales = Scale.all.map do |scale|
+        @scales = Scale.all.order(:id).map do |scale|
           {
             id: scale.id,
             amount: scale.amount,
@@ -109,13 +108,15 @@ module Api
         coverage_item = CoverageItem.where('scale_items @> ?', [scale_id].to_json).first
         return true if coverage_item.nil?
 
-        time_to_use = customer.plan
-                              .coverage_items_plans
-                              .find_by(coverage_item_id: coverage_item.id)&.waiting_period
+        coverage_item_plan = customer.plan
+                                     .coverage_items_plans
+                                     .find_by(coverage_item_id: coverage_item.id)
 
-        return true if time_to_use.nil?
+        return false if coverage_item_plan.nil?
 
-        customer.antiquity > time_to_use
+        return true if coverage_item_plan.waiting_period.nil?
+
+        customer.antiquity > coverage_item_plan.waiting_period
       end
 
       def customer_param

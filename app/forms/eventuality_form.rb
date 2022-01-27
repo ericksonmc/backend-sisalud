@@ -35,6 +35,7 @@ class EventualityForm < BaseForm
 
   def after_save
     update_state if state_change.present?
+    update_coverage
   end
 
   private
