@@ -16,17 +16,17 @@ module Api
       end
 
       def update
-        if item.update(coverage_item_params); render json: { message: 'Item creado con exito' },
+        if coverage_item.update(coverage_item_params); render json: { message: 'Item actualizado con exito' },
                                                      status: 200 and return; end
 
-        render json: { message: 'Item ya existe', erros: item.errors.messages },
+        render json: { message: 'Item ya existe', erros: coverage_item.errors.messages },
                status: 400 and return
       end
 
       private
 
       def coverage_item_params
-        params.permit(:id, :title, :scale_items)
+        params.permit(:id, :title, scale_items: [])
       end
 
       def coverage_item
