@@ -84,7 +84,35 @@ module Api
         render json: scale_quantity
       end
 
+      def customer_scales_uses
+        @coverage_items = CoverageItem.all
+        @scales = Scale.all.map do |scale|
+          {
+            id: scale.id,
+            amount: scale.amount,
+            category: scale.category,
+            quantity: scale.quantity,
+            status: scale.status,
+            title: scale.title,
+            may_be_used: may_used(scale.id)
+          }
+        end
+
+        render json: @scales
+      end
+
       private
+
+      def may_used(scale_id)
+        return true if customer.antiquity >= 12
+
+        coverage_item = CoverageItem.where('scale_items @> ?', [scale_id].to_json).first
+        time_to_use = customer.plan
+                              .coverage_items_plans
+                              .where(coverage_item_id: coverage_item.id).waiting_period
+
+        customer.antiquity > time_to_use
+      end
 
       def customer_param
         params.permit(

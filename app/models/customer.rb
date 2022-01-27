@@ -119,4 +119,9 @@ class Customer < ApplicationRecord
 
     (coverage_reference.to_f - coverage.to_f).round(2)
   end
+
+  def antiquity
+    require 'time_difference'
+    TimeDifference.between(created_at, Time.now).in_months
+  end
 end

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
       resources :customers, only: [:index, :show, :update] do
         get :filter_customer, on: :collection
+        get :customer_scales_uses
         get :customer_scales_limit
         get :eventualities
       end
