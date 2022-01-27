@@ -107,9 +107,13 @@ module Api
         return true if customer.antiquity >= 12
 
         coverage_item = CoverageItem.where('scale_items @> ?', [scale_id].to_json).first
+        return true if coverage_item.nil?
+
         time_to_use = customer.plan
                               .coverage_items_plans
-                              .where(coverage_item_id: coverage_item.id).waiting_period
+                              .find_by(coverage_item_id: coverage_item.id)&.waiting_period
+
+        return true if time_to_use.nil?
 
         customer.antiquity > time_to_use
       end

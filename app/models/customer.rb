@@ -121,7 +121,6 @@ class Customer < ApplicationRecord
   end
 
   def antiquity
-    require 'time_difference'
     TimeDifference.between(created_at, Time.now).in_months
   end
 end
