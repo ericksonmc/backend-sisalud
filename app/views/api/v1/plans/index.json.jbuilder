@@ -7,5 +7,5 @@ json.array! @plans.each do |plan|
   json.payment_fee plan.payment_fee
   json.title plan.title
   json.product_id plan.product_id
-  json.coverage_items_plans plan.coverage_items_plans
+  json.coverage_items_plans plan.coverage_items_plans.order(:id)
 end
