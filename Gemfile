@@ -34,6 +34,9 @@ gem "audited", "~> 5.0"
 gem 'kaminari'
 
 gem 'time_difference'
+#Wicked pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

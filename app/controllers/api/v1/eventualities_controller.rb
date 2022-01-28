@@ -60,6 +60,13 @@ module Api
         end
       end
 
+      def eventuality_order
+        @eventuality = eventuality 
+        respond_to do |format|
+          format.pdf { render pdf: "eventualidad_#{eventuality.id}" }
+        end
+      end
+
       private
 
       def event_params
