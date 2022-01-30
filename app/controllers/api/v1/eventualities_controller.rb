@@ -4,7 +4,6 @@ module Api
   module V1
     class EventualitiesController < ApiController
       include Rails.application.routes.url_helpers
-      skip_before_action :authenticate_user!
       def index
         filters = set_filters
         @eventualities = Eventuality.where(filters)
@@ -58,19 +57,6 @@ module Api
         else
           render json: { message: 'Hubo un problema al guardar la factura',
                          errors: eventuality.errors.messages }, status: 400
-        end
-      end
-
-      def eventuality_order
-        @eventuality = eventuality
-
-        respond_to do |format|
-          format.json do
-            render json: @eventuality
-          end
-          format.pdf do
-            render pdf: "file_name"   # Excluding ".pdf" extension.
-          end
         end
       end
 
