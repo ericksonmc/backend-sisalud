@@ -4,6 +4,7 @@ module Api
   module V1
     class EventualitiesController < ApiController
       include Rails.application.routes.url_helpers
+      skip_before_action :authenticate_user!
       def index
         filters = set_filters
         @eventualities = Eventuality.where(filters)
@@ -11,7 +12,7 @@ module Api
         @scale_consumption = scale_consumption
 
         respond_to do |format|
-          format.json
+          format.json 
           format.xlsx {
             render xlsx: "clientes_#{Time.now.to_i}",
                    template: 'api/v1/eventualities/index.xlsx.axlsx',
@@ -61,9 +62,15 @@ module Api
       end
 
       def eventuality_order
-        @eventuality = eventuality 
+        @eventuality = eventuality
+
         respond_to do |format|
-          format.pdf { render pdf: "eventualidad_#{eventuality.id}" }
+          format.json do
+            render json: @eventuality
+          end
+          format.pdf do
+            render pdf: "file_name"   # Excluding ".pdf" extension.
+          end
         end
       end
 

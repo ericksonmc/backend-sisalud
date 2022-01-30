@@ -35,8 +35,8 @@ gem 'kaminari'
 
 gem 'time_difference'
 #Wicked pdf
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+# gem 'wicked_pdf', github: 'mileszs/wicked_pdf'
+# gem 'wkhtmltopdf-binary'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
