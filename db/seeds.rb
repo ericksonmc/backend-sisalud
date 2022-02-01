@@ -8,156 +8,156 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# coverage_items = [
-#   { title: 'Hospitalización', value: 100, pe: 3 },
-#   { title: 'Cirugía Electiva', value: 100, pe: 12 },
-#   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
-#   { title: 'Colonoscopia', value: 100, pe: 12 },
-#   { title: 'Consultas básicas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: nil },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
-#   { title: 'Ecogramas básicos', value: 100, pe: nil },
-#   { title: 'Electrocardiograma', value: 100, pe: nil },
-#   { title: 'Exámenes Especiales', value: 100, pe: 3 },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
-#   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-#   { title: 'Gastroscopia', value: 100, pe: 12 },
-#   { title: 'Mamografía', value: 100, pe: 3 },
-#   { title: 'Mastología', value: 0, pe: 12 },
-#   { title: 'Maternidad', value: 100, pe: 12 },
-#   { title: 'Rayos X', value: 100, pe: nil },
-#   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
-#   { title: 'Tomografía', value: 100, pe: 3 },
-#   { title: 'UCI', value: 100, pe: 12 }
-# ]
-# coverage_items_oro = [
-#   { title: 'Cirugía Electiva', value: 100, pe: 12 },
-#   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
-#   { title: 'Colonoscopia', value: 100, pe: 6 },
-#   { title: 'Consultas básicas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: nil },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: nil },
-#   { title: 'Ecogramas básicos', value: 100, pe: nil },
-#   { title: 'Electrocardiograma', value: 100, pe: nil },
-#   { title: 'Exámenes Especiales', value: 100, pe: 3 },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
-#   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-#   { title: 'Gastroscopia', value: 100, pe: 6 },
-#   { title: 'Hospitalización', value: 100, pe: 3 },
-#   { title: 'Mamografía', value: 100, pe: 6 },
-#   { title: 'Mastología', value: 0, pe: 12 },
-#   { title: 'Maternidad', value: 100, pe: 12 },
-#   { title: 'Rayos X', value: 100, pe: nil },
-#   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
-#   { title: 'Tomografía', value: 100, pe: 3 },
-#   { title: 'UCI', value: 100, pe: 6 }
-# ]
-# coverage_items_platino1 = [
-#   { title: 'Cirugía Electiva', value: 0, pe: nil },
-#   { title: 'Cirugía de Emergencia', value: 0, pe: nil },
-#   { title: 'Colonoscopia', value: 0, pe: nil },
-#   { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: 6 },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 0, pe: nil },
-#   { title: 'Ecogramas básicos', value: 100, pe: 6 },
-#   { title: 'Ecogramas especializados', value: 0, pe: nil },
-#   { title: 'Electrocardiograma', value: 100, pe: 3 },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: 6 },
-#   { title: 'Exámenes Lab. Especiales', value: 0, pe: nil },
-#   { title: 'Gastroscopia', value: 0, pe: nil },
-#   { title: 'Hospitalización', value: 0, pe: nil },
-#   { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
-#   { title: 'Rayos X estudios simples', value: 100, pe: 6 },
-#   { title: 'Servicios de Emergencias', value: 0, pe: nil },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
-#   { title: 'Telemedicina', value: 100, pe: nil },
-#   { title: 'Tomografía (1 x Año)', value: 0, pe: nil },
-#   { title: 'UCI', value: 0, pe: nil },
-# ]
-# coverage_items_platino2 = [
-#   { title: 'Cirugía Electiva', value: 0, pe: nil },
-#   { title: 'Cirugía de Emergencia', value: 0, pe: nil },
-#   { title: 'Colonoscopia', value: 0, pe: nil },
-#   { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: 3 },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 0, pe: nil },
-#   { title: 'Ecogramas básicos', value: 100, pe: nil },
-#   { title: 'Ecogramas especializados', value: 100, pe: 6 },
-#   { title: 'Electrocardiograma', value: 100, pe: nil },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: 3 },
-#   { title: 'Exámenes Lab. Especiales', value: 100, pe: 6 },
-#   { title: 'Gastroscopia', value: 0, pe: nil },
-#   { title: 'Hospitalización', value: 0, pe: nil },
-#   { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
-#   { title: 'Rayos X estudios simples', value: 100, pe: 3 },
-#   { title: 'Servicios de Emergencias', value: nil, pe: 6 },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
-#   { title: 'Telemedicina', value: 100, pe: nil },
-#   { title: 'Tomografía (1 x Año)', value: 100, pe: 6 },
-#   { title: 'UCI', value: 0, pe: nil },
-# ]
-# coverage_items_platino3 = [
-#   { title: 'Cirugía Electiva', value: 100, pe: 12 },
-#   { title: 'Cirugía de Emergencia', value: 100, pe: nil },
-#   { title: 'Colonoscopia', value: 100, pe: 12 },
-#   { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: nil },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
-#   { title: 'Ecogramas básicos', value: 100, pe: nil },
-#   { title: 'Ecogramas especializados', value: 100, pe: 3 },
-#   { title: 'Electrocardiograma', value: 100, pe: nil },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
-#   { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
-#   { title: 'Gastroscopia', value: 100, pe: 12 },
-#   { title: 'Hospitalización', value: 100, pe: 6 },
-#   { title: 'Mamografía (1 x Año)', value: 100, pe: 6 },
-#   { title: 'Rayos X estudios simples', value: 100, pe: nil },
-#   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
-#   { title: 'Telemedicina', value: 100, pe: nil },
-#   { title: 'Tomografía (1 x Año)', value: 100, pe: 3 },
-#   { title: 'UCI', value: 0, pe: nil },
-# ]
-# coverage_items_bronce_empleado = [
-#   { title: 'Cirugía Electiva', value: 100, pe: 12 },
-#   { title: 'Colonoscopia', value: 0, pe: nil },
-#   { title: 'Consultas básicas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: 6 },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 12 },
-#   { title: 'Ecogramas básicos', value: 100, pe: 3 },
-#   { title: 'Ecogramas especializados', value: 100, pe: 8 },
-#   { title: 'Electrocardiograma', value: 100, pe: 3 },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: 3 },
-#   { title: 'Exámenes Lab. Especiales', value: 100, pe: 8 },
-#   { title: 'Gastroscopia', value: 0, pe: nil },
-#   { title: 'Hospitalización', value: 100, pe: 9 },
-#   { title: 'Mamografía (1 x Año)', value: 100, pe: 12 },
-#   { title: 'Rayos X', value: 100, pe: nil },
-#   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: 6 },
-#   { title: 'Telemedicina', value: 100, pe: nil },
-# ]
-# coverage_items_plata_empleado = [
-#   { title: 'Cirugía Electiva', value: 100, pe: 12 },
-#   { title: 'Colonoscopia', value: 100, pe: 8 },
-#   { title: 'Consultas básicas', value: 100, pe: nil },
-#   { title: 'Consultas especializadas', value: 100, pe: 3 },
-#   { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 6 },
-#   { title: 'Ecogramas básicos', value: 100, pe: 1 },
-#   { title: 'Ecogramas especializados', value: 100, pe: 6 },
-#   { title: 'Electrocardiograma', value: 100, pe: nil },
-#   { title: 'Exámenes Lab. Básicos', value: 100, pe: 1 },
-#   { title: 'Exámenes Lab. Especiales', value: 100, pe: 6 },
-#   { title: 'Gastroscopia', value: 100, pe: 8 },
-#   { title: 'Hospitalización', value: 100, pe: 6 },
-#   { title: 'Mamografía (1 x Año)', value: 100, pe: 6 },
-#   { title: 'Rayos X', value: 100, pe: nil },
-#   { title: 'Servicios de Emergencias', value: 100, pe: nil },
-#   { title: 'Servicios de Odontología Básica', value: 100, pe: 3 },
-#   { title: 'Telemedicina', value: 100, pe: nil },
-# ]
+coverage_items = [
+  { title: 'Hospitalización', value: 100, pe: 3 },
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
+  { title: 'Cirugía de Emergencia', value: 100, pe: nil },
+  { title: 'Colonoscopia', value: 100, pe: 12 },
+  { title: 'Consultas básicas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: nil },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
+  { title: 'Ecogramas básicos', value: 100, pe: nil },
+  { title: 'Electrocardiograma', value: 100, pe: nil },
+  { title: 'Exámenes Especiales', value: 100, pe: 3 },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
+  { title: 'Gastroscopia', value: 100, pe: 12 },
+  { title: 'Mamografía', value: 100, pe: 3 },
+  { title: 'Mastología', value: 0, pe: 12 },
+  { title: 'Maternidad', value: 100, pe: 12 },
+  { title: 'Rayos X', value: 100, pe: nil },
+  { title: 'Servicios de Emergencias', value: 100, pe: nil },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
+  { title: 'Tomografía', value: 100, pe: 3 },
+  { title: 'UCI', value: 100, pe: 12 }
+]
+coverage_items_oro = [
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
+  { title: 'Cirugía de Emergencia', value: 100, pe: nil },
+  { title: 'Colonoscopia', value: 100, pe: 6 },
+  { title: 'Consultas básicas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: nil },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: nil },
+  { title: 'Ecogramas básicos', value: 100, pe: nil },
+  { title: 'Electrocardiograma', value: 100, pe: nil },
+  { title: 'Exámenes Especiales', value: 100, pe: 3 },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
+  { title: 'Gastroscopia', value: 100, pe: 6 },
+  { title: 'Hospitalización', value: 100, pe: 3 },
+  { title: 'Mamografía', value: 100, pe: 6 },
+  { title: 'Mastología', value: 0, pe: 12 },
+  { title: 'Maternidad', value: 100, pe: 12 },
+  { title: 'Rayos X', value: 100, pe: nil },
+  { title: 'Servicios de Emergencias', value: 100, pe: nil },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
+  { title: 'Tomografía', value: 100, pe: 3 },
+  { title: 'UCI', value: 100, pe: 6 }
+]
+coverage_items_platino1 = [
+  { title: 'Cirugía Electiva', value: 0, pe: nil },
+  { title: 'Cirugía de Emergencia', value: 0, pe: nil },
+  { title: 'Colonoscopia', value: 0, pe: nil },
+  { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: 6 },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 0, pe: nil },
+  { title: 'Ecogramas básicos', value: 100, pe: 6 },
+  { title: 'Ecogramas especializados', value: 0, pe: nil },
+  { title: 'Electrocardiograma', value: 100, pe: 3 },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: 6 },
+  { title: 'Exámenes Lab. Especiales', value: 0, pe: nil },
+  { title: 'Gastroscopia', value: 0, pe: nil },
+  { title: 'Hospitalización', value: 0, pe: nil },
+  { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
+  { title: 'Rayos X estudios simples', value: 100, pe: 6 },
+  { title: 'Servicios de Emergencias', value: 0, pe: nil },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
+  { title: 'Telemedicina', value: 100, pe: nil },
+  { title: 'Tomografía (1 x Año)', value: 0, pe: nil },
+  { title: 'UCI', value: 0, pe: nil },
+]
+coverage_items_platino2 = [
+  { title: 'Cirugía Electiva', value: 0, pe: nil },
+  { title: 'Cirugía de Emergencia', value: 0, pe: nil },
+  { title: 'Colonoscopia', value: 0, pe: nil },
+  { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: 3 },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 0, pe: nil },
+  { title: 'Ecogramas básicos', value: 100, pe: nil },
+  { title: 'Ecogramas especializados', value: 100, pe: 6 },
+  { title: 'Electrocardiograma', value: 100, pe: nil },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: 3 },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 6 },
+  { title: 'Gastroscopia', value: 0, pe: nil },
+  { title: 'Hospitalización', value: 0, pe: nil },
+  { title: 'Mamografía (1 x Año)', value: 0, pe: nil },
+  { title: 'Rayos X estudios simples', value: 100, pe: 3 },
+  { title: 'Servicios de Emergencias', value: nil, pe: 6 },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
+  { title: 'Telemedicina', value: 100, pe: nil },
+  { title: 'Tomografía (1 x Año)', value: 100, pe: 6 },
+  { title: 'UCI', value: 0, pe: nil },
+]
+coverage_items_platino3 = [
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
+  { title: 'Cirugía de Emergencia', value: 100, pe: nil },
+  { title: 'Colonoscopia', value: 100, pe: 12 },
+  { title: 'Consultas básicas ilimitadas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: nil },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 3 },
+  { title: 'Ecogramas básicos', value: 100, pe: nil },
+  { title: 'Ecogramas especializados', value: 100, pe: 3 },
+  { title: 'Electrocardiograma', value: 100, pe: nil },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: nil },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 3 },
+  { title: 'Gastroscopia', value: 100, pe: 12 },
+  { title: 'Hospitalización', value: 100, pe: 6 },
+  { title: 'Mamografía (1 x Año)', value: 100, pe: 6 },
+  { title: 'Rayos X estudios simples', value: 100, pe: nil },
+  { title: 'Servicios de Emergencias', value: 100, pe: nil },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: nil },
+  { title: 'Telemedicina', value: 100, pe: nil },
+  { title: 'Tomografía (1 x Año)', value: 100, pe: 3 },
+  { title: 'UCI', value: 0, pe: nil },
+]
+coverage_items_bronce_empleado = [
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
+  { title: 'Colonoscopia', value: 0, pe: nil },
+  { title: 'Consultas básicas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: 6 },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 12 },
+  { title: 'Ecogramas básicos', value: 100, pe: 3 },
+  { title: 'Ecogramas especializados', value: 100, pe: 8 },
+  { title: 'Electrocardiograma', value: 100, pe: 3 },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: 3 },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 8 },
+  { title: 'Gastroscopia', value: 0, pe: nil },
+  { title: 'Hospitalización', value: 100, pe: 9 },
+  { title: 'Mamografía (1 x Año)', value: 100, pe: 12 },
+  { title: 'Rayos X', value: 100, pe: nil },
+  { title: 'Servicios de Emergencias', value: 100, pe: nil },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: 6 },
+  { title: 'Telemedicina', value: 100, pe: nil },
+]
+coverage_items_plata_empleado = [
+  { title: 'Cirugía Electiva', value: 100, pe: 12 },
+  { title: 'Colonoscopia', value: 100, pe: 8 },
+  { title: 'Consultas básicas', value: 100, pe: nil },
+  { title: 'Consultas especializadas', value: 100, pe: 3 },
+  { title: 'Ecocardiograma, Mapa, Holter', value: 100, pe: 6 },
+  { title: 'Ecogramas básicos', value: 100, pe: 1 },
+  { title: 'Ecogramas especializados', value: 100, pe: 6 },
+  { title: 'Electrocardiograma', value: 100, pe: nil },
+  { title: 'Exámenes Lab. Básicos', value: 100, pe: 1 },
+  { title: 'Exámenes Lab. Especiales', value: 100, pe: 6 },
+  { title: 'Gastroscopia', value: 100, pe: 8 },
+  { title: 'Hospitalización', value: 100, pe: 6 },
+  { title: 'Mamografía (1 x Año)', value: 100, pe: 6 },
+  { title: 'Rayos X', value: 100, pe: nil },
+  { title: 'Servicios de Emergencias', value: 100, pe: nil },
+  { title: 'Servicios de Odontología Básica', value: 100, pe: 3 },
+  { title: 'Telemedicina', value: 100, pe: nil },
+]
 
 unless Disease.all.present?
   Disease.create([
@@ -222,30 +222,30 @@ end
 unless Company.all.present?
   company = Company.create({ name: 'SIRCA ', rif: 'J-00000000-0' })
   products = company.products.create({ description: 'Medicina Prepagada', title: 'SIRCA' })
-  # products.plans.create({ coverage: 12_000,
-  #                         coverage_items: nil,
-  #                         payment_fee: 18, title: 'Bronce', age_limit: 60, age_min: nil })
-  # products.plans.create({ coverage: 20_000,
-  #                         coverage_items: coverage_items, payment_fee: 25,
-  #                         title: 'Plata', age_limit: 60, age_min: nil })
-  # products.plans.create({ coverage: 50_000,
-  #                         coverage_items: coverage_items_oro, payment_fee: 45,
-  #                         title: 'Oro', age_limit: 60, age_min: nil })
-  # products.plans.create({ coverage: 10_000,
-  #                         coverage_items: coverage_items_platino1, payment_fee: 18,
-  #                         title: 'Platino 1', age_limit: 81, age_min: 61 })
-  # products.plans.create({ coverage: 10_000,
-  #                         coverage_items: coverage_items_platino2, payment_fee: 36,
-  #                         title: 'Platino 2', age_limit: 81, age_min: 61 })
-  # products.plans.create({ coverage: 10_000,
-  #                         coverage_items: coverage_items_platino3, payment_fee: 52,
-  #                         title: 'Platino 3', age_limit: 81, age_min: 61 })
-  # products.plans.create({ coverage: 4_000,
-  #                         coverage_items: coverage_items_bronce_empleado, payment_fee: 10,
-  #                         title: 'Bronce Empleado', age_limit: nil, age_min: nil, own: true })
-  # products.plans.create({ coverage: 6_000,
-  #                         coverage_items: coverage_items_plata_empleado, payment_fee: 12,
-  #                         title: 'Plata Empleado', age_limit: nil, age_min: nil, own: true })
+  products.plans.create({ coverage: 12_000,
+                          coverage_items: nil,
+                          payment_fee: 18, title: 'Bronce', age_limit: 60, age_min: nil })
+  products.plans.create({ coverage: 20_000,
+                          coverage_items: coverage_items, payment_fee: 25,
+                          title: 'Plata', age_limit: 60, age_min: nil })
+  products.plans.create({ coverage: 50_000,
+                          coverage_items: coverage_items_oro, payment_fee: 45,
+                          title: 'Oro', age_limit: 60, age_min: nil })
+  products.plans.create({ coverage: 10_000,
+                          coverage_items: coverage_items_platino1, payment_fee: 18,
+                          title: 'Platino 1', age_limit: 81, age_min: 61 })
+  products.plans.create({ coverage: 10_000,
+                          coverage_items: coverage_items_platino2, payment_fee: 36,
+                          title: 'Platino 2', age_limit: 81, age_min: 61 })
+  products.plans.create({ coverage: 10_000,
+                          coverage_items: coverage_items_platino3, payment_fee: 52,
+                          title: 'Platino 3', age_limit: 81, age_min: 61 })
+  products.plans.create({ coverage: 4_000,
+                          coverage_items: coverage_items_bronce_empleado, payment_fee: 10,
+                          title: 'Bronce Empleado', age_limit: nil, age_min: nil, own: true })
+  products.plans.create({ coverage: 6_000,
+                          coverage_items: coverage_items_plata_empleado, payment_fee: 12,
+                          title: 'Plata Empleado', age_limit: nil, age_min: nil, own: true })
 end
 
 unless State.all.present?
@@ -342,15 +342,15 @@ if CoverageItem.all.blank?
     { title: 'Emergencias', scale_items: [3] }])
 end
 
-# if Plan.first.coverage_items_plans.blank?
-#   all_coverages = CoverageItem.all
+if Plan.first.coverage_items_plans.blank?
+  all_coverages = CoverageItem.all
 
-#   Plan.all.each do |plan|
-#     plan.coverage_items.each do |item|
-#       coverage = all_coverages.find_by(title: item['title'])
-#       if coverage.present?
-#         plan.coverage_items_plans.create({ coverage_item_id: coverage.id, waiting_period: item['pe'], coverage: item['value'] })
-#       end
-#     end
-#   end
-# end
+  Plan.all.each do |plan|
+    plan.coverage_items.each do |item|
+      coverage = all_coverages.find_by(title: item['title'])
+      if coverage.present?
+        plan.coverage_items_plans.create({ coverage_item_id: coverage.id, waiting_period: item['pe'], coverage: item['value'] })
+      end
+    end
+  end
+end
