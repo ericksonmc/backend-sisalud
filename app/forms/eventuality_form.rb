@@ -126,11 +126,11 @@ class EventualityForm < BaseForm
   def find_scale(type)
     case type
     when 'emergency'
-      scale = Scale.find(54)
+      scale = Scale.find(3)
     when 'medical_consultation'
-      scale = Scale.find(31)
+      scale = Scale.find(1)
     when 'specialized_medical_consultation'
-      scale = Scale.find(32)
+      scale = Scale.find(2)
     end
     {
       amount: scale.amount,

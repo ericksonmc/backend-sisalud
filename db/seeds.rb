@@ -336,7 +336,7 @@ if Scale.count.zero?
 end
 
 if CoverageItem.all.blank?
-  CoverageItem.create([{ title: 'Cirugía de Emergencia', scale_items: []})
+  CoverageItem.create([{ title: 'Cirugía de Emergencia', scale_items: [] }])
 end
 
 # if Plan.first.coverage_items_plans.blank?
