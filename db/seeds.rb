@@ -222,9 +222,9 @@ end
 unless Company.all.present?
   company = Company.create({ name: 'SIRCA ', rif: 'J-00000000-0' })
   products = company.products.create({ description: 'Medicina Prepagada', title: 'SIRCA' })
-  products.plans.create({ coverage: 12_000,
-                          coverage_items: nil,
-                          payment_fee: 18, title: 'Bronce', age_limit: 60, age_min: nil })
+  # products.plans.create({ coverage: 12_000,
+  #                         coverage_items: nil,
+  #                         payment_fee: 18, title: 'Bronce', age_limit: 60, age_min: nil })
   # products.plans.create({ coverage: 20_000,
   #                         coverage_items: coverage_items, payment_fee: 25,
   #                         title: 'Plata', age_limit: 60, age_min: nil })
@@ -336,7 +336,10 @@ if Scale.count.zero?
 end
 
 if CoverageItem.all.blank?
-  CoverageItem.create([{ title: 'Cirugía de Emergencia', scale_items: [] }])
+  CoverageItem.create([
+    { title: 'Consultas basicas', scale_items: [1] },
+    { title: 'Consultas con especialistas', scale_items: [2] },
+    { title: 'Emergencias', scale_items: [3] }])
 end
 
 # if Plan.first.coverage_items_plans.blank?
