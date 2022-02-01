@@ -27,6 +27,17 @@ class PlanForm < BaseForm
     assign_attributes_to_admin_user unless @new_record
   end
 
+  def after_save
+    cove_json = @plan.coverage_items_plans.map do |ci|
+      {
+        pe: ci.waiting_period,
+        title: ci.coverage_item.title,
+        value: ci.coverage
+      }
+    end
+    @plan.update(coverage_items: cove_json)
+  end
+
   private
 
   def assign_attributes_to_admin_user
