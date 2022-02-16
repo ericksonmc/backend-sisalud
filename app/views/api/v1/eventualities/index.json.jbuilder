@@ -10,8 +10,8 @@ json.array! @eventualities do |event|
   json.updated_at event.updated_at&.strftime('%d/%m/%Y')
   json.agreement event.agreement
   json.customer do
-    json.full_name event.agreement.customer.full_name
-    json.dni event.agreement.customer&.dni
+    json.full_name event.customer&.full_name
+    json.dni event.customer&.dni
   end
   json.agent do
     json.full_name event.agreement.user.to_s
