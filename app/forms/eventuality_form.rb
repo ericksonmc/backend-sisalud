@@ -11,6 +11,7 @@ class EventualityForm < BaseForm
               :agreement_id,
               :customer_id,
               :date,
+              :assessment,
               :eventuality_expenses_attributes,
               :eventuality_expense_manuals_attributes
 

@@ -8,6 +8,7 @@ json.observations @eventuality.observations
 json.agreement @eventuality.agreement
 json.customer @eventuality.customer
 json.invoice_image_url @eventuality.invoice_url_image
+json.assessment @eventuality&.assessment
 json.eventuality_expenses @eventuality.eventuality_expenses.map do |expense|
   json.id expense.id
   json.amount expense.amount
