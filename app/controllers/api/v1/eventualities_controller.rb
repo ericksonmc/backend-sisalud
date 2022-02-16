@@ -6,7 +6,7 @@ module Api
       include Rails.application.routes.url_helpers
       def index
         filters = set_filters
-        @eventualities = Eventuality.where(filters)
+        @eventualities = load_eventualities(filters)
         @pie_data = char_data
         @scale_consumption = scale_consumption
 
@@ -76,6 +76,15 @@ module Api
           eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id],
           eventuality_expense_manuals_attributes: [:id, :title, :amount, :eventuality_id]
         )
+      end
+
+      def load_eventualities(filters)
+        events = Eventuality.where(filters)
+        events_with_agreements = []
+        events.each do |e|
+          events_with_agreements << e if e.agreement.present?
+        end
+        events_with_agreements
       end
 
       def set_filters

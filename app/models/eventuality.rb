@@ -42,7 +42,7 @@ class Eventuality < ApplicationRecord
 
   scope :emergencies, -> { where(event_type: 'emergency') }
 
-  default_scope { agreement.nil? }
+  # scope :with_agreements, -> { Agreement.find(agreement_id) }
 
   before_destroy :revert_amount
 
