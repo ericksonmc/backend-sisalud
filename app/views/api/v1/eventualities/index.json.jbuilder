@@ -14,7 +14,7 @@ json.array! @eventualities do |event|
     json.dni event.customer&.dni
   end
   json.agent do
-    json.full_name event.agreement.user.to_s
-    json.agent_code event.agreement.user.agent_code
+    json.full_name event.agreement&.user&.to_s
+    json.agent_code event.agreement&.user&.agent_code
   end
 end
