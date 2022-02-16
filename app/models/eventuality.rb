@@ -42,6 +42,8 @@ class Eventuality < ApplicationRecord
 
   scope :emergencies, -> { where(event_type: 'emergency') }
 
+  before_destroy :revert_amount
+
   has_one_attached :invoice_image
 
   aasm do
@@ -80,6 +82,10 @@ class Eventuality < ApplicationRecord
 
     customer.update(coverage: customer.coverage + calculate_total)
     self.update(amount: calculate_total)
+  end
+
+  def revert_amount
+    customer.update(coverage: customer.coverage - amount) if self.closed?
   end
 
   def calculate_total
