@@ -6,7 +6,7 @@ json.array! @eventualities do |event|
   json.date event.date&.strftime('%d/%m/%Y')
   json.event_type event.event_type
   json.observations event.observations
-  json.assessment @eventuality&.assessment
+  json.assessment event.assessment
   json.updated_at event.updated_at&.strftime('%d/%m/%Y')
   json.agreement event.agreement
   json.customer do
