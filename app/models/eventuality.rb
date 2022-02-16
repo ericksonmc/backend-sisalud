@@ -85,7 +85,7 @@ class Eventuality < ApplicationRecord
   end
 
   def revert_amount
-    customer.update(coverage: customer.coverage - amount) if self.closed?
+    customer.update(coverage: customer.coverage - amount) if closed?
   end
 
   def calculate_total
