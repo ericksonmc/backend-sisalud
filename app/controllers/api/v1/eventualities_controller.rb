@@ -82,7 +82,7 @@ module Api
         events = Eventuality.where(filters)
         events_with_agreements = []
         events.each do |e|
-          events_with_agreements << e if e.agreement.present?
+          events_with_agreements.push(e) if e.agreement.present?
         end
         events_with_agreements
       end
