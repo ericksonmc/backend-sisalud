@@ -42,8 +42,6 @@ class Eventuality < ApplicationRecord
 
   scope :emergencies, -> { where(event_type: 'emergency') }
 
-  # scope :with_agreements, -> { Agreement.find(agreement_id) }
-
   before_destroy :revert_amount
 
   has_one_attached :invoice_image
