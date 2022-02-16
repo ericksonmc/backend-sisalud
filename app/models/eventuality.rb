@@ -42,6 +42,8 @@ class Eventuality < ApplicationRecord
 
   scope :emergencies, -> { where(event_type: 'emergency') }
 
+  default_scope { agreement.nil? }
+
   before_destroy :revert_amount
 
   has_one_attached :invoice_image
