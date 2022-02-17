@@ -126,7 +126,7 @@ module Api
 
       def char_data
         Eventuality.select('event_type as label, count(event_type) as value')
-                   .where(filters)
+                   .where(id: @eventualities.ids)
                    &.group(:label)
                    &.order(:value)
                    &.map { |event| [pretty_key_event(event.label), event.value] }
