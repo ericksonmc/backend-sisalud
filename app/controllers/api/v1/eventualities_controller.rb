@@ -78,15 +78,6 @@ module Api
         )
       end
 
-      def load_eventualities(filters)
-        events = Eventuality.where(filters)
-        events_with_agreements = []
-        events.each do |e|
-          events_with_agreements.push(e) if e.agreement.present?
-        end
-        events_with_agreements
-      end
-
       def set_filters
         filters = {}
         filters[:date] = params[:date_to].present? ? date_range : date_param
@@ -108,6 +99,7 @@ module Api
 
       def date_param
         return if event_params[:customer_id].present? and !event_params[:date].present?
+
         event_params[:date].present? ? event_params[:date].to_time.all_day : Time.now.all_day
       end
 
@@ -133,10 +125,11 @@ module Api
       end
 
       def char_data
-        @eventualities&.select('event_type as label, count(event_type) as value')
-                      &.group(:label)
-                      &.order(:value)
-                      &.map { |event| [pretty_key_event(event.label), event.value] }
+        Eventuality.select('event_type as label, count(event_type) as value')
+                   .where(filters)
+                   &.group(:label)
+                   &.order(:value)
+                   &.map { |event| [pretty_key_event(event.label), event.value] }
       end
 
       def scale_consumption
@@ -144,6 +137,15 @@ module Api
                                   'scales where id = eventuality_expenses.scale_id) as title')
                           .where(eventuality_id: @eventualities.ids)
                           .order(:scale_count).group(:scale_id).map { |i| [i.title, i.scale_count] }
+      end
+
+      def load_eventualities(filters)
+        events = Eventuality.where(filters)
+        events_with_agreements = []
+        events.each do |e|
+          events_with_agreements.push(e) if e.agreement.present?
+        end
+        events_with_agreements
       end
     end
   end
