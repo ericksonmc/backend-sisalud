@@ -126,7 +126,7 @@ module Api
 
       def char_data
         Eventuality.select('event_type as label, count(event_type) as value')
-                   .where(id: @eventualities.ids)
+                   .where(id: @eventualities.pluck(:id))
                    &.group(:label)
                    &.order(:value)
                    &.map { |event| [pretty_key_event(event.label), event.value] }
@@ -135,7 +135,7 @@ module Api
       def scale_consumption
         EventualityExpense.select('scale_id, count(scale_id) as scale_count, (select title from '\
                                   'scales where id = eventuality_expenses.scale_id) as title')
-                          .where(eventuality_id: @eventualities.ids)
+                          .where(eventuality_id: @eventualities.pluck(:id))
                           .order(:scale_count).group(:scale_id).map { |i| [i.title, i.scale_count] }
       end
 
