@@ -58,7 +58,7 @@ class Eventuality < ApplicationRecord
 
     event :cancel do
       transitions from: [:pending], to: :cancelled
-      after { update_coverage }
+      after { cancellation_coverage_update }
     end
 
     event :reopen do
@@ -77,18 +77,18 @@ class Eventuality < ApplicationRecord
     rails_blob_path(invoice_image, disposition: 'attachment', only_path: true)
   end
 
-  def update_coverage
+  def cancellation_coverage_update
     return if date.to_i > Time.now.to_i
 
-    customer.update(coverage: customer.coverage + calculate_total)
-    self.update(amount: calculate_total)
+    customer.update(coverage: customer.coverage + calculate_total_unloaded)
+    self.update(amount: calculate_total_unloaded)
   end
 
   def revert_amount
     customer.update(coverage: customer.coverage - amount) if closed?
   end
 
-  def calculate_total
+  def calculate_total_unloaded
     expenses = eventuality_expenses.where(charged: false)
                                    .inject(0) { |sum, item| sum + item.amount }
 
@@ -98,7 +98,15 @@ class Eventuality < ApplicationRecord
     expenses + manual_expenses
   end
 
-  def set_charded_expenses
+  def total_expenses
+    expenses = eventuality_expenses.inject(0) { |sum, item| sum + item.amount }
+
+    manual_expenses = eventuality_expense_manuals&.inject(0) { |sum, item| sum + item.amount }
+
+    expenses + manual_expenses
+  end
+
+  def set_charged_expenses
     eventuality_expenses.update_all(charged: true)
     eventuality_expense_manuals.update_all(charged: true)
   end
