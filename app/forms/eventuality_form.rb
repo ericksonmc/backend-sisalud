@@ -14,7 +14,7 @@ class EventualityForm < BaseForm
               :assessment,
               :eventuality_expenses_attributes,
               :eventuality_expense_manuals_attributes
-
+  validate :validate_active_agreement
   validate :validate_state
   validate :beneficiary_insured
   validate :beneficiary_has_coverage
@@ -30,13 +30,13 @@ class EventualityForm < BaseForm
 
   def before_validation
     assign_attributes_to_model unless new_record
-    create_base_expense
+    create_base_expense if @new_record
     parse_date
   end
 
   def after_save
+    update_base_expenses
     update_state if state_change.present?
-    update_coverage
   end
 
   private
@@ -71,6 +71,11 @@ class EventualityForm < BaseForm
     @eventuality.eventuality_expenses_attributes = [find_scale(@eventuality.event_type)]
   end
 
+  def update_base_expenses
+    customer.update_coverage(total)
+    @eventuality.set_charged_expenses
+  end
+
   def parse_date
     return unless @new_record
 
@@ -78,20 +83,16 @@ class EventualityForm < BaseForm
   end
 
   def update_coverage
+    @eventuality.update(amount: @eventuality.amount.to_f + @eventuality.total_expenses)
     customer.update_coverage(total)
-    set_amount
   end
 
   def update_expenses
-    @eventuality.set_charded_expenses
-  end
-
-  def set_amount
-    @eventuality.update(amount: @eventuality.amount.to_f + total)
+    @eventuality.set_charged_expenses
   end
 
   def total
-    @total ||= @eventuality.calculate_total
+    @total ||= @eventuality.calculate_total_unloaded
   end
 
   def validate_state
@@ -106,6 +107,12 @@ class EventualityForm < BaseForm
     errors.add(:closed, 'Esta eventualidad esta cerrada o cancelada')
 
     raise StandardError.new, 'Esta eventualidad esta cerrada o cancelada'
+  end
+
+  def validate_active_agreement
+    return true if customer.act_agreement.active?
+
+    raise StandardError.new, "Esta poliza se encuentra: #{I18n.t("agreements.status.#{customer.act_agreement.aasm_state}")}"
   end
 
   def beneficiary_insured

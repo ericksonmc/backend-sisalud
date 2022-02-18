@@ -44,6 +44,7 @@ module Api
       def emergency_eventualities
         @emergency_eventualities ||= Eventuality.joins(:customer).where(customer: { deleted_at: nil })
                                                 .where(event_type: 'emergency')
+                                                .where(created_at: (Time.now - 1.day).all_day)
                                                 .order(id: :DESC).limit(10).map do |event|
           {
             agreement_id: event.customer&.act_agreement&.id,

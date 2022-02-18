@@ -26,7 +26,7 @@ wb.add_worksheet(name: 'Clientes') do |sheet|
       event.password
     ]
   end
-  sheet.add_row [nil.to_s, nil.to_s, @eventualities.sum(:amount).to_f]
+  sheet.add_row [nil.to_s, nil.to_s, nil.to_s]
 end
 
 wb.add_worksheet(name: 'Tipos de Eventualidades') do |sheet|
