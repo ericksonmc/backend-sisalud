@@ -110,6 +110,8 @@ class EventualityForm < BaseForm
   end
 
   def validate_active_agreement
+    return true if !customer.act_agreement.active? && state_change['state_change'] == 'close'
+
     return true if customer.act_agreement.active?
 
     raise StandardError.new, "Esta poliza se encuentra: #{I18n.t("agreements.status.#{customer.act_agreement.aasm_state}")}"
