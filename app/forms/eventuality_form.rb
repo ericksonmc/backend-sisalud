@@ -118,6 +118,8 @@ class EventualityForm < BaseForm
   end
 
   def beneficiary_insured
+    return true if !customer.is_insured && state_change['state_change'] == 'close'
+
     return true if customer.is_insured
 
     raise StandardError.new, 'El beneficiario no se encuentra asegurado'
