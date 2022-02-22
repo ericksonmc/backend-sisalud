@@ -138,11 +138,11 @@ class EventualityForm < BaseForm
   def find_scale(type)
     case type
     when 'emergency'
-      scale = Scale.find(54)
+      scale = Scale.find(ENV['EMERGENCY'])
     when 'medical_consultation'
-      scale = Scale.find(31)
+      scale = Scale.find(ENV['CONSULTATION'])
     when 'specialized_medical_consultation'
-      scale = Scale.find(32)
+      scale = Scale.find(ENV['CONSULTATION_ESP'])
     end
     {
       amount: scale.amount,

@@ -8,12 +8,15 @@ module Api
       def index
         per = params[:per] || 20
         page = params[:page]
+        filters = {}
+        filters[:id] = my_customers if current_user.agent?
 
         if params[:filter].present?
-          @customers = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
+          @customers = Customer.where(filters)
+                               .where("firstname ilike '%#{filter_split[0]}%' "\
                                       "or last_name ilike '%#{filter_split[1]}%'")
         else
-          @customers = Customer.all.order(:id)
+          @customers = Customer.where(filters).order(:id)
         end
 
         per = @customers.count if params[:per] == 'todos'
@@ -61,17 +64,20 @@ module Api
 
       def filter_customer
         @customers = []
+        filters = {}
+        filters[:id] = my_customers if current_user.agent?
 
         case @filter_type
         when 'name'
-          @records = Customer.where("firstname ilike '%#{filter_split[0]}%' "\
+          @records = Customer.where(filters)
+                             .where("firstname ilike '%#{filter_split[0]}%' "\
                                     "or last_name ilike '%#{filter_split[1]}%'")
           @records.each do |b|
             b.holder? ? @customers << b : @customers << b.parent
           end
         when 'dni'
-          @records = Customer.where("dni ilike '%#{filter}%'")
-          @records = Customer.where("dni ilike '%#{filter.split('-')[1]}%'") if @records.blank?
+          @records = Customer.where(filters).where("dni ilike '%#{filter}%'")
+          @records = Customer.where(filters).where("dni ilike '%#{filter.split('-')[1]}%'") if @records.blank?
           @records.each do |b|
             b.holder? ? @customers << b : @customers << b.parent
           end
@@ -101,6 +107,14 @@ module Api
       end
 
       private
+
+      def my_customers
+        customers = []
+        Agreement.where(user_id: current_user.id).each do |agree|
+          customers.concat agree.contract_members.pluck(:id)
+        end
+        customers
+      end
 
       def may_used(scale_id)
         return true if customer.antiquity >= 12
