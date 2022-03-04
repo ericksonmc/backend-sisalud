@@ -120,7 +120,21 @@ class Customer < ApplicationRecord
     (coverage_reference.to_f - coverage.to_f).round(2)
   end
 
-  def antiquity
-    TimeDifference.between(created_at, Time.now).in_months
+  def antiquity(component = 'months')
+    time_difference = TimeDifference.between(created_at, Time.now)
+    case component
+    when 'months'
+      time_difference.in_months
+    when 'years'
+      time_difference.in_years
+    when 'days'
+      time_difference.in_days
+    when 'full'
+      time_difference.in_each_component
+    when 'pretty'
+      { years: time_difference.in_years,
+        months: time_difference.in_months,
+        days: time_difference.in_days }
+    end
   end
 end
