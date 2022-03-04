@@ -15,4 +15,5 @@ json.data @pagination do |customer|
   json.dni customer.dni
   json.is_insured customer.is_insured
   json.payment_fee customer.payment_fee
+  json.antiquity "#{customer.antiquity} Meses"
 end

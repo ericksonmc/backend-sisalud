@@ -5,6 +5,7 @@ json.array! @customers do |customer|
   json.agreement_id customer.holder? ? customer&.agreement&.id : customer&.parent&.agreement&.id
   json.status customer&.agreement&.status
   json.is_insured customer.is_insured
+  json.antiquity customer.antiquity('pretty')
   json.plan do
     json.plan customer.plan&.title
     json.coverage customer.plan&.coverage
@@ -24,5 +25,6 @@ json.array! @customers do |customer|
     json.coverage child&.coverage
     json.plan child.plan&.title
     json.is_insured child.is_insured
+    json.antiquity child.antiquity('pretty')
   end
 end
