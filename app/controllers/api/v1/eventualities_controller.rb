@@ -73,6 +73,8 @@ module Api
           :date_to,
           :invoice_image,
           :assessment,
+          :indications,
+          :recipe,
           eventuality_expenses_attributes: [:id, :amount, :eventuality_id, :scale_id],
           eventuality_expense_manuals_attributes: [:id, :title, :amount, :eventuality_id]
         )

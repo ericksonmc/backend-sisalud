@@ -12,6 +12,8 @@ class EventualityForm < BaseForm
               :customer_id,
               :date,
               :assessment,
+              :indications,
+              :recipe,
               :eventuality_expenses_attributes,
               :eventuality_expense_manuals_attributes
   validate :validate_active_agreement
@@ -29,7 +31,9 @@ class EventualityForm < BaseForm
   end
 
   def before_validation
+    byebug
     assign_attributes_to_model unless new_record
+    byebug
     create_base_expense if @new_record
     parse_date
   end
