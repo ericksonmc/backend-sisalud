@@ -8,6 +8,8 @@ class UserForm < BaseForm
               :role,
               :active,
               :agent_code,
+              :dni,
+              :mpps,
               :permissions_attributes
 
   def initialize(args: {}, user: nil)
