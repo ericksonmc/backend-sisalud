@@ -7,9 +7,7 @@ module Api
       before_action :agreement, only: [:show]
 
       def index
-        conditions = {}
-        conditions[:user_id] = params[:user_id] if params[:user_id].present?
-        @agreements = find_agreements.where(conditions)
+        @agreements = find_agreements
 
         respond_to do |format|
           format.json
@@ -78,11 +76,13 @@ module Api
       private
 
       def find_agreements
+        conditions = {}
+        conditions[:user_id] = params[:user_id] if params[:user_id].present?
         case current_user.role
         when 'admin', 'super_admin'
-          Agreement.all
+          Agreement.where(conditions)
         when 'agent'
-          Agreement.where(user_id: current_user.id)
+          Agreement.where(conditions).where(user_id: current_user.id)
         else
           []
         end
