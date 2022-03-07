@@ -78,6 +78,7 @@ module Api
       def find_agreements
         conditions = {}
         conditions[:user_id] = params[:user_id] if params[:user_id].present?
+
         case current_user.role
         when 'admin', 'super_admin'
           Agreement.where(conditions)
