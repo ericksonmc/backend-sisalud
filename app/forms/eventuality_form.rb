@@ -31,9 +31,7 @@ class EventualityForm < BaseForm
   end
 
   def before_validation
-    byebug
     assign_attributes_to_model unless new_record
-    byebug
     create_base_expense if @new_record
     parse_date
   end
