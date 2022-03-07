@@ -7,10 +7,12 @@
 #  id                     :bigint           not null, primary key
 #  active                 :boolean          default(TRUE), not null
 #  agent_code             :string
+#  dni                    :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
 #  last_name              :string
+#  mpps                   :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string

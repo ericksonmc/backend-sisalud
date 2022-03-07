@@ -12,6 +12,8 @@ class EventualityForm < BaseForm
               :customer_id,
               :date,
               :assessment,
+              :indications,
+              :recipe,
               :eventuality_expenses_attributes,
               :eventuality_expense_manuals_attributes
   validate :validate_active_agreement

@@ -5,10 +5,13 @@
 #  id           :bigint           not null, primary key
 #  aasm_state   :string
 #  amount       :float
+#  assessment   :text
 #  date         :date
 #  event_type   :integer
+#  indications  :string
 #  observations :string
 #  password     :string
+#  recipe       :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  agreement_id :bigint           not null
