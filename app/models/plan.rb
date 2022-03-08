@@ -5,8 +5,8 @@
 # Table name: plans
 #
 #  id             :bigint           not null, primary key
-#  age_limit      :integer
-#  age_min        :integer          default(0)
+#  age_limit      :float
+#  age_min        :float            default(0.0)
 #  coverage       :float
 #  coverage_items :jsonb
 #  own            :boolean          default(FALSE)
