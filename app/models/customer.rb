@@ -7,7 +7,7 @@
 #  id                   :bigint           not null, primary key
 #  activity             :string
 #  address              :jsonb
-#  age                  :integer
+#  age                  :float
 #  birthday             :date
 #  coverage             :float
 #  coverage_reference   :float

@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_131408) do
     t.string "email"
     t.string "activity"
     t.boolean "main"
-    t.integer "age"
+    t.float "age"
     t.integer "sex"
     t.string "size"
     t.bigint "parent_id"

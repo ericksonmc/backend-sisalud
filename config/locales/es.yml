@@ -29,6 +29,10 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 es:
+  devise:
+    failure:
+      user:
+        not_found_in_database: "Usuario o clave incorrecto"
   eventuality:
     status:
       pending: Pendiente
