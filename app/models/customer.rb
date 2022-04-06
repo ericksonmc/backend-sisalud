@@ -137,4 +137,8 @@ class Customer < ApplicationRecord
         days: time_difference.in_days }
     end
   end
+
+  def active_agreement?
+    act_agreement.active?
+  end
 end

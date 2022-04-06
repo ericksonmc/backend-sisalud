@@ -5,8 +5,8 @@ module Api
     class DashboardController < ApiController
       def index
         data = {
-          payment_fee_total: payment_fee_total,
           total_customers: total_customers,
+          payment_fee_total: payment_fee_total,
           eventualities_total: eventualities_total,
           new_customers_total: new_customers_total,
           emergency_eventualities: emergency_eventualities,
@@ -17,18 +17,16 @@ module Api
         render json: data
       end
 
-      def payment_fee_total
-        @payment_fee_total ||= Customer.where(is_insured: true).reduce(0) do |memo, data|
-          if data.payment_fee.present?
-            memo + data.payment_fee.to_f
-          else
-            memo + data&.plan&.payment_fee.to_f
-          end
-        end
+      def total_customers
+        @total_customers ||= customers_count
       end
 
-      def total_customers
-        @total_customers ||= Customer.count
+      def payment_fee_total
+        total = 0
+        @customers.each do |data|
+          total += data.payment_fee.to_f
+        end
+        total
       end
 
       def eventualities_total
@@ -93,16 +91,29 @@ module Api
 
       def set_interval(param)
         interval = param.nil? ? 'week' : param
+        date = Time.now
         case interval
         when 'day'
-          return [Time.now.beginning_of_day..Time.now.end_of_day]
+          return [date.beginning_of_day..date.end_of_day]
         when 'week'
-          [Time.now.beginning_of_week..Time.now.end_of_week]
+          [date.beginning_of_week..date.end_of_week]
         when 'month'
-          [Time.now.beginning_of_month..Time.now.end_of_month]
+          [date.beginning_of_month..date.end_of_month]
         when 'year'
-          [Time.now.beginning_of_year..Time.now.end_of_year]
+          [date.beginning_of_year..date.end_of_year]
         end
+      end
+
+      def customers_count
+        @customers = []
+        count = 0
+        Customer.all.each do |customer|
+          if customer.active_agreement? && customer.is_insured
+            count += 1
+            @customers << customer
+          end
+        end
+        count
       end
     end
   end
