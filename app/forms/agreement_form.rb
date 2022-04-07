@@ -79,8 +79,7 @@ class AgreementForm < BaseForm
   def set_contract_number
     return unless @new_record
 
-    agreements_counts = @user.agreements.count + 1
-    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{agreements_counts.to_s.rjust(3, '0')}"
+    @agreement.agreement_number = "SIR-#{@user.agent_code}-#{set_agreement_number}"
   end
 
   def set_agreement_data
@@ -109,5 +108,14 @@ class AgreementForm < BaseForm
     adult = @agreement.contract_members.select { |member| member[:age] > 60 }
 
     adult.present?
+  end
+
+  def set_agreement_number
+    agreements_counts = @user.agreements.count + 1
+    last_agree_number = @user.agreements.last.agreement_number.split('-').last.to_i
+
+    return (last_agree_number + 1).to_s.rjust(3, '0') if agreements_counts.to_i == last_agree_number
+
+    agreements_counts.to_s.rjust(3, '0')
   end
 end
