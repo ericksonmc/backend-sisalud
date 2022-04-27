@@ -1,0 +1,29 @@
+wb = xlsx_package.workbook # create excel book
+
+wb.add_worksheet(name: 'Contratos') do |sheet|
+  header = wb.styles.add_style({ alignment: { horizontal: :center, vertical: :center, wrap_text: true }, border: { style: :thin, color: '000000' } })
+
+  sheet.add_row [
+    '#',
+    'Contrato ID',
+    'Fecha Creado',
+    'Fecha Firmado',
+    'Asesor',
+    'Clientes',
+    'Beneficiarios',
+    'Planes',
+  ], style: header
+
+  @agreements.order(@order).each_with_index do |agree, index|
+    sheet.add_row [
+      index + 1,
+      agree.agreement_number,
+      agree.created_at.strftime('%d/%m/%Y'),
+      agree.signed_date.strftime('%d/%m/%Y'),
+      agree.user.to_s,
+      agree.clientes_and_insureds[0],
+      agree.clientes_and_insureds[1],
+      agree.agreement_plans.map{|k,v| "#{k}: #{v}"}.join(', ')
+    ]
+  end
+end

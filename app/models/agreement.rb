@@ -107,6 +107,24 @@ class Agreement < ApplicationRecord
     I18n.t("agreements.status.#{aasm_state}")
   end
 
+  def clientes_and_insureds
+    clients = 1 + customer.childs.length
+    insureds = customer.plan.present? ? 1 : 0
+
+    customer.childs.each do |c|
+      insureds += 1 if c.plan.present?
+    end
+
+    [clients, insureds]
+  end
+
+  def agreement_plans
+    customers = [customer]
+    customers.concat customer.childs
+    plans = customers.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:plan_id]] += 1 }
+    plans.transform_keys { |key| Plan.find(key.to_i).title}
+  end
+
   private
 
   def send_pending_review_email
