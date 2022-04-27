@@ -8,9 +8,16 @@ module Api
 
       def index
         @agreements = find_agreements
+        @order = params[:order].present? ? params[:order] : 'id'
 
         respond_to do |format|
           format.json
+          format.xlsx {
+            render xlsx: "contratos_#{date_range(true)}",
+                   template: 'api/v1/agreements/index.xlsx.axlsx',
+                   filename: "contratos_#{date_range(true)}",
+                   disposition: 'inline'
+          }
         end
       end
 
@@ -78,6 +85,7 @@ module Api
       def find_agreements
         conditions = {}
         conditions[:user_id] = params[:user_id] if params[:user_id].present?
+        conditions[:created_at] = date_range if params[:date_from].present?
 
         case current_user.role
         when 'admin', 'super_admin'
@@ -144,6 +152,22 @@ module Api
         else
           User.find_by(id: params[:customer][:user_id])
         end
+      end
+
+      def date_range(string = false)
+        return '' unless params[:date_from].present?
+
+        from = params[:date_from].to_date
+
+        return from.all_day unless params[:date_to].present?
+
+        return from.to_s unless params[:date_to].present?
+
+        to = params[:date_to].to_date
+        
+        return "#{from.to_s}_#{to.to_s}" if string
+
+        from.beginning_of_day..to.end_of_day
       end
     end
   end
