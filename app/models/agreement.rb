@@ -119,10 +119,11 @@ class Agreement < ApplicationRecord
   end
 
   def agreement_plans
-    customers = [customer]
-    customers.concat customer.childs
+    customers = []
+    customers << customer if customer.is_insured?
+    customers.concat customer.childs.where(is_insured: true)
     plans = customers.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:plan_id]] += 1 }
-    plans.transform_keys { |key| Plan.find(key.to_i).title}
+    plans.transform_keys { |key| Plan.find(key.to_i).title }
   end
 
   private
