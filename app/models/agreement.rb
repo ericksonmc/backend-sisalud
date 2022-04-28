@@ -109,11 +109,9 @@ class Agreement < ApplicationRecord
 
   def clientes_and_insureds
     clients = 1 + customer.childs.length
-    insureds = customer.plan.present? ? 1 : 0
+    insureds = customer.is_insured? ? 1 : 0
 
-    customer.childs.each do |c|
-      insureds += 1 if c.plan.present?
-    end
+    insureds += customer.childs.where(is_insured: true).count
 
     [clients, insureds]
   end
