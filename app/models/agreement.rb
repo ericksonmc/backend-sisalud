@@ -50,8 +50,8 @@ class Agreement < ApplicationRecord
     state :deleted
 
     event :to_pending do
-      transitions from: :active, to: :pending, guard: :ready_for_pending?
-      after { send_pending_review_email }
+      # transitions from: :active, to: :pending, guard: :ready_for_pending?
+      # after { send_pending_review_email }
     end
 
     event :to_suspended do
