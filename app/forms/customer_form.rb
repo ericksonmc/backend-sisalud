@@ -127,11 +127,14 @@ class CustomerForm < BaseForm
     return unless @customer.main
 
     agreement.save!
-  rescue StandardError => e
+  rescue Exception => e
     Rails.logger.info do
       'Error while creating the agreement for customer.'\
-        "Customer Email: #{@customer&.email}. Error message: #{e.message}"
+        "Customer Email: #{@customer&.email}. Error message: #{e.message}"\
+	"Error: #{e.backtrace}"
     end
+	errors.add(:agreement, 'Error al crear el contrato, contacte con soporte tecnico')
+     Rails.logger.info "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
   end
 
   def set_main

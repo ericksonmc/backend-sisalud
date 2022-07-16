@@ -47,7 +47,7 @@
 #
 class Customer < ApplicationRecord
   attr_accessor :diagnosis, :id_attachment
-
+  audited
   belongs_to :parent, class_name: 'Customer', foreign_key: 'parent_id', optional: true
   belongs_to :plan, optional: true
 
@@ -60,6 +60,8 @@ class Customer < ApplicationRecord
   has_one :attachment, as: :fileable, dependent: :destroy
 
   has_one_attached :files
+
+  scope :holder, -> { where(parent_id: nil) }
 
   enum sex: { femenino: 0, masculino: 1 }
 
@@ -139,6 +141,7 @@ class Customer < ApplicationRecord
   end
 
   def active_agreement?
+    Rails.logger.info id
     act_agreement.active?
   end
 end

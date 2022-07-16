@@ -12,7 +12,7 @@ class FixCoverages
       consumed_detail = calculate_total_details(customer.id)
       unless customer.coverage.to_f.round(2) == consumed.to_f.round(2) and consumed.to_f.round(2) == consumed_detail.to_f.round(2)
         puts "#{customer.id},#{customer.dni},#{customer.full_name},#{customer.coverage.round(2)},#{consumed.round(2)},#{consumed_detail.round(2)}"
-        # customer.update(coverage: consumed_detail.to_f.round(2))
+#        puts customer.update(coverage: consumed_detail.to_f.round(2))
       end
     end
   end
