@@ -79,7 +79,7 @@ class AgreementForm < BaseForm
   def set_contract_number
     return unless @new_record
 
-    @agreement.agreement_number = "SIR-#{@user.agent_code}-#{set_agreement_number}"
+    @agreement.agreement_number = "SIP-#{@user.agent_code}-#{set_agreement_number}"
   end
 
   def set_agreement_data
@@ -111,11 +111,16 @@ class AgreementForm < BaseForm
   end
 
   def set_agreement_number
-    agreements_counts = @user.agreements.count + 1
-    last_agree_number = @user.agreements.last.agreement_number.split('-').last.to_i
+    user_agree = @user.agreements
+    agreements_counts = user_agree&.count.to_i + 1
+    last_agree_number = user_agree.present? ? agree_number : 0
 
     return (last_agree_number + 1).to_s.rjust(3, '0') if agreements_counts.to_i == last_agree_number
 
     agreements_counts.to_s.rjust(3, '0')
+  end
+
+  def agree_number
+    @user.agreements.last.agreement_number.split('-').last.to_i
   end
 end
